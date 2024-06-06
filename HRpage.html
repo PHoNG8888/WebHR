@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sơ đồ cây nhân sự</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>VĂN PHÒNG ĐIỆN TỬ VEC O&M</h1>
+            <h2>CÔNG TY CP VẬN HÀNH VÀ BẢO TRÌ</h2>
+        </header>
+        
+        <section class="directory">
+            <h3>DANH BẠ NHÂN SỰ VEC O&M</h3>
+            <!-- Add your employee directory table here -->
+        </section>
+        <section class="organization-chart">
+            <h3>Sơ Đồ Tổ Chức</h3>
+            <div class="tree">
+                <ul>
+                    <li>
+                        <a href="#" onclick="showInfo('ceo')"><img src="ceo.jpg" alt="Giám đốc"><br>Giám đốc</a>
+                        <ul>
+                            <li>
+                                <a href="#" onclick="toggleDepartment('vp1')"><img src="vp1.jpg" alt="Phó giám đốc 1"><br>Phó giám đốc 1</a>
+                                <ul id="vp1" class="hidden">
+                                    <li>
+                                        <a href="#" onclick="toggleDepartment('dept1')"><img src="dept1.jpg" alt="Phòng ban 1"><br>Phòng ban 1</a>
+                                        <ul id="dept1" class="hidden">
+                                            <li>
+                                                <a href="#" onclick="showInfo('employee1')"><img src="employee1.jpg" alt="Nhân viên 1"><br>Nhân viên 1</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" onclick="showInfo('employee2')"><img src="employee2.jpg" alt="Nhân viên 2"><br>Nhân viên 2</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    
+                                    <li>
+                                        <a href="#" onclick="toggleDepartment('dept2')"><img src="dept2.jpg" alt="Phòng ban 2"><br>Phòng ban 2</a>
+                                        <ul id="dept2" class="hidden">
+                                            <li>
+                                                <a href="#" onclick="showInfo('employee3')"><img src="employee3.jpg" alt="Nhân viên 3"><br>Nhân viên 3</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" onclick="showInfo('employee4')"><img src="employee4.jpg" alt="Nhân viên 4"><br>Nhân viên 4</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" onclick="toggleDepartment('vp2')"><img src="vp2.jpg" alt="Phó giám đốc 2"><br>Phó giám đốc 2</a>
+                                <ul id="vp2" class="hidden">
+                                    <li>
+                                        <a href="#" onclick="toggleDepartment('center1')"><img src="center1.jpg" alt="Trung tâm 1"><br>Trung tâm 1</a>
+                                        <ul id="center1" class="hidden">
+                                            <li>
+                                                <a href="#" onclick="showInfo('employee5')"><img src="employee5.jpg" alt="Nhân viên 5"><br>Nhân viên 5</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" onclick="showInfo('employee6')"><img src="employee6.jpg" alt="Nhân viên 6"><br>Nhân viên 6</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" onclick="toggleDepartment('center2')"><img src="center2.jpg" alt="Trung tâm 2"><br>Trung tâm 2</a>
+                                        <ul id="center2" class="hidden">
+                                            <li>
+                                                <a href="#" onclick="showInfo('employee7')"><img src="employee7.jpg" alt="Nhân viên 7"><br>Nhân viên 7</a>
+                                            </li>
+                                            <li>
+                                                <a href="#" onclick="showInfo('employee8')"><img src="employee8.jpg" alt="Nhân viên 8"><br>Nhân viên 8</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeInfo()">&times;</span>
+            <div id="infoContent"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
