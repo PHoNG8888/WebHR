@@ -1,3 +1,4 @@
+// script.js
 google.charts.load('current', {packages:["orgchart"]});
 google.charts.setOnLoadCallback(drawChart);
 
@@ -9,18 +10,18 @@ function drawChart() {
 
     // Define the chart data
     data.addRows([
-        [{'v':'Giám đốc', 'f':'Giám đốc<div style="color:red; font-style:italic">CEO</div>'}, '', ''],
-        [{'v':'Phó Giám đốc 1', 'f':'Phó Giám đốc<div style="color:red; font-style:italic">VP</div>'}, 'Giám đốc', ''],
-        [{'v':'Phó giám đốc 2', 'f':'Phó giám đốc<div style="color:red; font-style:italic">VP</div>'}, 'Giám đốc', ''],
-        [{'v':'Phòng QLKT', 'f':'Phòng QLKT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc 1', ''],
-        [{'v':'Phòng KH&KD', 'f':'Phòng KH&KD<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc 1', ''],
-        [{'v':'Phòng TCKT', 'f':'Phòng TCKT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc 1', ''],
-        [{'v':'Phòng TCNC', 'f':'Phòng TCNC<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc 1', ''],
-        [{'v':'Trung tâm NBLC', 'f':'Trung tâm NBLC<div style="color:red; font-style:italic"></div>'}, 'Phó giám đốc 2', ''],
-        [{'v':'Trung tâm CGNB', 'f':'Trung tâm CGNB<div style="color:red; font-style:italic"></div>'}, 'Phó giám đốc 2', ''],
-        [{'v':'Trung tâm BMT', 'f':'Trung tâm BMT<div style="color:red; font-style:italic"></div>'}, 'Phó giám đốc 2', ''],
-        [{'v':'Trung tâm ĐNQN', 'f':'Trung tâm ĐNQN<div style="color:red; font-style:italic"></div>'}, 'Phó giám đốc 2', ''],
-        [{'v':'Trung tâm TN và KT', 'f':'Trung tâm TN và KT<div style="color:red; font-style:italic"></div>'}, 'Phó giám đốc 2', '']
+        [{'v':'Hội Đồng Quản Trị', 'f':'Hội Đồng Quản Trị<div style="color:red; font-style:italic">HĐQT</div>'}, '', ''],
+        [{'v':'Giám Đốc', 'f':'Giám Đốc<div style="color:red; font-style:italic">GD</div>'}, 'Hội Đồng Quản Trị', ''],
+        [{'v':'Phó Giám đốc', 'f':'Phó Giám đốc<div style="color:red; font-style:italic">PGĐ</div>'}, 'Giám Đốc', ''],
+        [{'v':'Phòng QLKT', 'f':'Phòng QLKT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
+        [{'v':'Phòng KH&KD', 'f':'Phòng KH&KD<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
+        [{'v':'Phòng TCKT', 'f':'Phòng TCKT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
+        [{'v':'Phòng TCNC', 'f':'Phòng TCNC<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
+        [{'v':'Trung tâm TN&KT', 'f':'Trung tâm TN&KT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
+        [{'v':'Trung tâm CGNB', 'f':'Trung tâm CGNB<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
+        [{'v':'Trung tâm NBLC', 'f':'Trung tâm NBLC<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
+        [{'v':'Trung tâm BMT', 'f':'Trung tâm BMT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
+        [{'v':'Trung tâm ĐNQN', 'f':'Trung tâm ĐNQN<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', '']
     ]);
 
     var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
@@ -38,26 +39,25 @@ function drawChart() {
 
 function displayModal(name) {
     var info = {
-        'Giám đốc': {
-            'chức vụ': 'CEO',
+        'Hội Đồng Quản Trị': {
+            'tên': 'Nguyễn Thanh A',
+            'chức vụ': 'HĐQT',
             'sđt': '0123456789',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hà Nội'
         },
-        'Phó Giám đốc 1': {
-            'chức vụ': 'VP',
+        'Giám Đốc': {
+            'chức vụ': 'GD',
+            'tên': 'Nguyễn Thanh Sơn',
             'sđt': '0987654321',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hồ Chí Minh'
         },
-        'Phó giám đốc 2': {
-            'chức vụ': 'VP',
-            'sđt': '0987654322',
-            'trạng thái': 'Active',
-            'nơi làm việc': 'Đà Nẵng'
+        'Phó Giám đốc': {
+            'nhân viên': ['Nguyễn Văn Dương', 'Trần Ngọc Hải']
         },
         'Phòng QLKT': {
-            'nhân viên': ['Nguyễn Văn A', 'Trần Thị B']
+            'nhân viên': ['Nguyễn Văn A - Phó trưởng phòng', 'Trần Thị B']
         },
         'Phòng KH&KD': {
             'nhân viên': ['Phạm Văn C', 'Lê Thị D']
@@ -69,10 +69,10 @@ function displayModal(name) {
             'nhân viên': ['Đinh Văn G', 'Nguyễn Thị H']
         },
         'Trung tâm NBLC': {
-            'nhân viên': ['Phạm Văn I', 'Lê Thị J']
+            'nhân viên': ['Phạm Văn I - Giám đốc TT', 'Lê Thị J - Phó giám đốc TT', 'Nguyễn Văn x - Đội trưởng']
         },
         'Trung tâm CGNB': {
-            'nhân viên': ['Nguyễn Văn K', 'Trần Thị L']
+            'nhân viên': ['Nguyễn Văn K - Giám Đốc TT', 'Trần Thị L - Trưởng VPTT']
         },
         'Trung tâm BMT': {
             'nhân viên': ['Hoàng Văn M', 'Ngô Thị N']
@@ -80,7 +80,7 @@ function displayModal(name) {
         'Trung tâm ĐNQN': {
             'nhân viên': ['Đinh Văn O', 'Nguyễn Thị P']
         },
-        'Trung tâm TN và KT': {
+        'Trung tâm TN&KT': {
             'nhân viên': ['Phạm Văn Q', 'Lê Thị R']
         }
     };
@@ -105,6 +105,7 @@ function displayModal(name) {
         } else {
             modalInfo.innerHTML = `
                 <p>Chức vụ: ${info[name]['chức vụ']}</p>
+                <p>Tên: ${info[name]['tên']}</p>
                 <p>SĐT: ${info[name]['sđt']}</p>
                 <p>Trạng thái: ${info[name]['trạng thái']}</p>
                 <p>Nơi làm việc: ${info[name]['nơi làm việc']}</p>
@@ -113,11 +114,14 @@ function displayModal(name) {
         modal.style.display = "flex";
     }
 
+    
     // Close modal when user clicks on <span> (x)
     document.getElementsByClassName("close")[0].onclick = function() {
         modal.style.display = "none";
     }
-
+    document.getElementsByClassName("back")[0].onclick = function() {
+        modalInfo.innerHTML = previousState; // Restore the previous state
+    }
     // Close modal when user clicks anywhere outside of the modal
     window.onclick = function(event) {
         if (event.target == modal) {
@@ -128,7 +132,7 @@ function displayModal(name) {
 
 function displayEmployeeInfo(employee) {
     var employeeInfo = {
-        'Nguyễn Văn A': {
+        'Nguyễn Văn A - Phó trưởng phòng': {
             'chức vụ': 'Nhân viên',
             'sđt': '0123456000',
             'trạng thái': 'Active',
@@ -176,25 +180,31 @@ function displayEmployeeInfo(employee) {
             'trạng thái': 'Active',
             'nơi làm việc': 'Hải Phòng'
         },
-        'Phạm Văn I': {
+        'Phạm Văn I - Giám đốc TT': {
             'chức vụ': 'Nhân viên',
             'sđt': '0123456008',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hà Nội'
         },
-        'Lê Thị J': {
+        'Lê Thị J - Phó giám đốc TT': {
             'chức vụ': 'Nhân viên',
             'sđt': '0123456009',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hà Nội'
         },
-        'Nguyễn Văn K': {
+        'Nguyễn Văn x - đội trưởng' :{
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456009',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hà Nội'
+        },
+        'Nguyễn Văn K - Giám Đốc TT': {
             'chức vụ': 'Nhân viên',
             'sđt': '0123456010',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hồ Chí Minh'
         },
-        'Trần Thị L': {
+        'Trần Thị L - Trưởng VPTT': {
             'chức vụ': 'Nhân viên',
             'sđt': '0123456011',
             'trạng thái': 'Active',
@@ -236,30 +246,22 @@ function displayEmployeeInfo(employee) {
             'trạng thái': 'Active',
             'nơi làm việc': 'Hà Nội'
         }
+        // Add the rest of the employee details here
     };
 
-    var modal = document.getElementById("myModal");
     var modalInfo = document.getElementById("modal-info");
+    previousState = modalInfo.innerHTML; // Store the current state
 
-    if (employeeInfo[employee]) {
-        modalInfo.innerHTML = `
-            <p>Chức vụ: ${employeeInfo[employee]['chức vụ']}</p>
-            <p>SĐT: ${employeeInfo[employee]['sđt']}</p>
-            <p>Trạng thái: ${employeeInfo[employee]['trạng thái']}</p>
-            <p>Nơi làm việc: ${employeeInfo[employee]['nơi làm việc']}</p>
-        `;
-        modal.style.display = "flex";
-    }
-
-    // Close modal when user clicks on <span> (x)
-    document.getElementsByClassName("close")[0].onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // Close modal when user clicks anywhere outside of the modal
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
+    modalInfo.innerHTML = `
+        <p>Chức vụ: ${employeeInfo[employee]['chức vụ']}</p>
+        <p>SĐT: ${employeeInfo[employee]['sđt']}</p>
+        <p>Trạng thái: ${employeeInfo[employee]['trạng thái']}</p>
+        <p>Nơi làm việc: ${employeeInfo[employee]['nơi làm việc']}</p>
+    `;
 }
+
+function closeInfo() {
+    var modal = document.getElementById("infoModal");
+    modal.style.display = "none";
+}
+

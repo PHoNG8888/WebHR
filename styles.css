@@ -49,6 +49,18 @@
     text-decoration: none;
     cursor: pointer;
 }
+.back {
+    color: #aaa;
+    float: left;
+    font-size: 25px;
+    font-weight: bold;
+}
+.back:hover,
+.back:focus{
+    color: black;
+
+    cursor: pointer;
+}
 .employee-button {
     display: block;
     width: 100%;
