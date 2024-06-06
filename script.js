@@ -1,122 +1,265 @@
-function showInfo(person) {
-    let infoContent = document.getElementById("infoContent");
+google.charts.load('current', {packages:["orgchart"]});
+google.charts.setOnLoadCallback(drawChart);
 
-    const personInfo = {
-        'ceo': {
-            'title': 'Giám đốc',
-            'phone': '0123456789',
-            'status': 'Đang hoạt động',
-            'location': 'Trụ sở chính'
+function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Name');
+    data.addColumn('string', 'Manager');
+    data.addColumn('string', 'ToolTip');
+
+    // Define the chart data
+    data.addRows([
+        [{'v':'Giám đốc', 'f':'Giám đốc<div style="color:red; font-style:italic">CEO</div>'}, '', ''],
+        [{'v':'Phó Giám đốc 1', 'f':'Phó Giám đốc<div style="color:red; font-style:italic">VP</div>'}, 'Giám đốc', ''],
+        [{'v':'Phó giám đốc 2', 'f':'Phó giám đốc<div style="color:red; font-style:italic">VP</div>'}, 'Giám đốc', ''],
+        [{'v':'Phòng QLKT', 'f':'Phòng QLKT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc 1', ''],
+        [{'v':'Phòng KH&KD', 'f':'Phòng KH&KD<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc 1', ''],
+        [{'v':'Phòng TCKT', 'f':'Phòng TCKT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc 1', ''],
+        [{'v':'Phòng TCNC', 'f':'Phòng TCNC<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc 1', ''],
+        [{'v':'Trung tâm NBLC', 'f':'Trung tâm NBLC<div style="color:red; font-style:italic"></div>'}, 'Phó giám đốc 2', ''],
+        [{'v':'Trung tâm CGNB', 'f':'Trung tâm CGNB<div style="color:red; font-style:italic"></div>'}, 'Phó giám đốc 2', ''],
+        [{'v':'Trung tâm BMT', 'f':'Trung tâm BMT<div style="color:red; font-style:italic"></div>'}, 'Phó giám đốc 2', ''],
+        [{'v':'Trung tâm ĐNQN', 'f':'Trung tâm ĐNQN<div style="color:red; font-style:italic"></div>'}, 'Phó giám đốc 2', ''],
+        [{'v':'Trung tâm TN và KT', 'f':'Trung tâm TN và KT<div style="color:red; font-style:italic"></div>'}, 'Phó giám đốc 2', '']
+    ]);
+
+    var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+    chart.draw(data, {'allowHtml': true});
+
+    google.visualization.events.addListener(chart, 'select', function() {
+        var selection = chart.getSelection();
+        if (selection.length > 0) {
+            var selectedItem = selection[0];
+            var selectedRow = data.getValue(selectedItem.row, 0);
+            displayModal(selectedRow);
+        }
+    });
+}
+
+function displayModal(name) {
+    var info = {
+        'Giám đốc': {
+            'chức vụ': 'CEO',
+            'sđt': '0123456789',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hà Nội'
         },
-        'vp1': {
-            'title': 'Phó giám đốc 1',
-            'phone': '0123456790',
-            'status': 'Đang hoạt động',
-            'location': 'Văn phòng chi nhánh 1'
+        'Phó Giám đốc 1': {
+            'chức vụ': 'VP',
+            'sđt': '0987654321',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hồ Chí Minh'
         },
-        'vp2': {
-            'title': 'Phó giám đốc 2',
-            'phone': '0123456791',
-            'status': 'Đang hoạt động',
-            'location': 'Văn phòng chi nhánh 2'
+        'Phó giám đốc 2': {
+            'chức vụ': 'VP',
+            'sđt': '0987654322',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Đà Nẵng'
         },
-        'dept1': {
-            'title': 'Phòng ban 1',
-            'phone': '0123456792',
-            'status': 'Đang hoạt động',
-            'location': 'Trụ sở chính'
+        'Phòng QLKT': {
+            'nhân viên': ['Nguyễn Văn A', 'Trần Thị B']
         },
-        'dept2': {
-            'title': 'Phòng ban 2',
-            'phone': '0123456793',
-            'status': 'Đang hoạt động',
-            'location': 'Văn phòng chi nhánh 1'
+        'Phòng KH&KD': {
+            'nhân viên': ['Phạm Văn C', 'Lê Thị D']
         },
-        'center1': {
-            'title': 'Trung tâm 1',
-            'phone': '0123456794',
-            'status': 'Đang hoạt động',
-            'location': 'Trung tâm vận hành 1'
+        'Phòng TCKT': {
+            'nhân viên': ['Hoàng Văn E', 'Ngô Thị F']
         },
-        'center2': {
-            'title': 'Trung tâm 2',
-            'phone': '0123456795',
-            'status': 'Đang hoạt động',
-            'location': 'Trung tâm vận hành 2'
+        'Phòng TCNC': {
+            'nhân viên': ['Đinh Văn G', 'Nguyễn Thị H']
         },
-        'employee1': {
-            'title': 'Nhân viên 1',
-            'phone': '0123456796',
-            'status': 'Đang hoạt động',
-            'location': 'Phòng ban 1'
+        'Trung tâm NBLC': {
+            'nhân viên': ['Phạm Văn I', 'Lê Thị J']
         },
-        'employee2': {
-            'title': 'Nhân viên 2',
-            'phone': '0123456797',
-            'status': 'Đang hoạt động',
-            'location': 'Phòng ban 1'
+        'Trung tâm CGNB': {
+            'nhân viên': ['Nguyễn Văn K', 'Trần Thị L']
         },
-        'employee3': {
-            'title': 'Nhân viên 3',
-            'phone': '0123456798',
-            'status': 'Đang hoạt động',
-            'location': 'Phòng ban 2'
+        'Trung tâm BMT': {
+            'nhân viên': ['Hoàng Văn M', 'Ngô Thị N']
         },
-        'employee4': {
-            'title': 'Nhân viên 4',
-            'phone': '0123456799',
-            'status': 'Đang hoạt động',
-            'location': 'Phòng ban 2'
+        'Trung tâm ĐNQN': {
+            'nhân viên': ['Đinh Văn O', 'Nguyễn Thị P']
         },
-        'employee5': {
-            'title': 'Nhân viên 5',
-            'phone': '0123456800',
-            'status': 'Đang hoạt động',
-            'location': 'Trung tâm 1'
-        },
-        'employee6': {
-            'title': 'Nhân viên 6',
-            'phone': '0123456801',
-            'status': 'Đang hoạt động',
-            'location': 'Trung tâm 1'
-        },
-        'employee7': {
-            'title': 'Nhân viên 7',
-            'phone': '0123456802',
-            'status': 'Đang hoạt động',
-            'location': 'Trung tâm 2'
-        },
-        'employee8': {
-            'title': 'Nhân viên 8',
-            'phone': '0123456803',
-            'status': 'Đang hoạt động',
-            'location': 'Trung tâm 2'
+        'Trung tâm TN và KT': {
+            'nhân viên': ['Phạm Văn Q', 'Lê Thị R']
         }
     };
 
-    let info = personInfo[person];
-    if (info) {
-        infoContent.innerHTML = `
-            <h2>${info.title}</h2>
-            <p><strong>Số điện thoại:</strong> ${info.phone}</p>
-            <p><strong>Trạng thái:</strong> ${info.status}</p>
-            <p><strong>Nơi làm việc:</strong> ${info.location}</p>
-        `;
-    } else {
-        infoContent.innerHTML = "<p>Thông tin không có sẵn.</p>";
+    var modal = document.getElementById("myModal");
+    var modalInfo = document.getElementById("modal-info");
+
+    modalInfo.innerHTML = ''; // Clear existing info
+
+    if (info[name]) {
+        if (info[name]['nhân viên']) {
+            modalInfo.innerHTML = '<h3>Danh sách nhân viên</h3>';
+            info[name]['nhân viên'].forEach(function(employee) {
+                var button = document.createElement('button');
+                button.innerText = employee;
+                button.classList.add('employee-button');
+                button.onclick = function() {
+                    displayEmployeeInfo(employee);
+                };
+                modalInfo.appendChild(button);
+            });
+        } else {
+            modalInfo.innerHTML = `
+                <p>Chức vụ: ${info[name]['chức vụ']}</p>
+                <p>SĐT: ${info[name]['sđt']}</p>
+                <p>Trạng thái: ${info[name]['trạng thái']}</p>
+                <p>Nơi làm việc: ${info[name]['nơi làm việc']}</p>
+            `;
+        }
+        modal.style.display = "flex";
     }
 
-    document.getElementById("infoModal").style.display = "block";
+    // Close modal when user clicks on <span> (x)
+    document.getElementsByClassName("close")[0].onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Close modal when user clicks anywhere outside of the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
 }
 
-function closeInfo() {
-    document.getElementById("infoModal").style.display = "none";
-}
-function toggleDepartment(department) {
-    let deptElement = document.getElementById(department);
-    if (deptElement.classList.contains('hidden')) {
-        deptElement.classList.remove('hidden');
-    } else {
-        deptElement.classList.add('hidden');
+function displayEmployeeInfo(employee) {
+    var employeeInfo = {
+        'Nguyễn Văn A': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456000',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hà Nội'
+        },
+        'Trần Thị B': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456001',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hà Nội'
+        },
+        'Phạm Văn C': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456002',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hồ Chí Minh'
+        },
+        'Lê Thị D': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456003',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hồ Chí Minh'
+        },
+        'Hoàng Văn E': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456004',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Đà Nẵng'
+        },
+        'Ngô Thị F': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456005',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Đà Nẵng'
+        },
+        'Đinh Văn G': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị H': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Phạm Văn I': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456008',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hà Nội'
+        },
+        'Lê Thị J': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456009',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hà Nội'
+        },
+        'Nguyễn Văn K': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456010',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hồ Chí Minh'
+        },
+        'Trần Thị L': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456011',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hồ Chí Minh'
+        },
+        'Hoàng Văn M': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456012',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Đà Nẵng'
+        },
+        'Ngô Thị N': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456013',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Đà Nẵng'
+        },
+        'Đinh Văn O': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456014',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị P': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456015',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Phạm Văn Q': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456016',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hà Nội'
+        },
+        'Lê Thị R': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456017',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hà Nội'
+        }
+    };
+
+    var modal = document.getElementById("myModal");
+    var modalInfo = document.getElementById("modal-info");
+
+    if (employeeInfo[employee]) {
+        modalInfo.innerHTML = `
+            <p>Chức vụ: ${employeeInfo[employee]['chức vụ']}</p>
+            <p>SĐT: ${employeeInfo[employee]['sđt']}</p>
+            <p>Trạng thái: ${employeeInfo[employee]['trạng thái']}</p>
+            <p>Nơi làm việc: ${employeeInfo[employee]['nơi làm việc']}</p>
+        `;
+        modal.style.display = "flex";
+    }
+
+    // Close modal when user clicks on <span> (x)
+    document.getElementsByClassName("close")[0].onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // Close modal when user clicks anywhere outside of the modal
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
     }
 }
