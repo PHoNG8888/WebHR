@@ -150,6 +150,8 @@ function displayModal(name) {
     var modal = document.getElementById("myModal");
     var modalInfo = document.getElementById("modal-info");
 
+    previousState = modalInfo.innerHTML; // Store the current state
+
     modalInfo.innerHTML = ''; // Clear existing info
 
     if (info[name]) {
@@ -194,6 +196,18 @@ function displayModal(name) {
 
 function displayEmployeeInfo(employee) {
     var employeeInfo = {
+        'Nguyễn Văn Dương':{
+            'chức vụ': 'Phó giám đốc',
+            'sđt':'0123456789',
+            'trạng thái':'Active',
+            'nơi làm việc': 'Hà Nam'
+        },
+        'Trần Ngọc Hải': {
+            'chức vụ:':'Phó giám đốc',
+            'sđt': '0456987123',
+            'trạng thái':'Active',
+            'nơi làm việc':'Hà Nam'
+        },
         'Nguyễn Văn A - Phó trưởng phòng': {
             'chức vụ': 'Nhân viên',
             'sđt': '0123456000',
