@@ -10,9 +10,9 @@ function drawChart() {
 
     // Define the chart data
     data.addRows([
-        [{'v':'Hội Đồng Quản Trị', 'f':'Hội Đồng Quản Trị<div style="color:red; font-style:italic">HĐQT</div>'}, '', ''],
-        [{'v':'Giám Đốc', 'f':'Giám Đốc<div style="color:red; font-style:italic">GD</div>'}, 'Hội Đồng Quản Trị', ''],
-        [{'v':'Phó Giám đốc', 'f':'Phó Giám đốc<div style="color:red; font-style:italic">PGĐ</div>'}, 'Giám Đốc', ''],
+        [{'v':'Hội Đồng Quản Trị', 'f':'Hội Đồng Quản Trị<div style="color:red; font-style:italic"></div>'}, '', ''],
+        [{'v':'Giám Đốc', 'f':'Giám Đốc<div style="color:red; font-style:italic"></div>'}, 'Hội Đồng Quản Trị', ''],
+        [{'v':'Phó Giám đốc', 'f':'Phó Giám đốc<div style="color:red; font-style:italic"></div>'}, 'Giám Đốc', ''],
         [{'v':'Phòng QLKT', 'f':'Phòng QLKT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
         [{'v':'Phòng KH&KD', 'f':'Phòng KH&KD<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
         [{'v':'Phòng TCKT', 'f':'Phòng TCKT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
@@ -36,6 +36,8 @@ function drawChart() {
         }
     });
 }
+
+var previousState = ''; // Variable to store the previous state
 
 function displayModal(name) {
     var info = {
@@ -88,6 +90,8 @@ function displayModal(name) {
     var modal = document.getElementById("myModal");
     var modalInfo = document.getElementById("modal-info");
 
+    previousState = modalInfo.innerHTML; // Store the current state
+
     modalInfo.innerHTML = ''; // Clear existing info
 
     if (info[name]) {
@@ -119,8 +123,16 @@ function displayModal(name) {
     document.getElementsByClassName("close")[0].onclick = function() {
         modal.style.display = "none";
     }
+    // Go back to the previous state when user clicks on "Back" button
     document.getElementsByClassName("back")[0].onclick = function() {
         modalInfo.innerHTML = previousState; // Restore the previous state
+        // Reassign the event listeners to the employee buttons
+        var buttons = modalInfo.getElementsByClassName('employee-button');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].onclick = function() {
+                displayEmployeeInfo(this.innerText);
+            };
+        }
     }
     // Close modal when user clicks anywhere outside of the modal
     window.onclick = function(event) {
@@ -132,6 +144,18 @@ function displayModal(name) {
 
 function displayEmployeeInfo(employee) {
     var employeeInfo = {
+        'Nguyễn Văn Dương':{
+            'chức vụ': 'Phó giám đốc',
+            'sđt':'0123456789',
+            'trạng thái':'Active',
+            'nơi làm việc': 'Hà Nam'
+        },
+        'Trần Ngọc Hải': {
+            'chức vụ:':'Phó giám đốc',
+            'sđt': '0456987123',
+            'trạng thái':'Active',
+            'nơi làm việc':'Hà Nam'
+        },
         'Nguyễn Văn A - Phó trưởng phòng': {
             'chức vụ': 'Nhân viên',
             'sđt': '0123456000',
@@ -192,7 +216,7 @@ function displayEmployeeInfo(employee) {
             'trạng thái': 'Active',
             'nơi làm việc': 'Hà Nội'
         },
-        'Nguyễn Văn x - đội trưởng' :{
+        'Nguyễn Văn x - Đội trưởng' :{
             'chức vụ': 'Nhân viên',
             'sđt': '0123456009',
             'trạng thái': 'Active',
