@@ -1,6 +1,15 @@
-// script.js
-google.charts.load('current', {packages:["orgchart"]});
+google.charts.load('current', { packages: ["orgchart"] });
 google.charts.setOnLoadCallback(drawChart);
+
+// Biến lưu trữ trạng thái mở hay đóng của các phòng
+var subChartState = {
+    'Trung tâm NBLC': false,
+    'Trung tâm TN&KT': false,
+    'Trung tâm CGNB': false,
+    'Trung tâm BMT': false,
+    'Trung tâm ĐNQN': false
+};
+
 
 function drawChart() {
     var data = new google.visualization.DataTable();
@@ -10,31 +19,83 @@ function drawChart() {
 
     // Define the chart data
     data.addRows([
-        [{'v':'Hội Đồng Quản Trị', 'f':'Hội Đồng Quản Trị<div style="color:red; font-style:italic">HĐQT</div>'}, '', ''],
-        [{'v':'Giám Đốc', 'f':'Giám Đốc<div style="color:red; font-style:italic">GD</div>'}, 'Hội Đồng Quản Trị', ''],
-        [{'v':'Phó Giám đốc', 'f':'Phó Giám đốc<div style="color:red; font-style:italic">PGĐ</div>'}, 'Giám Đốc', ''],
-        [{'v':'Phòng QLKT', 'f':'Phòng QLKT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
-        [{'v':'Phòng KH&KD', 'f':'Phòng KH&KD<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
-        [{'v':'Phòng TCKT', 'f':'Phòng TCKT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
-        [{'v':'Phòng TCNC', 'f':'Phòng TCNC<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
-        [{'v':'Trung tâm TN&KT', 'f':'Trung tâm TN&KT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
-        [{'v':'Trung tâm CGNB', 'f':'Trung tâm CGNB<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
-        [{'v':'Trung tâm NBLC', 'f':'Trung tâm NBLC<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
-        [{'v':'Trung tâm BMT', 'f':'Trung tâm BMT<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', ''],
-        [{'v':'Trung tâm ĐNQN', 'f':'Trung tâm ĐNQN<div style="color:red; font-style:italic"></div>'}, 'Phó Giám đốc', '']
+        [{ 'v': 'Hội Đồng Quản Trị', 'f': 'Hội Đồng Quản Trị<div style="color:red; font-style:italic">HĐQT</div>' }, '', ''],
+        [{ 'v': 'Giám Đốc', 'f': 'Giám Đốc<div style="color:red; font-style:italic">GD</div>' }, 'Hội Đồng Quản Trị', ''],
+        [{ 'v': 'Phó Giám đốc', 'f': 'Phó Giám đốc<div style="color:red; font-style:italic">PGĐ</div>' }, 'Giám Đốc', ''],
+        [{ 'v': 'Phòng QLKT', 'f': 'Phòng QLKT<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Phòng KH&KD', 'f': 'Phòng KH&KD<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Phòng TCKT', 'f': 'Phòng TCKT<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Phòng TCNC', 'f': 'Phòng TCNC<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Trung tâm TN&KT', 'f': 'Trung tâm TN&KT<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Trung tâm CGNB', 'f': 'Trung tâm CGNB<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Trung tâm NBLC', 'f': 'Trung tâm NBLC<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Trung tâm BMT', 'f': 'Trung tâm BMT<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Trung tâm ĐNQN', 'f': 'Trung tâm ĐNQN<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', '']
     ]);
 
     var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
-    chart.draw(data, {'allowHtml': true});
+    chart.draw(data, { 'allowHtml': true });
 
-    google.visualization.events.addListener(chart, 'select', function() {
+    google.visualization.events.addListener(chart, 'select', function () {
         var selection = chart.getSelection();
         if (selection.length > 0) {
             var selectedItem = selection[0];
             var selectedRow = data.getValue(selectedItem.row, 0);
+            displaySubChart(data, selectedRow);
             displayModal(selectedRow);
         }
     });
+}
+
+function displaySubChart(data, name) {
+
+    if (subChartState[name]) {
+        drawChart();
+        subChartState[name] = false;
+    } else {
+        // Thêm các hàng cho phòng đã chọn
+        if (name === 'Trung tâm NBLC') {
+            drawSubChart(name, 'chart_div', data);
+        }
+        if (name === 'Trung tâm TN&KT') {
+            drawSubChart(name, 'chart_div', data);
+        }
+        if (name === 'Trung tâm CGNB') {
+            drawSubChart(name, 'chart_div', data);
+        }
+        if (name === 'Trung tâm BMT') {
+            drawSubChart(name, 'chart_div', data);
+        }
+        if (name === 'Trung tâm ĐNQN') {
+            drawSubChart(name, 'chart_div', data);
+        }
+        subChartState[name] = true;
+    }
+}
+
+function drawSubChart(name, containerId, data) {
+
+    // Define the sub-chart data
+    data.addRows([
+        [{ 'v': 'Ban Giám đốc', 'f': 'Ban Giám đốc' }, name, ''],
+        [{ 'v': 'VPTT', 'f': 'VPTT' }, 'Ban Giám đốc', ''],
+        [{ 'v': 'Đội thu phí', 'f': 'Đội thu phí' }, 'Ban Giám đốc', ''],
+        [{ 'v': 'Đội vận hành', 'f': 'Đội vận hành' }, 'Ban Giám đốc', '']
+    ]);
+
+    var subChart = new google.visualization.OrgChart(document.getElementById(containerId));
+    subChart.draw(data, { 'allowHtml': true });
+
+    google.visualization.events.addListener(subChart, 'select', function () {
+        var selection = subChart.getSelection();
+        if (selection.length > 0) {
+            var selectedItem = selection[0];
+            var selectedRow = data.getValue(selectedItem.row, 0);
+            displaySubChart(data, selectedRow);
+            displayModal(selectedRow);
+        }
+    });
+
 }
 
 function displayModal(name) {
@@ -68,20 +129,21 @@ function displayModal(name) {
         'Phòng TCNC': {
             'nhân viên': ['Đinh Văn G', 'Nguyễn Thị H']
         },
-        'Trung tâm NBLC': {
-            'nhân viên': ['Phạm Văn I - Giám đốc TT', 'Lê Thị J - Phó giám đốc TT', 'Nguyễn Văn x - Đội trưởng']
+        'Ban Giám đốc': {
+            'chức vụ': 'GD',
+            'tên': 'Nguyễn Thanh Sơn',
+            'sđt': '0987654321',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hồ Chí Minh'
         },
-        'Trung tâm CGNB': {
-            'nhân viên': ['Nguyễn Văn K - Giám Đốc TT', 'Trần Thị L - Trưởng VPTT']
+        'VPTT': {
+            'nhân viên': ['Đinh Văn G', 'Nguyễn Thị H']
         },
-        'Trung tâm BMT': {
-            'nhân viên': ['Hoàng Văn M', 'Ngô Thị N']
+        'Đội thu phí': {
+            'nhân viên': ['Đinh Văn G', 'Nguyễn Thị H']
         },
-        'Trung tâm ĐNQN': {
-            'nhân viên': ['Đinh Văn O', 'Nguyễn Thị P']
-        },
-        'Trung tâm TN&KT': {
-            'nhân viên': ['Phạm Văn Q', 'Lê Thị R']
+        'Đội vận hành': {
+            'nhân viên': ['Đinh Văn G', 'Nguyễn Thị H']
         }
     };
 
@@ -93,11 +155,11 @@ function displayModal(name) {
     if (info[name]) {
         if (info[name]['nhân viên']) {
             modalInfo.innerHTML = '<h3>Danh sách nhân viên</h3>';
-            info[name]['nhân viên'].forEach(function(employee) {
+            info[name]['nhân viên'].forEach(function (employee) {
                 var button = document.createElement('button');
                 button.innerText = employee;
                 button.classList.add('employee-button');
-                button.onclick = function() {
+                button.onclick = function () {
                     displayEmployeeInfo(employee);
                 };
                 modalInfo.appendChild(button);
@@ -114,16 +176,16 @@ function displayModal(name) {
         modal.style.display = "flex";
     }
 
-    
     // Close modal when user clicks on <span> (x)
-    document.getElementsByClassName("close")[0].onclick = function() {
-        modal.style.display = "none";
+    var closeButton = document.getElementsByClassName("close")[0];
+    if (closeButton) {
+        closeButton.onclick = function () {
+            modal.style.display = "none";
+        }
     }
-    document.getElementsByClassName("back")[0].onclick = function() {
-        modalInfo.innerHTML = previousState; // Restore the previous state
-    }
+
     // Close modal when user clicks anywhere outside of the modal
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
@@ -192,7 +254,7 @@ function displayEmployeeInfo(employee) {
             'trạng thái': 'Active',
             'nơi làm việc': 'Hà Nội'
         },
-        'Nguyễn Văn x - đội trưởng' :{
+        'Nguyễn Văn x - đội trưởng': {
             'chức vụ': 'Nhân viên',
             'sđt': '0123456009',
             'trạng thái': 'Active',
@@ -245,12 +307,17 @@ function displayEmployeeInfo(employee) {
             'sđt': '0123456017',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hà Nội'
+        },
+        'Nguyễn Văn Dương': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456017',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hà Nội'
         }
-        // Add the rest of the employee details here
     };
 
     var modalInfo = document.getElementById("modal-info");
-    previousState = modalInfo.innerHTML; // Store the current state
+    var previousState = modalInfo.innerHTML; // Store the current state
 
     modalInfo.innerHTML = `
         <p>Chức vụ: ${employeeInfo[employee]['chức vụ']}</p>
@@ -264,4 +331,3 @@ function closeInfo() {
     var modal = document.getElementById("infoModal");
     modal.style.display = "none";
 }
-
