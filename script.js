@@ -7,9 +7,9 @@ var subChartState = {
     'Trung tâm TN&KT': false,
     'Trung tâm CGNB': false,
     'Trung tâm BMT': false,
-    'Trung tâm ĐNQN': false
+    'Trung tâm ĐNQN': false,
+    'current': null
 };
-
 
 function drawChart() {
     var data = new google.visualization.DataTable();
@@ -19,9 +19,9 @@ function drawChart() {
 
     // Define the chart data
     data.addRows([
-        [{ 'v': 'Hội Đồng Quản Trị', 'f': 'Hội Đồng Quản Trị<div style="color:red; font-style:italic">HĐQT</div>' }, '', ''],
-        [{ 'v': 'Giám Đốc', 'f': 'Giám Đốc<div style="color:red; font-style:italic">GD</div>' }, 'Hội Đồng Quản Trị', ''],
-        [{ 'v': 'Phó Giám đốc', 'f': 'Phó Giám đốc<div style="color:red; font-style:italic">PGĐ</div>' }, 'Giám Đốc', ''],
+        [{ 'v': 'Hội Đồng Quản Trị', 'f': 'Hội Đồng Quản Trị<div style="color:red; font-style:italic"></div>' }, '', ''],
+        [{ 'v': 'Giám Đốc', 'f': 'Giám Đốc<div style="color:red; font-style:italic"></div>' }, 'Hội Đồng Quản Trị', ''],
+        [{ 'v': 'Phó Giám đốc', 'f': 'Phó Giám đốc<div style="color:red; font-style:italic"></div>' }, 'Giám Đốc', ''],
         [{ 'v': 'Phòng QLKT', 'f': 'Phòng QLKT<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
         [{ 'v': 'Phòng KH&KD', 'f': 'Phòng KH&KD<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
         [{ 'v': 'Phòng TCKT', 'f': 'Phòng TCKT<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
@@ -48,39 +48,30 @@ function drawChart() {
 }
 
 function displaySubChart(data, name) {
-
     if (subChartState[name]) {
-        drawChart();
-        subChartState[name] = false;
+        // Only close the sub-chart if it's the same name clicked again
+        if (subChartState.current === name) {
+            drawChart();
+            subChartState[name] = false;
+            subChartState.current = null;
+        }
     } else {
-        // Thêm các hàng cho phòng đã chọn
-        if (name === 'Trung tâm NBLC') {
+        // Draw the sub-chart for the selected center
+        if (name === 'Trung tâm NBLC' || name === 'Trung tâm TN&KT' || name === 'Trung tâm CGNB' || name === 'Trung tâm BMT' || name === 'Trung tâm ĐNQN') {
             drawSubChart(name, 'chart_div', data);
+            subChartState[name] = true;
+            subChartState.current = name;  // Keep track of the currently opened center
         }
-        if (name === 'Trung tâm TN&KT') {
-            drawSubChart(name, 'chart_div', data);
-        }
-        if (name === 'Trung tâm CGNB') {
-            drawSubChart(name, 'chart_div', data);
-        }
-        if (name === 'Trung tâm BMT') {
-            drawSubChart(name, 'chart_div', data);
-        }
-        if (name === 'Trung tâm ĐNQN') {
-            drawSubChart(name, 'chart_div', data);
-        }
-        subChartState[name] = true;
     }
 }
 
 function drawSubChart(name, containerId, data) {
-
     // Define the sub-chart data
     data.addRows([
-        [{ 'v': 'Ban Giám đốc', 'f': 'Ban Giám đốc' }, name, ''],
-        [{ 'v': 'VPTT', 'f': 'VPTT' }, 'Ban Giám đốc', ''],
-        [{ 'v': 'Đội thu phí', 'f': 'Đội thu phí' }, 'Ban Giám đốc', ''],
-        [{ 'v': 'Đội vận hành', 'f': 'Đội vận hành' }, 'Ban Giám đốc', '']
+        [{ 'v': 'Ban Giám đốc ' + name, 'f': 'Ban Giám đốc ' + name }, name, ''],
+        [{ 'v': 'VPTT ' + name, 'f': 'VPTT ' + name }, 'Ban Giám đốc ' + name, ''],
+        [{ 'v': 'Đội thu phí ' + name, 'f': 'Đội thu phí ' + name }, 'Ban Giám đốc ' + name, ''],
+        [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, 'Ban Giám đốc ' + name, '']
     ]);
 
     var subChart = new google.visualization.OrgChart(document.getElementById(containerId));
@@ -95,7 +86,6 @@ function drawSubChart(name, containerId, data) {
             displayModal(selectedRow);
         }
     });
-
 }
 
 function displayModal(name) {
@@ -129,30 +119,93 @@ function displayModal(name) {
         'Phòng TCNC': {
             'nhân viên': ['Đinh Văn G', 'Nguyễn Thị H']
         },
-        'Ban Giám đốc': {
+        'Ban Giám đốc Trung tâm NBLC': {
             'chức vụ': 'GD',
             'tên': 'Nguyễn Thanh Sơn',
             'sđt': '0987654321',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hồ Chí Minh'
         },
-        'VPTT': {
-            'nhân viên': ['Đinh Văn G', 'Nguyễn Thị H']
+        'Ban Giám đốc Trung tâm TN&KT': {
+            'chức vụ': 'GD',
+            'tên': 'Nguyễn Thanh Sơn',
+            'sđt': '0987654321',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hồ Chí Minh'
         },
-        'Đội thu phí': {
-            'nhân viên': ['Đinh Văn G', 'Nguyễn Thị H']
+        'Ban Giám đốc Trung tâm CGNB': {
+            'chức vụ': 'GD',
+            'tên': 'Nguyễn Thanh Sơn',
+            'sđt': '0987654321',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hồ Chí Minh'
         },
-        'Đội vận hành': {
-            'nhân viên': ['Đinh Văn G', 'Nguyễn Thị H']
+        'Ban Giám đốc Trung tâm BMT': {
+            'chức vụ': 'GD',
+            'tên': 'Nguyễn Thanh Sơn',
+            'sđt': '0987654321',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hồ Chí Minh'
+        },
+        'Ban Giám đốc Trung tâm ĐNQN': {
+            'chức vụ': 'GD',
+            'tên': 'Nguyễn Thanh Sơn',
+            'sđt': '0987654321',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hồ Chí Minh'
+        },
+        'VPTT Trung tâm NBLC': {
+            'nhân viên': ['Đinh Văn AA', 'Nguyễn Thị BB']
+        },
+        'VPTT Trung tâm TN&KT': {
+            'nhân viên': ['Đinh Văn CC', 'Nguyễn Thị DD']
+        },
+        'VPTT Trung tâm CGNB': {
+            'nhân viên': ['Đinh Văn EE', 'Nguyễn Thị FF']
+        },
+        'VPTT Trung tâm BMT': {
+            'nhân viên': ['Đinh Văn GG', 'Nguyễn Thị HH']
+        },
+        'VPTT Trung tâm ĐNQN': {
+            'nhân viên': ['Đinh Văn II', 'Nguyễn Thị KK']
+        },
+        'Đội thu phí Trung tâm NBLC': {
+            'nhân viên': ['Đinh Văn LL', 'Nguyễn Thị MM']
+        },
+        'Đội thu phí Trung tâm TN&KT': {
+            'nhân viên': ['Đinh Văn PP', 'Nguyễn Thị UU']
+        },
+        'Đội thu phí Trung tâm CGNB': {
+            'nhân viên': ['Đinh Văn RR', 'Nguyễn Thị SS']
+        },
+        'Đội thu phí Trung tâm BMT': {
+            'nhân viên': ['Đinh Văn TT', 'Nguyễn ThịQQ']
+        },
+        'Đội thu phí Trung tâm ĐNQN': {
+            'nhân viên': ['Đinh Văn VV', 'Nguyễn Thị WW']
+        },
+        'Đội vận hành Trung tâm NBLC': {
+            'nhân viên': ['Đinh Văn XX', 'Nguyễn Thị YY']
+        },
+        'Đội vận hành Trung tâm TN&KT': {
+            'nhân viên': ['Đinh Văn ZZ', 'Nguyễn Thị AB']
+        },
+        'Đội vận hành Trung tâm CGNB': {
+            'nhân viên': ['Đinh Văn CD', 'Nguyễn Thị EF']
+        },
+        'Đội vận hành Trung tâm BMT': {
+            'nhân viên': ['Đinh Văn GH', 'Nguyễn Thị IK']
+        },
+        'Đội vận hành Trung tâm ĐNQN': {
+            'nhân viên': ['Đinh Văn LM', 'Nguyễn Thị NO']
         }
     };
 
     var modal = document.getElementById("myModal");
     var modalInfo = document.getElementById("modal-info");
 
-    previousState = modalInfo.innerHTML; // Store the current state
-
-    modalInfo.innerHTML = ''; // Clear existing info
+    previousState = modalInfo.innerHTML;
+    modalInfo.innerHTML = '';
 
     if (info[name]) {
         if (info[name]['nhân viên']) {
@@ -168,48 +221,64 @@ function displayModal(name) {
             });
         } else {
             modalInfo.innerHTML = `
-                <p>Chức vụ: ${info[name]['chức vụ']}</p>
-                <p>Tên: ${info[name]['tên']}</p>
-                <p>SĐT: ${info[name]['sđt']}</p>
-                <p>Trạng thái: ${info[name]['trạng thái']}</p>
-                <p>Nơi làm việc: ${info[name]['nơi làm việc']}</p>
+                <h3>Thông tin chi tiết</h3>
+                <p><strong>Tên:</strong> ${info[name]['tên']}</p>
+                <p><strong>Chức vụ:</strong> ${info[name]['chức vụ']}</p>
+                <p><strong>SĐT:</strong> <a href="tel:${info[name]['sđt']}">${info[name]['sđt']}</a></p>
+                <p><strong>Trạng thái:</strong> ${info[name]['trạng thái']}</p>
+                <p><strong>Nơi làm việc:</strong> ${info[name]['nơi làm việc']}</p>
             `;
         }
         modal.style.display = "flex";
     }
 
-    // Close modal when user clicks on <span> (x)
-    var closeButton = document.getElementsByClassName("close")[0];
-    if (closeButton) {
-        closeButton.onclick = function () {
-            modal.style.display = "none";
+    document.getElementsByClassName("close")[0].onclick = function() {
+        modal.style.display = "none";
+    };
+    document.getElementsByClassName("back")[0].onclick = function() {
+        modalInfo.innerHTML = previousState;
+        var buttons = modalInfo.getElementsByClassName('employee-button');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].onclick = function() {
+                displayEmployeeInfo(this.innerText);
+            };
         }
-    }
-
-    // Close modal when user clicks anywhere outside of the modal
-    window.onclick = function (event) {
+    };
+    window.onclick = function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
+    var content = info[name] ? JSON.stringify(info[name]) : 'No information available';
+            document.getElementById('modal_content').innerText = content;
+            document.getElementById('modal').style.display = 'block';
 }
+
+// Close modal when clicking outside the content area
+window.onclick = function (event) {
+    var modal = document.getElementById("modal");
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
 
 function displayEmployeeInfo(employee) {
     var employeeInfo = {
-        'Nguyễn Văn Dương':{
-            'chức vụ': 'Phó giám đốc',
+       'Nguyễn Văn Dương':{
+            'chức vụ': 'Phó Giám đốc',
             'sđt':'0123456789',
             'trạng thái':'Active',
             'nơi làm việc': 'Hà Nam'
         },
-        'Trần Ngọc Hải': {
-            'chức vụ:':'Phó giám đốc',
-            'sđt': '0456987123',
+        'Trần Ngọc Hải':{
+            'chức vụ':'Phó Giám đốc',
+            'sđt':'01235456987',
             'trạng thái':'Active',
             'nơi làm việc':'Hà Nam'
         },
+        
         'Nguyễn Văn A - Phó trưởng phòng': {
-            'chức vụ': 'Nhân viên',
+            'chức vụ': 'Phó trưởng phòng',
             'sđt': '0123456000',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hà Nội'
@@ -256,92 +325,195 @@ function displayEmployeeInfo(employee) {
             'trạng thái': 'Active',
             'nơi làm việc': 'Hải Phòng'
         },
-        'Phạm Văn I - Giám đốc TT': {
+        'Đinh Văn CC': {
             'chức vụ': 'Nhân viên',
-            'sđt': '0123456008',
-            'trạng thái': 'Active',
-            'nơi làm việc': 'Hà Nội'
-        },
-        'Lê Thị J - Phó giám đốc TT': {
-            'chức vụ': 'Nhân viên',
-            'sđt': '0123456009',
-            'trạng thái': 'Active',
-            'nơi làm việc': 'Hà Nội'
-        },
-        'Nguyễn Văn x - đội trưởng': {
-            'chức vụ': 'Nhân viên',
-            'sđt': '0123456009',
-            'trạng thái': 'Active',
-            'nơi làm việc': 'Hà Nội'
-        },
-        'Nguyễn Văn K - Giám Đốc TT': {
-            'chức vụ': 'Nhân viên',
-            'sđt': '0123456010',
-            'trạng thái': 'Active',
-            'nơi làm việc': 'Hồ Chí Minh'
-        },
-        'Trần Thị L - Trưởng VPTT': {
-            'chức vụ': 'Nhân viên',
-            'sđt': '0123456011',
-            'trạng thái': 'Active',
-            'nơi làm việc': 'Hồ Chí Minh'
-        },
-        'Hoàng Văn M': {
-            'chức vụ': 'Nhân viên',
-            'sđt': '0123456012',
-            'trạng thái': 'Active',
-            'nơi làm việc': 'Đà Nẵng'
-        },
-        'Ngô Thị N': {
-            'chức vụ': 'Nhân viên',
-            'sđt': '0123456013',
-            'trạng thái': 'Active',
-            'nơi làm việc': 'Đà Nẵng'
-        },
-        'Đinh Văn O': {
-            'chức vụ': 'Nhân viên',
-            'sđt': '0123456014',
+            'sđt': '0123456006',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hải Phòng'
         },
-        'Nguyễn Thị P': {
+        'Nguyễn Thị DD': {
             'chức vụ': 'Nhân viên',
-            'sđt': '0123456015',
+            'sđt': '0123456007',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hải Phòng'
         },
-        'Phạm Văn Q': {
+        'Đinh Văn PP': {
             'chức vụ': 'Nhân viên',
-            'sđt': '0123456016',
+            'sđt': '0123456006',
             'trạng thái': 'Active',
-            'nơi làm việc': 'Hà Nội'
+            'nơi làm việc': 'Hải Phòng'
         },
-        'Lê Thị R': {
+        'Nguyễn Thị UU': {
             'chức vụ': 'Nhân viên',
-            'sđt': '0123456017',
+            'sđt': '0123456007',
             'trạng thái': 'Active',
-            'nơi làm việc': 'Hà Nội'
+            'nơi làm việc': 'Hải Phòng'
         },
-        'Nguyễn Văn Dương': {
+        'Đinh Văn ZZ': {
             'chức vụ': 'Nhân viên',
-            'sđt': '0123456017',
+            'sđt': '0123456006',
             'trạng thái': 'Active',
-            'nơi làm việc': 'Hà Nội'
-        }
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị AB': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Đinh Văn EE': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị FF': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Đinh Văn RR': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị SS': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Đinh Văn CD': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị EF': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Đinh Văn AA': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị BB': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Đinh Văn LL': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị MM': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Đinh Văn XX': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị YY': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Đinh Văn GG': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị HH': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Đinh Văn TT': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn ThịQQ': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Đinh Văn GH': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị IK': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },'Đinh Văn II': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị KK': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },'Đinh Văn VV': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị WW': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },'Đinh Văn LM': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456006',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
+        'Nguyễn Thị NO': {
+            'chức vụ': 'Nhân viên',
+            'sđt': '0123456007',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hải Phòng'
+        },
     };
 
     var modalInfo = document.getElementById("modal-info");
-    var previousState = modalInfo.innerHTML; // Store the current state
+    previousState = modalInfo.innerHTML;
 
     modalInfo.innerHTML = `
         <p>Chức vụ: ${employeeInfo[employee]['chức vụ']}</p>
-        <p>SĐT: ${employeeInfo[employee]['sđt']}</p>
+        <p><strong>SĐT:</strong> <a href="tel:${employeeInfo[employee]['sđt']}">${employeeInfo[employee]['sđt']}</a></p>
         <p>Trạng thái: ${employeeInfo[employee]['trạng thái']}</p>
         <p>Nơi làm việc: ${employeeInfo[employee]['nơi làm việc']}</p>
     `;
 }
-
-function closeInfo() {
-    var modal = document.getElementById("infoModal");
-    modal.style.display = "none";
+function closeModal() {
+    document.getElementById('modal').style.display = 'none';
 }
