@@ -224,6 +224,7 @@ function displayModal(name) {
     var modal = document.getElementById("myModal");
     var modalInfo = document.getElementById("modal-info");
 
+
     previousState = modalInfo.innerHTML;
     modalInfo.innerHTML = '';
 

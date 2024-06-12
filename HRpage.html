@@ -11,28 +11,51 @@
 
 <body>
     <div class="container">
-        <header>
-            <h1>VĂN PHÒNG ĐIỆN TỬ VEC O&M</h1>
-            <h2>CÔNG TY CP VẬN HÀNH VÀ BẢO TRÌ</h2>
-        </header>
-
-        <section class="directory">
-            <h3>DANH BẠ NHÂN SỰ VEC O&M</h3>
-            <!-- Add your employee directory table here -->
-        </section>
-        <section class="organization-chart">
-            <h3>Sơ Đồ Tổ Chức</h3>
-            <div id="chart_div"></div>
-
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
-                <div class="modal-content">
-                    <span class="back" onclick="goBack()">&#8592;</span>
-                    <span class="close">&times;</span>
-                    <div id="modal-info"></div>
-                </div>
+        <div class="header">
+            <div class="logo">VĂN PHÒNG ĐIỆN TỬ VEC O&M</div>
+            <div class="company-name">CÔNG TY CP VẬN HÀNH VÀ BẢO TRÌ ĐƯỜNG CAO TỐC VIỆT NAM</div>
+            <div class="user-options">
+                <span>Trang chủ</span> | 
+                <span>Cấu hình</span> | 
+                <span>Thoát</span>
             </div>
-        </section>
+        </div>
+
+        <div class="menu">
+            <span class="menu-item">Trang chủ</span>
+            <span class="menu-item">Tin tức</span>
+            <span class="menu-item">Lịch cơ quan</span>
+            <span class="menu-item">Tin nhắn</span>
+            <span class="menu-item">Lịch cá nhân</span>
+            <span class="menu-item">Công việc</span>
+            <span class="menu-item">Công văn</span>
+            <span class="menu-item">Tài liệu</span>
+            <span class="menu-item">Nhân sự</span>
+            <span class="menu-item">Danh bạ</span>
+            <span class="menu-item">Đảng bộ</span>
+            <span class="menu-item">ITS</span>
+            <span class="menu-item">Chat</span>
+        </div>
+        
+        <div class="content">
+            <div class="sidebar">
+                <div class="sidebar-title">PHÒNG BAN - NHÂN SỰ</div>
+            </div>
+            <div class="main-content">
+                <div class="main-title">Nhân sự VEC O&M</div>
+                <div class="main-description">Quản trị thông tin nhân sự VEC O&M</div>
+                <div id="chart_div"></div>
+            </div>
+        </div>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="back" onclick="goBack()">&#8592;</span>
+                <span class="close">&times;</span>
+                <div id="modal-info"></div>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
