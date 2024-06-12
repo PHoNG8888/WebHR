@@ -7,9 +7,18 @@ var subChartState = {
     'Trung tâm TN&KT': false,
     'Trung tâm CGNB': false,
     'Trung tâm BMT': false,
-    'Trung tâm ĐNQN': false,
-    'current': null
+    'Trung tâm ĐNQN': false
 };
+
+var subChartStateCount = {
+    1: 'Trung tâm NBLC',
+    2: 'Trung tâm TN&KT',
+    3: 'Trung tâm CGNB',
+    4: 'Trung tâm BMT',
+    5: 'Trung tâm ĐNQN'
+};
+
+var maindata;
 
 function drawChart() {
     var data = new google.visualization.DataTable();
@@ -33,6 +42,7 @@ function drawChart() {
         [{ 'v': 'Trung tâm ĐNQN', 'f': 'Trung tâm ĐNQN<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', '']
     ]);
 
+    maindata = data.clone();
     var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
     chart.draw(data, { 'allowHtml': true });
 
@@ -48,19 +58,29 @@ function drawChart() {
 }
 
 function displaySubChart(data, name) {
+    var maindataClone = maindata.clone();
     if (subChartState[name]) {
+        subChartState[name] = false;
+        var flag = true;
         // Only close the sub-chart if it's the same name clicked again
-        if (subChartState.current === name) {
-            drawChart();
-            subChartState[name] = false;
-            subChartState.current = null;
+        let keys = Object.keys(subChartStateCount);
+        for (let index = 0; index < keys.length; index++) {
+            let key = keys[index];
+            if (subChartState[subChartStateCount[key]] === true) {
+                drawSubChart(subChartStateCount[key], 'chart_div', maindataClone);
+                console.log(subChartStateCount[key]);
+                flag = false;
+            }
         }
+        if (flag) {
+            drawChart();
+        }
+
     } else {
         // Draw the sub-chart for the selected center
         if (name === 'Trung tâm NBLC' || name === 'Trung tâm TN&KT' || name === 'Trung tâm CGNB' || name === 'Trung tâm BMT' || name === 'Trung tâm ĐNQN') {
             drawSubChart(name, 'chart_div', data);
             subChartState[name] = true;
-            subChartState.current = name;  // Keep track of the currently opened center
         }
     }
 }
@@ -232,26 +252,26 @@ function displayModal(name) {
         modal.style.display = "flex";
     }
 
-    document.getElementsByClassName("close")[0].onclick = function() {
+    document.getElementsByClassName("close")[0].onclick = function () {
         modal.style.display = "none";
     };
-    document.getElementsByClassName("back")[0].onclick = function() {
+    document.getElementsByClassName("back")[0].onclick = function () {
         modalInfo.innerHTML = previousState;
         var buttons = modalInfo.getElementsByClassName('employee-button');
         for (var i = 0; i < buttons.length; i++) {
-            buttons[i].onclick = function() {
+            buttons[i].onclick = function () {
                 displayEmployeeInfo(this.innerText);
             };
         }
     };
-    window.onclick = function(event) {
+    window.onclick = function (event) {
         if (event.target == modal) {
             modal.style.display = "none";
         }
     }
     var content = info[name] ? JSON.stringify(info[name]) : 'No information available';
-            document.getElementById('modal_content').innerText = content;
-            document.getElementById('modal').style.display = 'block';
+    document.getElementById('modal_content').innerText = content;
+    document.getElementById('modal').style.display = 'block';
 }
 
 // Close modal when clicking outside the content area
@@ -264,19 +284,19 @@ window.onclick = function (event) {
 
 function displayEmployeeInfo(employee) {
     var employeeInfo = {
-       'Nguyễn Văn Dương':{
+        'Nguyễn Văn Dương': {
             'chức vụ': 'Phó Giám đốc',
-            'sđt':'0123456789',
-            'trạng thái':'Active',
+            'sđt': '0123456789',
+            'trạng thái': 'Active',
             'nơi làm việc': 'Hà Nam'
         },
-        'Trần Ngọc Hải':{
-            'chức vụ':'Phó Giám đốc',
-            'sđt':'01235456987',
-            'trạng thái':'Active',
-            'nơi làm việc':'Hà Nam'
+        'Trần Ngọc Hải': {
+            'chức vụ': 'Phó Giám đốc',
+            'sđt': '01235456987',
+            'trạng thái': 'Active',
+            'nơi làm việc': 'Hà Nam'
         },
-        
+
         'Nguyễn Văn A - Phó trưởng phòng': {
             'chức vụ': 'Phó trưởng phòng',
             'sđt': '0123456000',
@@ -468,7 +488,7 @@ function displayEmployeeInfo(employee) {
             'sđt': '0123456007',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hải Phòng'
-        },'Đinh Văn II': {
+        }, 'Đinh Văn II': {
             'chức vụ': 'Nhân viên',
             'sđt': '0123456006',
             'trạng thái': 'Active',
@@ -479,7 +499,7 @@ function displayEmployeeInfo(employee) {
             'sđt': '0123456007',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hải Phòng'
-        },'Đinh Văn VV': {
+        }, 'Đinh Văn VV': {
             'chức vụ': 'Nhân viên',
             'sđt': '0123456006',
             'trạng thái': 'Active',
@@ -490,7 +510,7 @@ function displayEmployeeInfo(employee) {
             'sđt': '0123456007',
             'trạng thái': 'Active',
             'nơi làm việc': 'Hải Phòng'
-        },'Đinh Văn LM': {
+        }, 'Đinh Văn LM': {
             'chức vụ': 'Nhân viên',
             'sđt': '0123456006',
             'trạng thái': 'Active',

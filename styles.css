@@ -76,3 +76,6 @@
 .employee-button:hover {
     background-color: #e1e1e1;
 }
+#modal-info {
+    margin-top: 40px;
+}
