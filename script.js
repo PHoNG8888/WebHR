@@ -28,18 +28,18 @@ function drawChart() {
 
     // Define the chart data
     data.addRows([
-        [{ 'v': 'Hội Đồng Quản Trị', 'f': 'Hội Đồng Quản Trị<div style="color:red; font-style:italic"></div>' }, '', ''],
-        [{ 'v': 'Giám Đốc', 'f': 'Giám Đốc<div style="color:red; font-style:italic"></div>' }, 'Hội Đồng Quản Trị', ''],
-        [{ 'v': 'Phó Giám đốc', 'f': 'Phó Giám đốc<div style="color:red; font-style:italic"></div>' }, 'Giám Đốc', ''],
-        [{ 'v': 'Phòng QLKT', 'f': 'Phòng QLKT<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
-        [{ 'v': 'Phòng KH&KD', 'f': 'Phòng KH&KD<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
-        [{ 'v': 'Phòng TCKT', 'f': 'Phòng TCKT<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
-        [{ 'v': 'Phòng TCNC', 'f': 'Phòng TCNC<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
-        [{ 'v': 'Trung tâm TN&KT', 'f': 'Trung tâm TN&KT<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
-        [{ 'v': 'Trung tâm CGNB', 'f': 'Trung tâm CGNB<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
-        [{ 'v': 'Trung tâm NBLC', 'f': 'Trung tâm NBLC<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
-        [{ 'v': 'Trung tâm BMT', 'f': 'Trung tâm BMT<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
-        [{ 'v': 'Trung tâm ĐNQN', 'f': 'Trung tâm ĐNQN<div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', '']
+        [{ 'v': 'Hội Đồng Quản Trị', 'f': 'Hội Đồng Quản Trị<div><img src="img/logo.png" style="width: 40px; height: 40px;></div><div style="color:red; font-style:italic"></div>' }, '', ''],
+        [{ 'v': 'Giám Đốc', 'f': 'Giám Đốc<div><img src="img/logo.png" style="width: 40px; height: 40px;><div style="color:red; font-style:italic"></div>' }, 'Hội Đồng Quản Trị', ''],
+        [{ 'v': 'Phó Giám đốc', 'f': 'Phó Giám đốc<div><img src="img/logo.png" style="width: 40px; height: 40px;><div style="color:red; font-style:italic"></div>' }, 'Giám Đốc', ''],
+        [{ 'v': 'Phòng QLKT', 'f': 'Phòng QLKT<div><img src="img/logo.png" style="width: 40px; height: 40px;><div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Phòng KH&KD', 'f': 'Phòng KH&KD<div><img src="img/logo.png" style="width: 40px; height: 40px;><div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Phòng TCKT', 'f': 'Phòng TCKT<div><img src="img/logo.png" style="width: 40px; height: 40px;><div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Phòng TCNC', 'f': 'Phòng TCNC<div><img src="img/logo.png" style="width: 40px; height: 40px;><div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Trung tâm TN&KT', 'f': 'Trung tâm TN&KT<div><img src="img/logo.png" style="width: 40px; height: 40px;><div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Trung tâm CGNB', 'f': 'Trung tâm CGNB<div><img src="img/logo.png" style="width: 40px; height: 40px;><div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Trung tâm NBLC', 'f': 'Trung tâm NBLC<div><img src="img/logo.png" style="width: 40px; height: 40px;><div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Trung tâm BMT', 'f': 'Trung tâm BMT<div><img src="img/logo.png" style="width: 40px; height: 40px;><div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', ''],
+        [{ 'v': 'Trung tâm ĐNQN', 'f': 'Trung tâm ĐNQN<div><img src="img/logo.png" style="width: 40px; height: 40px;><div style="color:red; font-style:italic"></div>' }, 'Phó Giám đốc', '']
     ]);
 
     maindata = data.clone();
