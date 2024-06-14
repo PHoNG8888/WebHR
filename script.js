@@ -1,21 +1,12 @@
 google.charts.load('current', { packages: ["orgchart"] });
 google.charts.setOnLoadCallback(drawChart);
 
-// Biến lưu trữ trạng thái mở hay đóng của các phòng
 var subChartState = {
     'Trung tâm NBLC': false,
     'Trung tâm TN&KT': false,
     'Trung tâm CGNB': false,
     'Trung tâm BMT': false,
     'Trung tâm ĐNQN': false
-};
-
-var subChartStateCount = {
-    1: 'Trung tâm NBLC',
-    2: 'Trung tâm TN&KT',
-    3: 'Trung tâm CGNB',
-    4: 'Trung tâm BMT',
-    5: 'Trung tâm ĐNQN'
 };
 
 var maindata;
@@ -26,7 +17,6 @@ function drawChart() {
     data.addColumn('string', 'Manager');
     data.addColumn('string', 'ToolTip');
 
-    // Define the chart data
     data.addRows([
         [{ 'v': 'Hội Đồng Quản Trị', 'f': 'Hội Đồng Quản Trị<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, '', ''],
         [{ 'v': 'Ban Giám Đốc', 'f': 'Ban Giám Đốc<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Hội Đồng Quản Trị', ''],
@@ -50,41 +40,32 @@ function drawChart() {
         if (selection.length > 0) {
             var selectedItem = selection[0];
             var selectedRow = data.getValue(selectedItem.row, 0);
-            displaySubChart(data, selectedRow);
-            displayModal(selectedRow);
+            if (Object.keys(subChartState).includes(selectedRow)) {
+                displaySubChart(selectedRow);
+            } else {
+                displayModal(selectedRow);
+            }
         }
     });
 }
 
-function displaySubChart(data, name) {
-    var maindataClone = maindata.clone();
+function displaySubChart(name) {
     if (subChartState[name]) {
         subChartState[name] = false;
-        var flag = true;
-        // Only close the sub-chart if it's the same name clicked again
-        let keys = Object.keys(subChartStateCount);
-        for (let index = 0; index < keys.length; index++) {
-            let key = keys[index];
-            if (subChartState[subChartStateCount[key]] === true) {
-                drawSubChart(subChartStateCount[key], 'chart_div', maindataClone);
-                console.log(subChartStateCount[key]);
-                flag = false;
-            }
-        }
-        if (flag) {
-            drawChart();
-        }
-
+        drawChart(); // Redraw the main chart to collapse the sub-chart
     } else {
         // Draw the sub-chart for the selected center
-        if (name === 'Trung tâm NBLC' || name === 'Trung tâm TN&KT' || name === 'Trung tâm CGNB' || name === 'Trung tâm BMT' || name === 'Trung tâm ĐNQN') {
-            drawSubChart(name, 'chart_div', data);
-            subChartState[name] = true;
-        }
+        Object.keys(subChartState).forEach(key => {
+            subChartState[key] = false;
+        });
+        subChartState[name] = true;
+        drawSubChart(name);
     }
 }
 
-function drawSubChart(name, containerId, data) {
+function drawSubChart(name) {
+    var data = maindata.clone();
+    
     if (name === 'Trung tâm TN&KT') {
         data.addRows([
             [{ 'v': 'VPTT Trung tâm TN&KT', 'f': 'VPTT Trung tâm TN&KT' }, name, ''],
@@ -101,6 +82,12 @@ function drawSubChart(name, containerId, data) {
             [{ 'v': 'Ban Giám đốc ' + name, 'f': 'Ban Giám đốc ' + name }, name, ''],
             [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, 'Ban Giám đốc ' + name, '']
         ]);
+    } else if (name === 'Trung tâm CGNB') {
+        data.addRows([
+            [{ 'v': 'VPTT Trung tâm CGNB', 'f': 'VPTT Trung tâm CGNB' }, name, ''],
+            [{ 'v': 'Đội thu phí Trung tâm CGNB', 'f': 'Đội thu phí Trung tâm CGNB' }, 'VPTT Trung tâm CGNB', ''],
+            [{ 'v': 'Đội vận hành Trung tâm CGNB', 'f': 'Đội vận hành Trung tâm CGNB' }, 'VPTT Trung tâm CGNB', '']
+        ]);
     } else {
         data.addRows([
             [{ 'v': 'Ban Giám đốc ' + name, 'f': 'Ban Giám đốc ' + name }, name, ''],
@@ -110,16 +97,19 @@ function drawSubChart(name, containerId, data) {
         ]);
     }
 
-    var subChart = new google.visualization.OrgChart(document.getElementById(containerId));
-    subChart.draw(data, { 'allowHtml': true });
+    var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+    chart.draw(data, { 'allowHtml': true });
 
-    google.visualization.events.addListener(subChart, 'select', function () {
-        var selection = subChart.getSelection();
+    google.visualization.events.addListener(chart, 'select', function () {
+        var selection = chart.getSelection();
         if (selection.length > 0) {
             var selectedItem = selection[0];
             var selectedRow = data.getValue(selectedItem.row, 0);
-            displaySubChart(data, selectedRow);
-            displayModal(selectedRow);
+            if (Object.keys(subChartState).includes(selectedRow)) {
+                displaySubChart(selectedRow);
+            } else {
+                displayModal(selectedRow);
+            }
         }
     });
 }
@@ -178,12 +168,6 @@ function displayModal(name) {
             ]
         },
       
-        'Ban Giám đốc Trung tâm CGNB': {
-            'chức vụ': 'Giám Đốc Trung tâm',
-            'tên': 'Ngô Huy Thuần',
-            'sđt': '0916111766',
-            'nơi làm việc': 'Trung tâm điều hành ĐCT CGNB'
-        },
         'Ban Giám đốc Trung tâm BMT': {
             'nhân viên': ['Dương Văn Luận - Giám đốc TT', 'Mai Văn Mậu - Phó giám đốc TT']
         },
@@ -216,7 +200,8 @@ function displayModal(name) {
             'nơi làm việc':'Phụ trách cả 2 dự án gói thầu O&M1-NBLC và O&M2-NBLC  tuyến đường cao tốc NBLC (Km0 - Km149+705)',
         },
         'VPTT Trung tâm CGNB': {
-            'nhân viên': [' Trần Hồng Ngọc - Trưởng văn phòng TT',
+            'nhân viên': ['Ngô Huy Thuần - Giám đốc TT',
+                        'Trần Hồng Ngọc - Trưởng văn phòng TT',
                         'Đinh Thị Thu Hương - Nhân viên TT',
                         'Đỗ Thị Hương Lan - Nhân viên TT',
                         'Nguyễn Thị Thảo - Nhân viên TT',
@@ -234,14 +219,13 @@ function displayModal(name) {
             'nhân viên': ['Nguyễn Văn Chương - Đội trưởng',
                         'Hoàng Thanh Ngọc - Đội phó',
                         'Phạm Hữu Long - Đội phó',
-                        'Lê Anh Tuần - Đội phó',
+                        'Lê Anh Tuấn - Đội phó',
                         'Tạ Văn Thắng - Đội phó',
                         'Hoàng Cao Khanh - Đội phó',
                         'Bùi Văn Nam - Đội phó',
                         'Trương Quý Hậu - Đội phó'
              ]
         },
-
         'Đội thu phí Trung tâm CGNB': {
             'nhân viên': ['Phạm Lê Hòa - Đội trưởng',
                         'Nguyễn Hoài Nam - Đội phó',
@@ -540,13 +524,13 @@ function displayEmployeeInfo(employee) {
         'sđt': '0967904506',
         'nơi làm việc': 'Văn phòng Công ty'
     },
-    'Ngô Văn Lợi - Giám đốc TT':{
+    'Ngô Văn Lợi - Giám Đốc TT':{
         'tên':'Ngô Văn Lợi',
         'chức vụ':'Giám đốc Trung tâm NBLC',
         'sđt':'0912881892',
         'nơi làm việc':'Trung tâm ĐH ĐCT NBLC'
     },
-    'Nguyễn Văn Khương - Phó giám đốc TT':{
+    'Nguyễn Văn Khương - Phó Giám đốc TT':{
         'tên':'Nguyễn Văn Khương',
         'chức vụ':'Phó giám đốc TT NBLC',
         'sđt':'0914898798',
@@ -695,6 +679,12 @@ function displayEmployeeInfo(employee) {
         'chức vụ': 'Đội phó',
         'sđt': '0905639456',
         'nơi làm việc': 'Trạm Bắc Quảng Ngãi'
+    },
+    'Ngô Huy Thuần - Giám đốc TT':{
+        'tên':'Ngô Huy Thuần',
+        'chức vụ':'Giám đóc TT',
+       'sđt': '0916111766',
+        'nơi làm việc': 'Trung tâm điều hành ĐCT CGNB'
     },
     'Trần Hồng Ngọc - Trưởng văn phòng TT': {
         'tên': 'Trần Hồng Ngọc',
