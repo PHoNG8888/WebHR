@@ -50,22 +50,19 @@ function drawChart() {
 }
 
 function displaySubChart(name) {
-    if (subChartState[name]) {
-        subChartState[name] = false;
-        drawChart(); // Redraw the main chart to collapse the sub-chart
-    } else {
-        // Draw the sub-chart for the selected center
-        Object.keys(subChartState).forEach(key => {
-            subChartState[key] = false;
-        });
-        subChartState[name] = true;
-        drawSubChart(name);
-    }
+    Object.keys(subChartState).forEach(key => {
+        subChartState[key] = false;
+    });
+    subChartState[name] = true;
+    drawSubChart(name);
 }
 
 function drawSubChart(name) {
-    var data = maindata.clone();
-    
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'Name');
+    data.addColumn('string', 'Manager');
+    data.addColumn('string', 'ToolTip');
+
     if (name === 'Trung tâm TN&KT') {
         data.addRows([
             [{ 'v': 'VPTT Trung tâm TN&KT', 'f': 'VPTT Trung tâm TN&KT' }, name, ''],
@@ -112,8 +109,37 @@ function drawSubChart(name) {
             }
         }
     });
+
+    document.getElementById('back_button').style.display = 'block'; // Show back button
 }
 
+function goBack() {
+    subChartState = {
+        'Trung tâm NBLC': false,
+        'Trung tâm TN&KT': false,
+        'Trung tâm CGNB': false,
+        'Trung tâm BMT': false,
+        'Trung tâm ĐNQN': false
+    };
+    drawChart();
+    document.getElementById('back_button').style.display = 'none'; // Hide back button
+}
+
+function displayModal(name) {
+    alert("Selected: " + name);
+}
+
+function closeModal() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    var modal = document.getElementById('myModal');
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 function displayModal(name) {
     var info = {
