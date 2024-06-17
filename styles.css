@@ -251,4 +251,9 @@ body {
     .sidebar, .main-content {
         width: 100%;
     }
+
+    .main-content {
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: touch; /* enables momentum scrolling on iOS */
+    }
 }
