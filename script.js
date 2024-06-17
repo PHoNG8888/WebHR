@@ -13,9 +13,12 @@ var subChartState = {
     'Ban Giám đốc TT NBLC': false,
     'Đội thu phí TT NBLC': false,
     'Đội vận hành TT NBLC': false,
+    'Đội thu phí Dự án CGNB':false,
+    'Đội vận hành Dự án CGNB':false,
 };
 
 var maindata;
+var historyStack = [];
 
 function drawChart() {
     var data = new google.visualization.DataTable();
@@ -47,6 +50,7 @@ function drawChart() {
             var selectedItem = selection[0];
             var selectedRow = data.getValue(selectedItem.row, 0);
             if (Object.keys(subChartState).includes(selectedRow)) {
+                historyStack.push('main'); // Push 'main' to the history stack before showing sub-chart
                 displaySubChart(selectedRow);
             } else {
                 displayModal(selectedRow);
@@ -80,23 +84,43 @@ function drawSubChart(name) {
             [{ 'v': 'Đội thu phí TT NBLC', 'f': 'Đội thu phí TT NBLC' }, name, ''],
             [{ 'v': 'Đội vận hành TT NBLC', 'f': 'Đội vận hành TT NBLC' }, name, '']
         ]);
-    } else if (name == 'Đội thu phí TT NBLC' || name == 'Đội vận hành TT NBLC') {
+    } else if (name == 'Đội thu phí TT NBLC') {
         data.addRows([
-            [{ 'v': 'Trạm Km6', 'f': 'Trạm Km6' }, name, ''],
-            [{ 'v': 'Trạm IC3', 'f': 'Trạm IC3' }, name, ''],
-            [{ 'v': 'Trạm IC4', 'f': 'Trạm IC4' }, name, ''],
-            [{ 'v': 'Trạm IC6', 'f': 'Trạm IC6' }, name, ''],
-            [{ 'v': 'Trạm IC7', 'f': 'Trạm IC7' }, name, ''],
-            [{ 'v': 'Trạm IC8', 'f': 'Trạm IC8' }, name, ''],
-            [{ 'v': 'Trạm IC9', 'f': 'Trạm IC9' }, name, ''],
-            [{ 'v': 'Trạm IC10', 'f': 'Trạm IC10' }, name, ''],
-            [{ 'v': 'Trạm IC11', 'f': 'Trạm IC11' }, name, ''],
-            [{ 'v': 'Trạm IC12', 'f': 'Trạm IC12' }, name, ''],
-            [{ 'v': 'Trạm IC14', 'f': 'Trạm IC14' }, name, ''],
-            [{ 'v': 'Trạm IC16', 'f': 'Trạm IC16' }, name, ''],
-            [{ 'v': ' Trạm Phố Lu', 'f': 'Trạm Phố Lu' }, name, ''],
-            [{ 'v': 'Trạm IC17', 'f': 'Trạm IC17' }, name, ''],
-            [{ 'v': 'Trạm Km237', 'f': 'Trạm Km237' }, name, '']
+            [{ 'v': 'Đội trưởng', 'f':'Đội trưởng'}, name,''],
+            [{ 'v': 'ĐSHK', 'f':'ĐSHK'}, name, ''],
+            [{ 'v': 'Trạm Km6' , 'f':'Trạm Km6'}, name, ''],
+            [{ 'v': 'Trạm IC3', 'f':'Trạm IC3'}, name, ''],
+            [{ 'v': 'Trạm IC4' , 'f':'Trạm IC4'}, name, ''],
+            // [{ 'v': 'Trạm IC6', 'f':'Trạm IC6'}, name, ''],
+            [{ 'v': 'Trạm IC7' , 'f':'Trạm IC7'}, name, ''],
+            // [{ 'v': 'Trạm IC8', 'f':'Trạm IC8'}, name, ''],
+            // [{ 'v': 'Trạm IC9', 'f':'Trạm IC9'}, name, ''],
+            // [{ 'v': 'Trạm IC10' , 'f':'Trạm IC10'}, name, ''],
+            // [{ 'v': 'Trạm IC11', 'f':'Trạm IC11'}, name, ''],
+            [{ 'v': 'Trạm IC12' , 'f':'Trạm IC12'}, name, ''],
+            // [{ 'v': 'Trạm IC14', 'f':'Trạm IC14'}, name, ''],
+            // [{ 'v': 'Trạm IC16', 'f':'Trạm IC16'}, name, ''],
+            [{ 'v': 'Trạm Phố Lu', 'f':'Trạm Phố Lu'}, name, ''],
+            // [{ 'v': 'Trạm IC17', 'f':'Trạm IC17'}, name, ''],
+            // [{ 'v': 'Trạm Km237', 'f':'Trạm Km237'}, name, '']
+        ]);
+    } else if (name == 'Đội vận hành TT NBLC'){
+        data.addRows([
+            [{ 'v': 'Trạm Km6' , 'f':'Trạm Km6'}, name, ''],
+            [{ 'v': 'Trạm IC3', 'f':'Trạm IC3'}, name, ''],
+            [{ 'v': 'Trạm IC4' , 'f':'Trạm IC4'}, name, ''],
+            [{ 'v': 'Trạm IC6', 'f':'Trạm IC6'}, name, ''],
+            [{ 'v': 'Trạm IC7' , 'f':'Trạm IC7'}, name, ''],
+            [{ 'v': 'Trạm IC8', 'f':'Trạm IC8'}, name, ''],
+            [{ 'v': 'Trạm IC9', 'f':'Trạm IC9'}, name, ''],
+            [{ 'v': 'Trạm IC10' , 'f':'Trạm IC10'}, name, ''],
+            [{ 'v': 'Trạm IC11', 'f':'Trạm IC11'}, name, ''],
+            [{ 'v': 'Trạm IC12' , 'f':'Trạm IC12'}, name, ''],
+            [{ 'v': 'Trạm IC14', 'f':'Trạm IC14'}, name, ''],
+            [{ 'v': 'Trạm IC16', 'f':'Trạm IC16'}, name, ''],
+            [{ 'v': ' Trạm Phố Lu', 'f':'Trạm Phố Lu'}, name, ''],
+            [{ 'v': 'Trạm IC17', 'f':'Trạm IC17'}, name, ''],
+            [{ 'v': 'Trạm Km237', 'f':'Trạm Km237'}, name, '']
         ]);
     } else if (name === 'Trung tâm TN&KT') {
         data.addRows([
@@ -129,6 +153,18 @@ function drawSubChart(name) {
             [{ 'v': 'Đội thu phí ' + name, 'f': 'Đội thu phí ' + name }, name, ''],
             [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, name, '']
         ]);
+    } else if (name === 'Đội thu phí Dự án CGNB') {
+        data.addRows([
+            [{ 'v': 'Trạm Vực Vòng', 'f': 'Trạm Vực Vòng' }, name, ''],
+            [{ 'v': 'Trạm Liêm Tuyền', 'f': 'Trạm Liêm Tuyền'}, name, ''],
+            [{ 'v': 'Trạm Cao Bồ', 'f': 'Trạm Cao Bồ' }, name, '']
+        ]);
+    } else if (name === 'Đội vận hành Dự án CGNB') {
+        data.addRows([
+            [{ 'v': 'Trạm Vực Vòng', 'f': 'Trạm Vực Vòng' }, name, ''],
+            [{ 'v': 'Trạm Liêm Tuyền', 'f': 'Trạm Liêm Tuyền'}, name, ''],
+            [{ 'v': 'Trạm Cao Bồ', 'f': 'Trạm Cao Bồ' }, name, '']
+        ]);
     } else if (name == 'Dự án Mai Sơn - QL.45') {
         data.addRows([
             [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, name, '']
@@ -152,6 +188,7 @@ function drawSubChart(name) {
             var selectedItem = selection[0];
             var selectedRow = data.getValue(selectedItem.row, 0);
             if (Object.keys(subChartState).includes(selectedRow)) {
+                historyStack.push(name); // Push current sub-chart name to the history stack before showing next sub-chart
                 displaySubChart(selectedRow);
             } else {
                 displayModal(selectedRow);
@@ -175,14 +212,27 @@ function goBack() {
         'Ban Giám đốc TT NBLC': false,
         'Đội thu phí TT NBLC': false,
         'Đội vận hành TT NBLC': false,
+        'Đội thu phí Dự án CGNB':false,
+        'Đội vận hành Dự án CGNB':false,
     };
     drawChart();
     document.getElementById('back_button').style.display = 'none'; // Hide back button
+    if (historyStack.length > 0) {
+        var previousChart = historyStack.pop();
+        if (previousChart === 'main') {
+            drawChart();
+        } else {
+            displaySubChart(previousChart);
+        }
+    }
 }
 
 function displayModal(name) {
-    alert("Selected: " + name);
+    document.getElementById('modalTitle').innerText = name;
+    $('#myModal').modal('show');
 }
+
+document.getElementById('back_button').addEventListener('click', goBack);
 
 function closeModal() {
     var modal = document.getElementById('myModal');
@@ -218,7 +268,7 @@ function displayModal(name) {
                 'Lê Xuân Hiệp - Chuyên viên',
                 'Ngô Hồng Phong - Chuyên viên']
         },
-        'Phòng KH&KD': {
+        'Phòng KHKD': {
             'nhân viên': ['Nguyễn Thị Thu Phương - Phó trưởng phòng',
                 'Hoàng Thị Huệ - Phó trưởng phòng',
                 'Nguyễn Thị Bích Thủy - Chuyên viên',
@@ -295,34 +345,90 @@ function displayModal(name) {
                 'Đinh Văn Việt - Nhân viên TT'
             ]
         },
-
+        'VP Trung tâm BMT': {
+            'nhân viên': ['Dương Văn Luận - Giám đốc TT',
+                        'Mai Văn Mậu - Phó Giám đốc TT',
+                        'Mai Văn Giang - Phó phòng'
+            ]
+        },
         'VPTT Trung tâm ĐNQN': {
             'nhân viên': ['Nguyễn Văn Lượng - Phó Giám đốc TT',
                 'Ngô Thị Thanh Nguyên - Phó phòng TT',
                 'Đoàn Thị Ngọc Tuyết - Văn thư'
             ]
         },
-        'Đội thu phí Trung tâm NBLC': {
-            'nhân viên': ['Nguyễn Văn Chương - Đội trưởng',
-                'Hoàng Thanh Ngọc - Đội phó',
-                'Phạm Hữu Long - Đội phó',
-                'Lê Anh Tuấn - Đội phó',
-                'Tạ Văn Thắng - Đội phó',
-                'Hoàng Cao Khanh - Đội phó',
-                'Bùi Văn Nam - Đội phó',
-                'Trương Quý Hậu - Đội phó'
-            ]
+        'Đội trưởng':{
+            'tên': 'Nguyễn Văn Chương',
+            'chức vụ': 'Đội trưởng',
+            'sđt': '0979625656',
+            'nơi làm việc': 'Phụ trách chung'
+        },
+        'Trạm Km6':{
+            'tên': 'Phạm Hữu Long',
+            'chức vụ': 'Đội phó',
+            'sđt': '0911171086',
+            'nơi làm việc': 'Phụ trách Trạm Km6'
+        },
+        'ĐSHK':{
+            'tên': 'Hoàng Thanh Ngọc',
+            'chức vụ': 'Đội phó',
+            'sđt': '0975904672',
+            'nơi làm việc': 'Phụ trách tổ ĐSHK'
+        },
+        'Trạm IC3':{
+            'tên': 'Lê Anh Tuấn',
+            'chức vụ': 'Đội phó',
+            'sđt': '0967126677',
+            'nơi làm việc': 'Phụ trách Trạm IC3'
+        },
+        'Trạm IC4':{
+            'tên': 'Tạ Văn Thắng',
+            'chức vụ': 'Đội phó',
+            'sđt': '0978162555',
+            'nơi làm việc': 'Phụ trách Trạm IC4'
+        },
+        'Trạm IC7':{
+            'tên': 'Hoàng Cao Khanh',
+            'chức vụ': 'Đội phó',
+            'sđt': '0963304611',
+            'nơi làm việc': 'Phụ trách Trạm IC7'
+        },
+        'Trạm IC12':{
+            'tên': 'Bùi Văn Nam',
+            'chức vụ': 'Đội phó',
+            'sđt': '0963995234',
+            'nơi làm việc': 'Phụ trách Trạm IC12'
+        },
+        'Trạm Phố Lu':{
+            'tên': 'Trương Quý Hậu',
+            'chức vụ': 'Đội phó',
+            'sđt': '0983022336',
+            'nơi làm việc': 'Phụ trách cân Trạm Phố Lu'
         },
         'Đội thu phí Trung tâm CGNB': {
             'nhân viên': ['Phạm Lê Hòa - Đội trưởng',
-                'Nguyễn Hoài Nam - Đội phó',
-                'Thạch Hải Phong - Đội phó phụ trách bộ phận ĐSHK',
-                'Phạm Quốc Bảo - Đội phó',
-                'Phạm Bá Hòa - Đội phó',
-                'Nguyễn Việt Cường - Đội phó'
+                        'Nguyễn Hoài Nam - Đội phó',
+                        'Thạch Hải Phong - Đội phó phụ trách bộ phận ĐSHK',
             ]
         },
-
+        'Trạm Vực Vòng':{
+            'tên': 'Phạm Quốc Bảo',
+            'chức vụ': 'Đội phó Đội thu phí',
+            'sđt': '0977567911',
+            'nơi làm việc': 'Phụ trách Trạm Vực Vòng'
+        },
+        'Trạm Liêm Tuyền':{
+            'tên': 'Phạm Bá Hòa',
+            'chức vụ': 'Đội phó Đội thu phí',
+            'sđt': '0943303509',
+            'nơi làm việc': 'Phụ trách Trạm Liêm Tuyền'
+        },
+        'Trạm Cao Bồ':{
+            'tên': 'Nguyễn Việt Cường',
+            'chức vụ': 'Đội phó Đội thu phí',
+            'sđt': '0915818286',
+            'nơi làm việc': 'Phụ trách Trạm Cao Bồ'
+        },
         'Đội thu phí Trung tâm ĐNQN': {
             'nhân viên': ['Nguyễn Tấn Long - Đội trưởng',
                 'Trần Ngọc Long - Đội phó',
@@ -887,7 +993,7 @@ function displayEmployeeInfo(employee) {
             'sđt': '0986010176',
             'nơi làm việc': 'Văn phòng TT BMT'
         },
-        'Mai Văn Mậu - Phó giám đốc TT': {
+        'Mai Văn Mậu - Phó Giám đốc TT': {
             'tên': 'Mai Văn Mậu',
             'chức vụ': 'Phó giám đốc TT',
             'sđt': '0919110819',
