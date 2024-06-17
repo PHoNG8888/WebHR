@@ -1,12 +1,12 @@
 /* Container for the entire page */
 .container {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Tahoma, Verdana;
     margin: 0;
     padding: 0;
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, Tahoma, Verdana;
     margin: 0;
     padding: 0;
 }
@@ -87,6 +87,9 @@ body {
 .main-title {
     font-weight: bold;
     margin-bottom: 10px;
+    color: #1e6fb4;
+    font-size: x-large;
+
 }
 
 .main-description {

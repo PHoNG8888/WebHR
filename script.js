@@ -6,7 +6,13 @@ var subChartState = {
     'Trung tâm TN&KT': false,
     'Trung tâm CGNB': false,
     'Trung tâm BMT': false,
-    'Trung tâm ĐNQN': false
+    'Trung tâm ĐNQN': false,
+    'Dự án CGNB': false,
+    'Dự án Mai Sơn - QL.45': false,
+    'Dự án NBLC': false,
+    'Ban Giám đốc TT NBLC': false,
+    'Đội thu phí TT NBLC': false,
+    'Đội vận hành TT NBLC':false,
 };
 
 var maindata;
@@ -21,12 +27,12 @@ function drawChart() {
         [{ 'v': 'Hội Đồng Quản Trị', 'f': 'Hội Đồng Quản Trị<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, '', ''],
         [{ 'v': 'Ban Giám Đốc', 'f': 'Ban Giám Đốc<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Hội Đồng Quản Trị', ''],
         [{ 'v': 'Phòng QLKT', 'f': 'Phòng QLKT<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Ban Giám Đốc', ''],
-        [{ 'v': 'Phòng KH&KD', 'f': 'Phòng KH&KD<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Ban Giám Đốc', ''],
+        [{ 'v': 'Phòng KHKD', 'f': 'Phòng KHKD<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Ban Giám Đốc', ''],
         [{ 'v': 'Phòng TCKT', 'f': 'Phòng TCKT<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Ban Giám Đốc', ''],
         [{ 'v': 'Phòng TCNC', 'f': 'Phòng TCNC<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Ban Giám Đốc', ''],
         [{ 'v': 'Trung tâm TN&KT', 'f': 'Trung tâm TN&KT<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Ban Giám Đốc', ''],
         [{ 'v': 'Trung tâm CGNB', 'f': 'Trung tâm CGNB<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Ban Giám Đốc', ''],
-        [{ 'v': 'Trung tâm NBLC', 'f': 'Trung tâm NBLC<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Ban Giám Đốc', ''],
+        [{ 'v': 'Dự án NBLC', 'f': 'Dự án NBLC <div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Ban Giám Đốc', ''],
         [{ 'v': 'Trung tâm BMT', 'f': 'Trung tâm BMT<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Ban Giám Đốc', ''],
         [{ 'v': 'Trung tâm ĐNQN', 'f': 'Trung tâm ĐNQN<div><img src="img/logo.png" style="width: 40px; height: 40px;"></div><div style="color:red; font-style:italic"></div>' }, 'Ban Giám Đốc', '']
     ]);
@@ -56,39 +62,99 @@ function displaySubChart(name) {
     subChartState[name] = true;
     drawSubChart(name);
 }
-
 function drawSubChart(name) {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Name');
     data.addColumn('string', 'Manager');
     data.addColumn('string', 'ToolTip');
 
-    if (name === 'Trung tâm TN&KT') {
+    if (name === 'Dự án NBLC') {
+        data.addRows([
+            [{ 'v': 'Ban điều hành gói thầu', 'f': 'Ban điều hành gói thầu' }, name, ''],
+            [{ 'v': 'Ban Giám đốc TT NBLC', 'f': 'Ban Giám đốc TT NBLC' }, 'Ban điều hành gói thầu', '']
+        ]);
+    } else if (name === 'Ban Giám đốc TT NBLC') {
+        data.addRows([
+            [{ 'v': 'VP Trung tâm NBLC', 'f': 'VP Trung tâm NBLC' }, name, ''],
+            [{ 'v': 'Đội thu phí TT NBLC', 'f': 'Đội thu phí TT NBLC' }, name, ''],
+            [{ 'v': 'Đội vận hành TT NBLC', 'f': 'Đội vận hành TT NBLC' }, name, '']
+        ]);
+    } else if (name == 'Đội thu phí TT NBLC'){
+        data.addRows([
+            [{ 'v': 'Trạm Km6' , 'f':'Trạm Km6'}, name, ''],
+            [{ 'v': 'Trạm IC3', 'f':'Trạm IC3'}, name, ''],
+            [{ 'v': 'Trạm IC4' , 'f':'Trạm IC4'}, name, ''],
+            [{ 'v': 'Trạm IC6', 'f':'Trạm IC6'}, name, ''],
+            [{ 'v': 'Trạm IC7' , 'f':'Trạm IC7'}, name, ''],
+            [{ 'v': 'Trạm IC8', 'f':'Trạm IC8'}, name, ''],
+            [{ 'v': 'Trạm IC9', 'f':'Trạm IC9'}, name, ''],
+            [{ 'v': 'Trạm IC10' , 'f':'Trạm IC10'}, name, ''],
+            [{ 'v': 'Trạm IC11', 'f':'Trạm IC11'}, name, ''],
+            [{ 'v': 'Trạm IC12' , 'f':'Trạm IC12'}, name, ''],
+            [{ 'v': 'Trạm IC14', 'f':'Trạm IC14'}, name, ''],
+            [{ 'v': 'Trạm IC16', 'f':'Trạm IC16'}, name, ''],
+            [{ 'v': ' Trạm Phố Lu', 'f':'Trạm Phố Lu'}, name, ''],
+            [{ 'v': 'Trạm IC17', 'f':'Trạm IC17'}, name, ''],
+            [{ 'v': 'Trạm Km237', 'f':'Trạm Km237'}, name, '']
+        ]);
+    } else if (name == 'Đội vận hành TT NBLC'){
+        data.addRows([
+            [{ 'v': 'Trạm Km6' , 'f':'Trạm Km6'}, name, ''],
+            [{ 'v': 'Trạm IC3', 'f':'Trạm IC3'}, name, ''],
+            [{ 'v': 'Trạm IC4' , 'f':'Trạm IC4'}, name, ''],
+            [{ 'v': 'Trạm IC6', 'f':'Trạm IC6'}, name, ''],
+            [{ 'v': 'Trạm IC7' , 'f':'Trạm IC7'}, name, ''],
+            [{ 'v': 'Trạm IC8', 'f':'Trạm IC8'}, name, ''],
+            [{ 'v': 'Trạm IC9', 'f':'Trạm IC9'}, name, ''],
+            [{ 'v': 'Trạm IC10' , 'f':'Trạm IC10'}, name, ''],
+            [{ 'v': 'Trạm IC11', 'f':'Trạm IC11'}, name, ''],
+            [{ 'v': 'Trạm IC12' , 'f':'Trạm IC12'}, name, ''],
+            [{ 'v': 'Trạm IC14', 'f':'Trạm IC14'}, name, ''],
+            [{ 'v': 'Trạm IC16', 'f':'Trạm IC16'}, name, ''],
+            [{ 'v': ' Trạm Phố Lu', 'f':'Trạm Phố Lu'}, name, ''],
+            [{ 'v': 'Trạm IC17', 'f':'Trạm IC17'}, name, ''],
+            [{ 'v': 'Trạm Km237', 'f':'Trạm Km237'}, name, '']
+        ]);
+    } else if (name === 'Trung tâm TN&KT') {
         data.addRows([
             [{ 'v': 'VPTT Trung tâm TN&KT', 'f': 'VPTT Trung tâm TN&KT' }, name, ''],
-            [{ 'v': 'Đội XD&BT số 1 Trung tâm TN&KT', 'f': 'Đội XD&BT số 1 Trung tâm TN&KT' }, 'VPTT Trung tâm TN&KT', ''],
-            [{ 'v': 'Đội XD&BT số 2 Trung tâm TN&KT', 'f': 'Đội XD&BT số 2 Trung tâm TN&KT' }, 'VPTT Trung tâm TN&KT', '']
+            [{ 'v': 'Cầu Giẽ - Ninh Bình TN&KT', 'f': 'Cầu Giẽ - Ninh Bình TN&KT' }, 'VPTT Trung tâm TN&KT', ''],
+            [{ 'v': 'Nội Bài - Lào Cai TN&KT', 'f': 'Nội Bài - Lào Cai TN&KT' }, 'VPTT Trung tâm TN&KT', '']
         ]);
     } else if (name === 'Trung tâm ĐNQN') {
         data.addRows([
             [{ 'v': 'VPTT Trung tâm ĐNQN', 'f': 'VPTT Trung tâm ĐNQN' }, name, ''],
-            [{ 'v': 'Đội thu phí Trung tâm ĐNQN', 'f': 'Đội thu phí Trung tâm ĐNQN' }, 'VPTT Trung tâm ĐNQN', '']
+            [{ 'v': 'Đội thu phí Trung tâm ĐNQN', 'f': 'Đội thu phí Trung tâm ĐNQN' }, 'VPTT Trung tâm ĐNQN', ''],
+            [{ 'v': 'Đội vận hành Trung tâm ĐNQN', 'f': 'Đội vận hành Trung tâm ĐNQN' }, 'VPTT Trung tâm ĐNQN', '']
         ]);
     } else if (name === 'Trung tâm BMT') {
         data.addRows([
-            [{ 'v': 'Ban Giám đốc ' + name, 'f': 'Ban Giám đốc ' + name }, name, ''],
-            [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, 'Ban Giám đốc ' + name, '']
+            [{ 'v': 'VP ' + name, 'f': 'VP ' + name }, name, ''],
+            [{ 'v': 'Dự án Hải Phòng','f': 'Dự án Hải Phòng'}, 'VP '+name,''],
+            [{ 'v': 'Dự án QL.45 - Diễn Châu','f': 'Dự án QL.45 - Diễn Châu'}, 'VP '+name,''],
+            [{ 'v': 'Dự án Diễn Châu - Bãi Vọt','f': 'Dự án Diễn Châu - Bãi Vọt'}, 'VP '+name,''],
+
         ]);
     } else if (name === 'Trung tâm CGNB') {
         data.addRows([
-            [{ 'v': 'VPTT Trung tâm CGNB', 'f': 'VPTT Trung tâm CGNB' }, name, ''],
-            [{ 'v': 'Đội thu phí Trung tâm CGNB', 'f': 'Đội thu phí Trung tâm CGNB' }, 'VPTT Trung tâm CGNB', ''],
-            [{ 'v': 'Đội vận hành Trung tâm CGNB', 'f': 'Đội vận hành Trung tâm CGNB' }, 'VPTT Trung tâm CGNB', '']
+            [{ 'v': 'VP Trung tâm CGNB', 'f': 'VP Trung tâm CGNB' }, name, ''],
+            [{ 'v': 'Dự án CGNB', 'f': 'Dự án CGNB' }, 'VP Trung tâm CGNB', ''],
+            [{ 'v': 'Dự án Mai Sơn - QL.45', 'f': 'Dự án Mai Sơn - QL.45' }, 'VP Trung tâm CGNB', '']
+        ]);
+    } else if (name === 'Dự án CGNB') {
+        data.addRows([
+            [{ 'v': 'Đội thu phí ' + name, 'f': 'Đội thu phí ' + name }, name, ''],
+            [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, name, '']
+        ]);
+    } else if (name == 'Dự án Mai Sơn - QL.45') {
+        data.addRows([
+            [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, name, '']
         ]);
     } else {
+        // Default case for other nodes
         data.addRows([
             [{ 'v': 'Ban Giám đốc ' + name, 'f': 'Ban Giám đốc ' + name }, name, ''],
-            [{ 'v': 'VPTT ' + name, 'f': 'VPTT ' + name }, 'Ban Giám đốc ' + name, ''],
+            [{ 'v': 'VP ' + name, 'f': 'VP ' + name }, 'Ban Giám đốc ' + name, ''],
             [{ 'v': 'Đội thu phí ' + name, 'f': 'Đội thu phí ' + name }, 'Ban Giám đốc ' + name, ''],
             [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, 'Ban Giám đốc ' + name, '']
         ]);
@@ -115,7 +181,7 @@ function drawSubChart(name) {
 
 function goBack() {
     subChartState = {
-        'Trung tâm NBLC': false,
+        'Dự án NBLC': false,
         'Trung tâm TN&KT': false,
         'Trung tâm CGNB': false,
         'Trung tâm BMT': false,
@@ -188,18 +254,24 @@ function displayModal(name) {
                         'Tạ Đức Vượng - Chuyên viên',
                         'Phan Tiến Anh - Chuyên viên',]
         },
-        'Ban Giám đốc Trung tâm NBLC': {
-            'nhân viên': ['Ngô Văn Lợi - Giám Đốc TT',
-                        'Nguyễn Văn Khương - Phó Giám đốc TT'
-            ]
-        },
-      
+        // 'Ban Giám đốc TT NBLC': {
+        //     'nhân viên': ['Ngô Văn Lợi - Giám Đốc TT',
+        //                 'Nguyễn Văn Khương - Phó Giám đốc TT'
+        //     ]
+        // },
+      'Ban điều hành gói thầu':{
+        'nhân viên': ['Ngô Văn O - Giám đốc điều hành',
+                    'PHạm Văn A - Phó giám đốc điều hành'
+        ]
+      },
         'Ban Giám đốc Trung tâm BMT': {
             'nhân viên': ['Dương Văn Luận - Giám đốc TT', 'Mai Văn Mậu - Phó giám đốc TT']
         },
        
-        'VPTT Trung tâm NBLC': {
-            'nhân viên': ['Nguyễn Xuân Huy - Đội phó',
+        'VP Trung tâm NBLC': {
+            'nhân viên': ['Ngô Văn Lợi - Giám Đốc TT',
+                        'Nguyễn Văn Khương - Phó Giám đốc TT',
+                        'Nguyễn Xuân Huy - Đội phó',
                         'Lê Công Soát - Phó phòng',
                         'Trần Thị Tuyết Nhung - Nhân viên TT',
                         'Nguyễn Thị Đào - Nhân viên TT',
@@ -213,19 +285,19 @@ function displayModal(name) {
                         'Nguyễn Thị Lộc - Kế toán'
             ]
         },
-        'Đội XD&BT số 1 Trung tâm TN&KT':{
-            'chức vụ':'Đội trưởng đội XD&BT',
+        'Cầu Giẽ - Ninh Bình TN&KT':{
+            'chức vụ':'Đội trưởng đội XD&BT số 1',
             'tên':'Nguyễn Văn Ninh',
             'sđt':'0982636129',
             'nơi làm việc':'Phụ trách tuyến đường cao tốc CGNB',
         },
-        'Đội XD&BT số 2 Trung tâm TN&KT':{
-            'chức vụ':'Đội phó đội XD&BT',
+        'Nội Bài - Lào Cai TN&KT':{
+            'chức vụ':'Đội phó đội XD&BT số 2',
             'tên':'Uông Việt Anh',
             'sđt':'0985111914',
             'nơi làm việc':'Phụ trách cả 2 dự án gói thầu O&M1-NBLC và O&M2-NBLC  tuyến đường cao tốc NBLC (Km0 - Km149+705)',
         },
-        'VPTT Trung tâm CGNB': {
+        'VP Trung tâm CGNB': {
             'nhân viên': ['Ngô Huy Thuần - Giám đốc TT',
                         'Trần Hồng Ngọc - Trưởng văn phòng TT',
                         'Đinh Thị Thu Hương - Nhân viên TT',
