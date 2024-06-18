@@ -87,8 +87,8 @@ function drawSubChart(name) {
         ]);
     } else if (name == 'Đội thu phí TT NBLC') {
         data.addRows([
-            [{ 'v': 'Đội trưởng ' + name, 'f':'Đội trưởng ' + name}, name,''],
-            [{ 'v': 'ĐSHK', 'f':'ĐSHK'}, name, ''],
+            // [{ 'v': 'Đội trưởng ' + name, 'f':'Đội trưởng ' + name}, name,''],
+            // [{ 'v': 'ĐSHK', 'f':'ĐSHK'}, name, ''],
             [{ 'v': 'Trạm Km6' , 'f':'Trạm Km6'}, name, ''],
             [{ 'v': 'Trạm IC3', 'f':'Trạm IC3'}, name, ''],
             [{ 'v': 'Trạm IC4' , 'f':'Trạm IC4'}, name, ''],
@@ -349,24 +349,14 @@ function displayModal(name) {
                 'Đoàn Thị Ngọc Tuyết - Văn thư'
             ]
         },
-        'Đội trưởng Đội thu phí TT NBLC':{
-            'tên': 'Nguyễn Văn Chương',
-            'chức vụ': 'Đội trưởng Đội thu phí',
-            'sđt': '0979625656',
-            'nơi làm việc': 'Trạm Km6'
-        },
+        
         'Trạm Km6':{
-            'tên': 'Phạm Hữu Long',
-            'chức vụ': 'Đội phó',
-            'sđt': '0911171086',
-            'nơi làm việc': 'Phụ trách Trạm Km6'
+           'nhân viên': ['Nguyễn Văn Chương - Đội trưởng Đội thu phí',
+                        'Hoàng Thanh Ngọc - Đội phó đội ĐSHK',
+                        'Phạm Hữu Long - Đội phó'
+           ]
         },
-        'ĐSHK':{
-            'tên': 'Hoàng Thanh Ngọc',
-            'chức vụ': 'Đội phó - Phụ trách tổ ĐSHK',
-            'sđt': '0975904672',
-            'nơi làm việc': 'Trạm Km6'
-        },
+        
         'Trạm IC3':{
             'tên': 'Lê Anh Tuấn',
             'chức vụ': 'Đội phó',
@@ -540,7 +530,7 @@ function displayModal(name) {
         } else {
             modalInfo.innerHTML = `
                 <h3>Thông tin chi tiết</h3>
-                <p><strong>Tên:</strong> ${info[name]['tên']}</p>
+                <p><strong>Họ và Tên:</strong> ${info[name]['tên']}</p>
                 <p><strong>Chức vụ:</strong> ${info[name]['chức vụ']}</p>
                 <p><strong>SĐT:</strong> <a href="tel:${info[name]['sđt']}">${info[name]['sđt']}</a></p>
                 <p><strong>Nơi làm việc:</strong> ${info[name]['nơi làm việc']}</p>
@@ -824,6 +814,24 @@ function displayEmployeeInfo(employee) {
             'sđt': '0938363722',
             'nơi làm việc': 'Trung tâm ĐH ĐCT NBLC'
         },
+        'Nguyễn Văn Chương - Đội trưởng Đội thu phí':{
+            'tên': 'Nguyễn Văn Chương',
+            'chức vụ': 'Đội trưởng Đội thu phí',
+            'sđt': '0979625656',
+            'nơi làm việc': 'Trạm Km6'
+        },
+        'Hoàng Thanh Ngọc - Đội phó đội ĐSHK':{
+            'tên': 'Hoàng Thanh Ngọc',
+            'chức vụ': 'Đội phó - Phụ trách tổ ĐSHK',
+            'sđt': '0975904672',
+            'nơi làm việc': 'Trạm Km6'
+        },
+        'Phạm Hữu Long - Đội phó':{
+            'tên': 'Phạm Hữu Long',
+            'chức vụ': 'Đội phó',
+            'sđt': '0911171086',
+            'nơi làm việc': 'Phụ trách Trạm Km6'
+        },
         'Đinh Xuân Thắng - Đội trưởng Đội VH1':{
             'tên': 'Đinh Xuân Thắng',
             'chức vụ': 'Đội trưởng Đội VH1',
@@ -994,7 +1002,7 @@ function displayEmployeeInfo(employee) {
     previousState = modalInfo.innerHTML;
 
     modalInfo.innerHTML = `
-        <p><strong>Tên:</strong> ${employeeInfo[employee]['tên']}</p>
+        <p><strong>Họ và Tên:</strong> ${employeeInfo[employee]['tên']}</p>
         <p><strong>Chức vụ:</strong> ${employeeInfo[employee]['chức vụ']}</p>
         <p><strong>SĐT:</strong> <a href="tel:${employeeInfo[employee]['sđt']}">${employeeInfo[employee]['sđt']}</a></p>
         <p><strong>Nơi làm việc:</strong> ${employeeInfo[employee]['nơi làm việc']}</p>
