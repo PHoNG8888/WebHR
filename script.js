@@ -15,6 +15,7 @@ var subChartState = {
     'Đội vận hành TT NBLC': false,
     'Đội thu phí Dự án CGNB':false,
     'Đội vận hành Dự án CGNB':false,
+    'Đội thu phí TT ĐNQN': false,
 };
 
 var maindata;
@@ -86,26 +87,8 @@ function drawSubChart(name) {
         ]);
     } else if (name == 'Đội thu phí TT NBLC') {
         data.addRows([
-            [{ 'v': 'Đội trưởng', 'f':'Đội trưởng'}, name,''],
+            [{ 'v': 'Đội trưởng ' + name, 'f':'Đội trưởng ' + name}, name,''],
             [{ 'v': 'ĐSHK', 'f':'ĐSHK'}, name, ''],
-            [{ 'v': 'Trạm Km6' , 'f':'Trạm Km6'}, name, ''],
-            [{ 'v': 'Trạm IC3', 'f':'Trạm IC3'}, name, ''],
-            [{ 'v': 'Trạm IC4' , 'f':'Trạm IC4'}, name, ''],
-            // [{ 'v': 'Trạm IC6', 'f':'Trạm IC6'}, name, ''],
-            [{ 'v': 'Trạm IC7' , 'f':'Trạm IC7'}, name, ''],
-            // [{ 'v': 'Trạm IC8', 'f':'Trạm IC8'}, name, ''],
-            // [{ 'v': 'Trạm IC9', 'f':'Trạm IC9'}, name, ''],
-            // [{ 'v': 'Trạm IC10' , 'f':'Trạm IC10'}, name, ''],
-            // [{ 'v': 'Trạm IC11', 'f':'Trạm IC11'}, name, ''],
-            [{ 'v': 'Trạm IC12' , 'f':'Trạm IC12'}, name, ''],
-            // [{ 'v': 'Trạm IC14', 'f':'Trạm IC14'}, name, ''],
-            // [{ 'v': 'Trạm IC16', 'f':'Trạm IC16'}, name, ''],
-            [{ 'v': 'Trạm Phố Lu', 'f':'Trạm Phố Lu'}, name, ''],
-            // [{ 'v': 'Trạm IC17', 'f':'Trạm IC17'}, name, ''],
-            // [{ 'v': 'Trạm Km237', 'f':'Trạm Km237'}, name, '']
-        ]);
-    } else if (name == 'Đội vận hành TT NBLC'){
-        data.addRows([
             [{ 'v': 'Trạm Km6' , 'f':'Trạm Km6'}, name, ''],
             [{ 'v': 'Trạm IC3', 'f':'Trạm IC3'}, name, ''],
             [{ 'v': 'Trạm IC4' , 'f':'Trạm IC4'}, name, ''],
@@ -116,31 +99,41 @@ function drawSubChart(name) {
             [{ 'v': 'Trạm IC10' , 'f':'Trạm IC10'}, name, ''],
             [{ 'v': 'Trạm IC11', 'f':'Trạm IC11'}, name, ''],
             [{ 'v': 'Trạm IC12' , 'f':'Trạm IC12'}, name, ''],
-            [{ 'v': 'Trạm IC14', 'f':'Trạm IC14'}, name, ''],
-            [{ 'v': 'Trạm IC16', 'f':'Trạm IC16'}, name, ''],
-            [{ 'v': ' Trạm Phố Lu', 'f':'Trạm Phố Lu'}, name, ''],
-            [{ 'v': 'Trạm IC17', 'f':'Trạm IC17'}, name, ''],
-            [{ 'v': 'Trạm Km237', 'f':'Trạm Km237'}, name, '']
+            // [{ 'v': 'Trạm IC14', 'f':'Trạm IC14'}, name, ''],
+            // [{ 'v': 'Trạm IC16', 'f':'Trạm IC16'}, name, ''],
+            [{ 'v': 'Trạm Phố Lu', 'f':'Trạm Phố Lu'}, name, ''],
+            // [{ 'v': 'Trạm IC17', 'f':'Trạm IC17'}, name, ''],
+            // [{ 'v': 'Trạm Km237', 'f':'Trạm Km237'}, name, '']
+        ]);
+    } else if (name == 'Đội vận hành TT NBLC'){
+        data.addRows([
+            [{ 'v': 'Trạm IC3 ' + name, 'f':'Trạm IC3 ' + name}, name, ''],
+            [{ 'v': 'Trạm IC9 ' + name, 'f':'Trạm IC9 ' + name}, name, ''],
+            [{ 'v': 'Trạm IC12 ' + name , 'f':'Trạm IC12 ' + name}, name, ''],
         ]);
     } else if (name === 'Trung tâm TN&KT') {
         data.addRows([
-            [{ 'v': 'VPTT Trung tâm TN&KT', 'f': 'VPTT Trung tâm TN&KT' }, name, ''],
-            [{ 'v': 'Cầu Giẽ - Ninh Bình TN&KT', 'f': 'Cầu Giẽ - Ninh Bình TN&KT' }, 'VPTT Trung tâm TN&KT', ''],
-            [{ 'v': 'Nội Bài - Lào Cai TN&KT', 'f': 'Nội Bài - Lào Cai TN&KT' }, 'VPTT Trung tâm TN&KT', '']
+            [{ 'v': 'VP Trung tâm TN&KT', 'f': 'VP Trung tâm TN&KT' }, name, ''],
+            [{ 'v': 'Cầu Giẽ - Ninh Bình TN&KT', 'f': 'Cầu Giẽ - Ninh Bình TN&KT' }, 'VP Trung tâm TN&KT', ''],
+            [{ 'v': 'Nội Bài - Lào Cai TN&KT', 'f': 'Nội Bài - Lào Cai TN&KT' }, 'VP Trung tâm TN&KT', '']
         ]);
     } else if (name === 'Trung tâm ĐNQN') {
         data.addRows([
-            [{ 'v': 'VPTT Trung tâm ĐNQN', 'f': 'VPTT Trung tâm ĐNQN' }, name, ''],
-            [{ 'v': 'Đội thu phí Trung tâm ĐNQN', 'f': 'Đội thu phí Trung tâm ĐNQN' }, 'VPTT Trung tâm ĐNQN', ''],
-            [{ 'v': 'Đội vận hành Trung tâm ĐNQN', 'f': 'Đội vận hành Trung tâm ĐNQN' }, 'VPTT Trung tâm ĐNQN', '']
+            [{ 'v': 'VP ' + name, 'f': 'VP ' + name }, name, ''],
+            [{ 'v': 'Đội thu phí TT ĐNQN' ,'f': 'Đội thu phí TT ĐNQN'}, 'VP Trung tâm ĐNQN', ''],
+        ]);
+    }else if (name == 'Đội thu phí TT ĐNQN'){
+        data.addRows([
+            [{ 'v': 'Đội trưởng ' + name, 'f':'Đội trưởng ' + name}, name, ''],
+            [{ 'v': 'Trạm Túy Loan ', 'f':'Trạm Túy Loan '}, name, ''],
+            [{ 'v': 'Trạm Bắc Quảng Ngãi ' , 'f':'Trạm Bắc Quảng Ngãi '}, name, ''],
         ]);
     } else if (name === 'Trung tâm BMT') {
         data.addRows([
             [{ 'v': 'VP ' + name, 'f': 'VP ' + name }, name, ''],
             [{ 'v': 'Dự án Hải Phòng', 'f': 'Dự án Hải Phòng' }, 'VP ' + name, ''],
-            [{ 'v': 'Dự án QL.45 - Diễn Châu', 'f': 'Dự án QL.45 - Diễn Châu' }, 'VP ' + name, ''],
+            [{ 'v': 'Dự án QL.45 - Nghi Sơn - Diễn Châu', 'f': 'Dự án QL.45 - Nghi Sơn - Diễn Châu' }, 'VP ' + name, ''],
             [{ 'v': 'Dự án Diễn Châu - Bãi Vọt', 'f': 'Dự án Diễn Châu - Bãi Vọt' }, 'VP ' + name, ''],
-
         ]);
     } else if (name === 'Trung tâm CGNB') {
         data.addRows([
@@ -161,9 +154,7 @@ function drawSubChart(name) {
         ]);
     } else if (name === 'Đội vận hành Dự án CGNB') {
         data.addRows([
-            [{ 'v': 'Trạm Vực Vòng', 'f': 'Trạm Vực Vòng' }, name, ''],
-            [{ 'v': 'Trạm Liêm Tuyền', 'f': 'Trạm Liêm Tuyền'}, name, ''],
-            [{ 'v': 'Trạm Cao Bồ', 'f': 'Trạm Cao Bồ' }, name, '']
+           [{ 'v': 'Tuyến Cầu Giẽ - Ninh Bình', 'f': 'Tuyến Cầu Giẽ - Ninh Bình'}, name, '']
         ]);
     } else if (name == 'Dự án Mai Sơn - QL.45') {
         data.addRows([
@@ -214,6 +205,7 @@ function goBack() {
         'Đội vận hành TT NBLC': false,
         'Đội thu phí Dự án CGNB':false,
         'Đội vận hành Dự án CGNB':false,
+        'Đội thu phí TT ĐNQN': false,
     };
     drawChart();
     document.getElementById('back_button').style.display = 'none'; // Hide back button
@@ -310,15 +302,15 @@ function displayModal(name) {
         'VP Trung tâm NBLC': {
             'nhân viên': ['Ngô Văn Lợi - Giám Đốc TT',
                 'Nguyễn Văn Khương - Phó Giám đốc TT',
-                'Nguyễn Xuân Huy - Đội phó',
                 'Lê Công Soát - Phó phòng',
+                'Nguyễn Xuân Huy - Đội phó Đội điện',
                 'Trần Thị Tuyết Nhung - Nhân viên TT',
                 'Nguyễn Thị Đào - Nhân viên TT',
                 'Nguyễn Thị Thanh - Nhân viên TT',
                 'Dương Đức Minh - Nhân viên TT',
             ]
         },
-        'VPTT Trung tâm TN&KT': {
+        'VP Trung tâm TN&KT': {
             'nhân viên': ['Mai Đức Thành - Giám đốc TT',
                 'Thái Công Danh - Phó phòng TT',
                 'Nguyễn Thị Lộc - Kế toán'
@@ -351,17 +343,17 @@ function displayModal(name) {
                         'Mai Văn Giang - Phó phòng'
             ]
         },
-        'VPTT Trung tâm ĐNQN': {
+        'VP Trung tâm ĐNQN': {
             'nhân viên': ['Nguyễn Văn Lượng - Phó Giám đốc TT',
                 'Ngô Thị Thanh Nguyên - Phó phòng TT',
                 'Đoàn Thị Ngọc Tuyết - Văn thư'
             ]
         },
-        'Đội trưởng':{
+        'Đội trưởng Đội thu phí TT NBLC':{
             'tên': 'Nguyễn Văn Chương',
-            'chức vụ': 'Đội trưởng',
+            'chức vụ': 'Đội trưởng Đội thu phí',
             'sđt': '0979625656',
-            'nơi làm việc': 'Phụ trách chung'
+            'nơi làm việc': 'Trạm Km6'
         },
         'Trạm Km6':{
             'tên': 'Phạm Hữu Long',
@@ -371,9 +363,9 @@ function displayModal(name) {
         },
         'ĐSHK':{
             'tên': 'Hoàng Thanh Ngọc',
-            'chức vụ': 'Đội phó',
+            'chức vụ': 'Đội phó - Phụ trách tổ ĐSHK',
             'sđt': '0975904672',
-            'nơi làm việc': 'Phụ trách tổ ĐSHK'
+            'nơi làm việc': 'Trạm Km6'
         },
         'Trạm IC3':{
             'tên': 'Lê Anh Tuấn',
@@ -382,21 +374,51 @@ function displayModal(name) {
             'nơi làm việc': 'Phụ trách Trạm IC3'
         },
         'Trạm IC4':{
+            'tên': 'Nguyễn Văn Tý',
+            'chức vụ': 'Đội phó',
+            'sđt': '0975847000',
+            'nơi làm việc': 'Phụ trách Trạm IC4'
+        },
+        'Trạm IC6':{
+            'tên': 'Ngô Văn Hùng',
+            'chức vụ':'Trưởng ca',
+            'sđt':'0989058199',
+            'nơi làm việc':'Phụ trách Trạm IC6'
+        },
+        'Trạm IC7':{
+            'tên': 'Nguyễn Hồng Hạnh',
+            'chức vụ': 'Trạm trưởng',
+            'sđt': '0364625012',
+            'nơi làm việc': 'Phụ trách Trạm IC7'
+        },
+        'Trạm IC8':{
+            'tên': 'Hồ Thị Xuân Hương',
+            'chức vụ': 'Trạm trưởng',
+            'sđt': '0987344863',
+            'nơi làm việc': 'Phụ trách Trạm IC8' 
+        },
+        'Trạm IC9':{
             'tên': 'Tạ Văn Thắng',
             'chức vụ': 'Đội phó',
             'sđt': '0978162555',
-            'nơi làm việc': 'Phụ trách Trạm IC4'
+            'nơi làm việc': 'Phụ trách Trạm IC9'
         },
-        'Trạm IC7':{
-            'tên': 'Hoàng Cao Khanh',
+        'Trạm IC10':{
+            'tên': 'Bùi Đăng Thắng',
             'chức vụ': 'Đội phó',
-            'sđt': '0963304611',
-            'nơi làm việc': 'Phụ trách Trạm IC7'
+            'sđt': '0964062500',
+            'nơi làm việc': 'Phụ trách Trạm IC10'
+        },
+        'Trạm IC11':{
+            'tên': 'Nguyễn Tiến Cường',
+            'chức vụ': 'Trạm trưởng',
+            'sđt': '0865666505',
+            'nơi làm việc': 'Phụ trách Trạm IC11'
         },
         'Trạm IC12':{
-            'tên': 'Bùi Văn Nam',
+            'tên': 'Nguyễn Ngọc Huy',
             'chức vụ': 'Đội phó',
-            'sđt': '0963995234',
+            'sđt': '0973985212',
             'nơi làm việc': 'Phụ trách Trạm IC12'
         },
         'Trạm Phố Lu':{
@@ -405,6 +427,23 @@ function displayModal(name) {
             'sđt': '0983022336',
             'nơi làm việc': 'Phụ trách cân Trạm Phố Lu'
         },
+        'Trạm IC3 Đội vận hành TT NBLC':{
+            'nhân viên':['Đinh Xuân Thắng - Đội trưởng Đội VH1',
+                        'Hoàng Cao Khanh - Đội phó Đội VH1'
+            ]
+        },
+        'Trạm IC9 Đội vận hành TT NBLC':{
+            'tên': 'Bùi Văn Nam',
+            'chức vụ': 'Đội phó đội VH2',
+            'sđt': '0963995234',
+            'nơi làm việc': 'Trụ sở trạm IC9 (Km48+088-Km98+400)'
+        },
+        'Trạm IC12 Đội vận hành TT NBLC':{
+            'tên': 'Lê Đức Bình',
+            'chức vụ': 'Đội trưởng đội VH2',
+            'sđt': '0989429429',
+            'nơi làm việc': 'Trụ sở trạm IC12 (Km98+400-Km149+705)'
+        },
         'Đội thu phí Trung tâm CGNB': {
             'nhân viên': ['Phạm Lê Hòa - Đội trưởng',
                         'Nguyễn Hoài Nam - Đội phó',
@@ -412,10 +451,11 @@ function displayModal(name) {
             ]
         },
         'Trạm Vực Vòng':{
-            'tên': 'Phạm Quốc Bảo',
-            'chức vụ': 'Đội phó Đội thu phí',
-            'sđt': '0977567911',
-            'nơi làm việc': 'Phụ trách Trạm Vực Vòng'
+          'nhân viên': ['Phạm Lê Hòa - Đội trưởng',
+                        'Nguyễn Hoài Nam - Đội phó',
+                        'Thạch Hải Phong - Đội phó phụ trách bộ phận ĐSHK',
+                        'Phạm Quốc Bảo - Đội phó'
+            ]
         },
         'Trạm Liêm Tuyền':{
             'tên': 'Phạm Bá Hòa',
@@ -429,12 +469,7 @@ function displayModal(name) {
             'sđt': '0915818286',
             'nơi làm việc': 'Phụ trách Trạm Cao Bồ'
         },
-        'Đội thu phí Trung tâm ĐNQN': {
-            'nhân viên': ['Nguyễn Tấn Long - Đội trưởng',
-                'Trần Ngọc Long - Đội phó',
-                'Hoàng Hồng Phong - Đội phó'
-            ]
-        },
+
         'Đội vận hành Trung tâm NBLC': {
             'nhân viên': ['Đinh Xuân Thắng - Đội trưởng',
                 'Nguyễn Văn Tý - Đội phó',
@@ -442,20 +477,44 @@ function displayModal(name) {
                 'Bùi Đăng Thắng - Đội phó'
             ]
         },
-        'Đội vận hành Trung tâm CGNB': {
-            'nhân viên': ['Nguyễn Quốc Huy - Đội trưởng ĐVH số 1',
-                'Trần Quốc An - Đội phó',
-
+        'Tuyến Cầu Giẽ - Ninh Bình': {
+            'nhân viên': ['Nguyễn Quốc Huy - Đội trưởng đội VH1',
+                'Trần Quốc An - Đội phó đội VH1',
             ]
         },
-        'Đội vận hành Trung tâm BMT': {
-            'nhân viên': ['Mai Văn Giang - Phó phòng',
-                'Ngô Anh Văn - Đội phó',
-                'Bùi Đức Thành - Đội trưởng ĐVH số 2',
+        'Đội vận hành Dự án Mai Sơn - QL.45':{
+            'nhân viên':['Bùi Đức Thành - Đội trưởng ĐVH số 2',
                 'Đoàn Tiến Bắc - Đội phó']
         },
-        'Đội vận hành Trung tâm ĐNQN': {
-            'nhân viên': ['Đinh Văn LM', 'Nguyễn Thị NO']
+        'Dự án QL.45 - Nghi Sơn - Diễn Châu':{
+            'tên': 'Ngô Anh Văn',
+            'chức vụ': 'Đội phó',
+            'sđt': '0979234333',
+            'nơi làm việc': 'QL45-NS-DC'
+        },
+        'Dự án Diễn Châu - Bãi Vọt':{
+            'tên': 'Đoàn Tiến Bắc',
+            'chức vụ': 'Đội phó Đội vận hành',
+            'sđt': '0985932086',
+            'nơi làm việc': 'Tuyến Mai Sơn - QL46 (Điều chuyển từ TT CGNB)'
+        },
+        'Đội trưởng Đội thu phí TT ĐNQN':{
+            'tên': 'Nguyễn Tấn Long',
+            'chức vụ': 'Đội trưởng',
+            'sđt': '0905705995',
+            'nơi làm việc': 'Văn Phòng Trung tâm'
+        },
+        'Trạm Túy Loan ':{
+            'tên': 'Trần Ngọc Long',
+            'chức vụ': 'Đội phó',
+            'sđt': '0912531088',
+            'nơi làm việc': 'Trạm Túy Loan'
+        },
+        'Trạm Bắc Quảng Ngãi ':{
+                'tên': 'Hoàng Hồng Phong',
+                'chức vụ': 'Đội phó',
+                'sđt': '0905639456',
+                'nơi làm việc': 'Trạm Bắc Quảng Ngãi'
         }
     };
 
@@ -468,7 +527,7 @@ function displayModal(name) {
 
     if (info[name]) {
         if (info[name]['nhân viên']) {
-            modalInfo.innerHTML = '<h3>Danh sách nhân viên</h3>';
+            modalInfo.innerHTML = '<h3>Nhân Sự</h3>';
             info[name]['nhân viên'].forEach(function (employee) {
                 var button = document.createElement('button');
                 button.innerText = employee;
@@ -729,7 +788,7 @@ function displayEmployeeInfo(employee) {
             'sđt': '0914898798',
             'nơi làm việc': 'Trung tâm ĐH ĐCT NBLC'
         },
-        'Nguyễn Xuân Huy - Đội phó': {
+        'Nguyễn Xuân Huy - Đội phó Đội điện': {
             'tên': 'Nguyễn Xuân Huy',
             'chức vụ': 'Đội phó',
             'sđt': '0983753028',
@@ -765,77 +824,17 @@ function displayEmployeeInfo(employee) {
             'sđt': '0938363722',
             'nơi làm việc': 'Trung tâm ĐH ĐCT NBLC'
         },
-        'Đinh Xuân Thắng - Đội trưởng': {
+        'Đinh Xuân Thắng - Đội trưởng Đội VH1':{
             'tên': 'Đinh Xuân Thắng',
-            'chức vụ': 'Đội trưởng',
+            'chức vụ': 'Đội trưởng Đội VH1',
             'sđt': '0916982268',
-            'nơi làm việc': 'Km 0+000 - Km 48+088'
+            'nơi làm việc': 'Trụ sở Trạm IC3 (Km0+000-Km48+088)'
         },
-        'Nguyễn Văn Tý - Đội phó': {
-            'tên': 'Nguyễn Văn Tý',
-            'chức vụ': 'Đội phó',
-            'sđt': '0975847000',
-            'nơi làm việc': 'Km 0+000 - Km 48+088'
-        },
-        'Lê Đức Bình - Đội trưởng': {
-            'tên': 'Lê Đức Bình',
-            'chức vụ': 'Đội trưởng',
-            'sđt': '0989429429',
-            'nơi làm việc': 'Km 114+900 - Km 149+705'
-        },
-        'Bùi Đăng Thắng - Đội phó': {
-            'tên': 'Bùi Đăng Thắng',
-            'chức vụ': 'Đội phó',
-            'sđt': '0964062500',
-            'nơi làm việc': 'Km 48 +088 - Km 114+900'
-        },
-        'Nguyễn Văn Chương - Đội trưởng': {
-            'tên': 'Nguyễn Văn Chương',
-            'chức vụ': 'Đội trưởng',
-            'sđt': '0979625656',
-            'nơi làm việc': 'Phụ trách chung'
-        },
-        'Hoàng Thanh Ngọc - Đội phó': {
-            'tên': 'Hoàng Thanh Ngọc',
-            'chức vụ': 'Đội phó',
-            'sđt': '0975904672',
-            'nơi làm việc': 'Phụ trách tổ ĐSHK'
-        },
-        'Phạm Hữu Long - Đội phó': {
-            'tên': 'Phạm Hữu Long',
-            'chức vụ': 'Đội phó',
-            'sđt': '0911171086',
-            'nơi làm việc': 'Phụ trách Trạm Km6'
-        },
-        'Lê Anh Tuấn - Đội phó': {
-            'tên': 'Lê Anh Tuấn',
-            'chức vụ': 'Đội phó',
-            'sđt': '0967126677',
-            'nơi làm việc': 'Phụ trách Trạm IC3'
-        },
-        'Tạ Văn Thắng - Đội phó': {
-            'tên': 'Tạ Văn Thắng',
-            'chức vụ': 'Đội phó',
-            'sđt': '0978162555',
-            'nơi làm việc': 'Phụ trách Trạm IC4'
-        },
-        'Hoàng Cao Khanh - Đội phó': {
+        'Hoàng Cao Khanh - Đội phó Đội VH1':{
             'tên': 'Hoàng Cao Khanh',
-            'chức vụ': 'Đội phó',
+            'chức vụ': 'Đội phó Đội VH1',
             'sđt': '0963304611',
-            'nơi làm việc': 'Phụ trách Trạm IC7'
-        },
-        'Bùi Văn Nam - Đội phó': {
-            'tên': 'Bùi Văn Nam',
-            'chức vụ': 'Đội phó',
-            'sđt': '0963995234',
-            'nơi làm việc': 'Phụ trách Trạm IC12'
-        },
-        'Trương Quý Hậu - Đội phó': {
-            'tên': 'Trương Quý Hậu',
-            'chức vụ': 'Đội phó',
-            'sđt': '0983022336',
-            'nơi làm việc': 'Phụ trách cân Trạm Phố Lu'
+            'nơi làm việc': 'Trụ sở Trạm IC3 (Km98+400-Km149+705)'
         },
         'Nguyễn Văn Lượng - Phó Giám đốc TT': {
             'tên': 'Nguyễn Văn Lượng',
@@ -854,24 +853,6 @@ function displayEmployeeInfo(employee) {
             'chức vụ': 'Văn thư',
             'sđt': '0935383143',
             'nơi làm việc': 'Văn Phòng Trung tâm'
-        },
-        'Nguyễn Tấn Long - Đội trưởng': {
-            'tên': 'Nguyễn Tấn Long',
-            'chức vụ': 'Đội trưởng',
-            'sđt': '0905705995',
-            'nơi làm việc': 'Văn Phòng Trung tâm'
-        },
-        'Trần Ngọc Long - Đội phó': {
-            'tên': 'Trần Ngọc Long',
-            'chức vụ': 'Đội phó',
-            'sđt': '0912531088',
-            'nơi làm việc': 'Trạm Túy Loan'
-        },
-        'Hoàng Hồng Phong - Đội phó': {
-            'tên': 'Hoàng Hồng Phong',
-            'chức vụ': 'Đội phó',
-            'sđt': '0905639456',
-            'nơi làm việc': 'Trạm Bắc Quảng Ngãi'
         },
         'Ngô Huy Thuần - Giám đốc TT': {
             'tên': 'Ngô Huy Thuần',
@@ -909,13 +890,13 @@ function displayEmployeeInfo(employee) {
             'sđt': '0915833269',
             'nơi làm việc': 'Trung tâm điều hành ĐCT CGNB'
         },
-        'Nguyễn Quốc Huy - Đội trưởng ĐVH số 1': {
+        'Nguyễn Quốc Huy - Đội trưởng đội VH1': {
             'tên': 'Nguyễn Quốc Huy',
             'chức vụ': 'Đội trưởng Đội Vận hành số 1',
             'sđt': '0948484366',
             'nơi làm việc': 'Tuyến Cầu Giẽ - Ninh Bình'
         },
-        'Trần Quốc An - Đội phó': {
+        'Trần Quốc An - Đội phó đội VH1': {
             'tên': 'Trần Quốc An',
             'chức vụ': 'Đội phó Đội vận hành',
             'sđt': '0932315567',
@@ -1006,12 +987,7 @@ function displayEmployeeInfo(employee) {
             'sđt': '0374824300',
             'nơi làm việc': 'Văn phòng TT BMT'
         },
-        'Ngô Anh Văn - Đội phó': {
-            'tên': 'Ngô Anh Văn',
-            'chức vụ': 'Đội phó',
-            'sđt': '0979234333',
-            'nơi làm việc': 'QL45-NS-DC'
-        }
+       
     };
 
     var modalInfo = document.getElementById("modal-info");
