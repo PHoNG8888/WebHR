@@ -87,8 +87,6 @@ function drawSubChart(name) {
         ]);
     } else if (name == 'Đội thu phí TT NBLC') {
         data.addRows([
-            // [{ 'v': 'Đội trưởng ' + name, 'f':'Đội trưởng ' + name}, name,''],
-            // [{ 'v': 'ĐSHK', 'f':'ĐSHK'}, name, ''],
             [{ 'v': 'Trạm Km6' , 'f':'Trạm Km6'}, name, ''],
             [{ 'v': 'Trạm IC3', 'f':'Trạm IC3'}, name, ''],
             [{ 'v': 'Trạm IC4' , 'f':'Trạm IC4'}, name, ''],
@@ -99,11 +97,7 @@ function drawSubChart(name) {
             [{ 'v': 'Trạm IC10' , 'f':'Trạm IC10'}, name, ''],
             [{ 'v': 'Trạm IC11', 'f':'Trạm IC11'}, name, ''],
             [{ 'v': 'Trạm IC12' , 'f':'Trạm IC12'}, name, ''],
-            // [{ 'v': 'Trạm IC14', 'f':'Trạm IC14'}, name, ''],
-            // [{ 'v': 'Trạm IC16', 'f':'Trạm IC16'}, name, ''],
             [{ 'v': 'Trạm Phố Lu', 'f':'Trạm Phố Lu'}, name, ''],
-            // [{ 'v': 'Trạm IC17', 'f':'Trạm IC17'}, name, ''],
-            // [{ 'v': 'Trạm Km237', 'f':'Trạm Km237'}, name, '']
         ]);
     } else if (name == 'Đội vận hành TT NBLC'){
         data.addRows([
@@ -459,14 +453,6 @@ function displayModal(name) {
             'sđt': '0915818286',
             'nơi làm việc': 'Phụ trách Trạm Cao Bồ'
         },
-
-        'Đội vận hành Trung tâm NBLC': {
-            'nhân viên': ['Đinh Xuân Thắng - Đội trưởng',
-                'Nguyễn Văn Tý - Đội phó',
-                'Lê Đức Bình - Đội trưởng',
-                'Bùi Đăng Thắng - Đội phó'
-            ]
-        },
         'Tuyến Cầu Giẽ - Ninh Bình': {
             'nhân viên': ['Nguyễn Quốc Huy - Đội trưởng đội VH1',
                 'Trần Quốc An - Đội phó đội VH1',
@@ -475,6 +461,12 @@ function displayModal(name) {
         'Đội vận hành Dự án Mai Sơn - QL.45':{
             'nhân viên':['Bùi Đức Thành - Đội trưởng ĐVH số 2',
                 'Đoàn Tiến Bắc - Đội phó']
+        },
+        'Dự án Hải Phòng':{
+            'tên': 'Trương Văn Linh',
+            'chức vụ': 'Nhân viên',
+            'sđt': '0967276262',
+            'nơi làm việc': 'QL1737-HP'
         },
         'Dự án QL.45 - Nghi Sơn - Diễn Châu':{
             'tên': 'Ngô Anh Văn',
