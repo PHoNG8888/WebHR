@@ -14,7 +14,6 @@ var subChartState = {
     'Đội thu phí TT NBLC': false,
     'Đội vận hành TT NBLC': false,
     'Đội thu phí Dự án CGNB':false,
-    'Đội vận hành Dự án CGNB':false,
     'Đội thu phí TT ĐNQN': false,
 };
 
@@ -101,15 +100,15 @@ function drawSubChart(name) {
         ]);
     } else if (name == 'Đội vận hành TT NBLC'){
         data.addRows([
-            [{ 'v': 'Trạm IC3 ' + name, 'f':'Trạm IC3 ' + name}, name, ''],
-            [{ 'v': 'Trạm IC9 ' + name, 'f':'Trạm IC9 ' + name}, name, ''],
-            [{ 'v': 'Trạm IC12 ' + name , 'f':'Trạm IC12 ' + name}, name, ''],
+            [{ 'v': 'Trạm IC3 Đội vận hành' , 'f':'Trạm IC3 Đội vận hành' }, name, ''],
+            [{ 'v': 'Trạm IC9 Đội vận hành' , 'f':'Trạm IC9 Đội vận hành' }, name, ''],
+            [{ 'v': 'Trạm IC12 Đội vận hành'  , 'f':'Trạm IC12 Đội vận hành' }, name, ''],
         ]);
     } else if (name === 'Trung tâm TN&KT') {
         data.addRows([
             [{ 'v': 'VP Trung tâm TN&KT', 'f': 'VP Trung tâm TN&KT' }, name, ''],
-            [{ 'v': 'Cầu Giẽ - Ninh Bình TN&KT', 'f': 'Cầu Giẽ - Ninh Bình TN&KT' }, 'VP Trung tâm TN&KT', ''],
-            [{ 'v': 'Nội Bài - Lào Cai TN&KT', 'f': 'Nội Bài - Lào Cai TN&KT' }, 'VP Trung tâm TN&KT', '']
+            [{ 'v': 'Cầu Giẽ - Ninh Bình ', 'f': 'Cầu Giẽ - Ninh Bình ' }, 'VP Trung tâm TN&KT', ''],
+            [{ 'v': 'Nội Bài - Lào Cai ', 'f': 'Nội Bài - Lào Cai ' }, 'VP Trung tâm TN&KT', '']
         ]);
     } else if (name === 'Trung tâm ĐNQN') {
         data.addRows([
@@ -118,7 +117,7 @@ function drawSubChart(name) {
         ]);
     }else if (name == 'Đội thu phí TT ĐNQN'){
         data.addRows([
-            [{ 'v': 'Đội trưởng ' + name, 'f':'Đội trưởng ' + name}, name, ''],
+            [{ 'v': 'Đội trưởng ', 'f':'Đội trưởng '}, name, ''],
             [{ 'v': 'Trạm Túy Loan ', 'f':'Trạm Túy Loan '}, name, ''],
             [{ 'v': 'Trạm Bắc Quảng Ngãi ' , 'f':'Trạm Bắc Quảng Ngãi '}, name, ''],
         ]);
@@ -145,10 +144,6 @@ function drawSubChart(name) {
             [{ 'v': 'Trạm Vực Vòng', 'f': 'Trạm Vực Vòng' }, name, ''],
             [{ 'v': 'Trạm Liêm Tuyền', 'f': 'Trạm Liêm Tuyền'}, name, ''],
             [{ 'v': 'Trạm Cao Bồ', 'f': 'Trạm Cao Bồ' }, name, '']
-        ]);
-    } else if (name === 'Đội vận hành Dự án CGNB') {
-        data.addRows([
-           [{ 'v': 'Tuyến Cầu Giẽ - Ninh Bình', 'f': 'Tuyến Cầu Giẽ - Ninh Bình'}, name, '']
         ]);
     } else if (name == 'Dự án Mai Sơn - QL.45') {
         data.addRows([
@@ -198,7 +193,6 @@ function goBack() {
         'Đội thu phí TT NBLC': false,
         'Đội vận hành TT NBLC': false,
         'Đội thu phí Dự án CGNB':false,
-        'Đội vận hành Dự án CGNB':false,
         'Đội thu phí TT ĐNQN': false,
     };
     drawChart();
@@ -236,8 +230,8 @@ function displayModal(name) {
     var info = {
         'Hội Đồng Quản Trị': {
             'nhân viên': ['Mai Đức Quỳnh - Chủ tịch Hội đồng quản trị',
-                'Hà Bắc Sơn - Thành viên HĐQT',
-                'Nguyễn Thanh Sơn - Thành viên HĐQT']
+                        'Hà Bắc Sơn - Thành viên HĐQT',
+                        'Nguyễn Thanh Sơn - Thành viên HĐQT']
         },
         'Ban Giám Đốc': {
             'nhân viên': ['Nguyễn Thanh Sơn - Giám đốc Công ty',
@@ -246,7 +240,7 @@ function displayModal(name) {
                 'Đỗ Thị Lan Hương - Kế toán trưởng']
         },
         'Phòng QLKT': {
-            'nhân viên': ['Nguyễn Duy Hiếu - Phó trưởng phòng',
+            'nhân viên': ['Nguyễn Duy Hiếu - Phụ trách phòng, Phó trưởng phòng',
                 'Lương Hùng Mạnh - Phó trưởng phòng',
                 'Đinh Văn Hưng - Phó trưởng phòng',
                 'Đậu Khắc Sơn - Chuyên viên',
@@ -310,13 +304,13 @@ function displayModal(name) {
                 'Nguyễn Thị Lộc - Kế toán'
             ]
         },
-        'Cầu Giẽ - Ninh Bình TN&KT': {
+        'Cầu Giẽ - Ninh Bình ': {
             'chức vụ': 'Đội trưởng đội XD&BT số 1',
             'tên': 'Nguyễn Văn Ninh',
             'sđt': '0982636129',
             'nơi làm việc': 'Phụ trách tuyến đường cao tốc CGNB',
         },
-        'Nội Bài - Lào Cai TN&KT': {
+        'Nội Bài - Lào Cai ': {
             'chức vụ': 'Đội phó đội XD&BT số 2',
             'tên': 'Uông Việt Anh',
             'sđt': '0985111914',
@@ -342,15 +336,13 @@ function displayModal(name) {
                 'Ngô Thị Thanh Nguyên - Phó phòng TT',
                 'Đoàn Thị Ngọc Tuyết - Văn thư'
             ]
-        },
-        
+        },   
         'Trạm Km6':{
            'nhân viên': ['Nguyễn Văn Chương - Đội trưởng Đội thu phí',
                         'Hoàng Thanh Ngọc - Đội phó đội ĐSHK',
                         'Phạm Hữu Long - Đội phó'
            ]
-        },
-        
+        },       
         'Trạm IC3':{
             'tên': 'Lê Anh Tuấn',
             'chức vụ': 'Đội phó',
@@ -411,18 +403,18 @@ function displayModal(name) {
             'sđt': '0983022336',
             'nơi làm việc': 'Phụ trách cân Trạm Phố Lu'
         },
-        'Trạm IC3 Đội vận hành TT NBLC':{
+        'Trạm IC3 Đội vận hành':{
             'nhân viên':['Đinh Xuân Thắng - Đội trưởng Đội VH1',
                         'Hoàng Cao Khanh - Đội phó Đội VH1'
             ]
         },
-        'Trạm IC9 Đội vận hành TT NBLC':{
+        'Trạm IC9 Đội vận hành':{
             'tên': 'Bùi Văn Nam',
             'chức vụ': 'Đội phó đội VH2',
             'sđt': '0963995234',
             'nơi làm việc': 'Trụ sở trạm IC9 (Km48+088-Km98+400)'
         },
-        'Trạm IC12 Đội vận hành TT NBLC':{
+        'Trạm IC12 Đội vận hành':{
             'tên': 'Lê Đức Bình',
             'chức vụ': 'Đội trưởng đội VH2',
             'sđt': '0989429429',
@@ -453,7 +445,7 @@ function displayModal(name) {
             'sđt': '0915818286',
             'nơi làm việc': 'Phụ trách Trạm Cao Bồ'
         },
-        'Tuyến Cầu Giẽ - Ninh Bình': {
+        'Đội vận hành Dự án CGNB': {
             'nhân viên': ['Nguyễn Quốc Huy - Đội trưởng đội VH1',
                 'Trần Quốc An - Đội phó đội VH1',
             ]
@@ -480,7 +472,7 @@ function displayModal(name) {
             'sđt': '0985932086',
             'nơi làm việc': 'Tuyến Mai Sơn - QL46 (Điều chuyển từ TT CGNB)'
         },
-        'Đội trưởng Đội thu phí TT ĐNQN':{
+        'Đội trưởng ':{
             'tên': 'Nguyễn Tấn Long',
             'chức vụ': 'Đội trưởng',
             'sđt': '0905705995',
@@ -502,7 +494,6 @@ function displayModal(name) {
 
     var modal = document.getElementById("myModal");
     var modalInfo = document.getElementById("modal-info");
-
 
     previousState = modalInfo.innerHTML;
     modalInfo.innerHTML = '';
@@ -716,7 +707,7 @@ function displayEmployeeInfo(employee) {
             'sđt': '0988096730',
             'nơi làm việc': 'Văn phòng Công ty'
         },
-        'Nguyễn Duy Hiếu - Phó trưởng phòng': {
+        'Nguyễn Duy Hiếu - Phụ trách phòng, Phó trưởng phòng': {
             'tên': 'Nguyễn Duy Hiếu',
             'chức vụ': 'Phó trưởng phòng',
             'sđt': '0966305232',
