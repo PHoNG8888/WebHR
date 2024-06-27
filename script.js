@@ -8,13 +8,12 @@ var subChartState = {
     'Trung tâm BMT': false,
     'Trung tâm ĐNQN': false,
     'Dự án CGNB': false,
-    'Dự án Mai Sơn - QL.45': false,
     'Dự án NBLC': false,
     'Ban Giám đốc TT NBLC': false,
-    'Đội thu phí TT NBLC': false,
-    'Đội vận hành TT NBLC': false,
-    'Đội thu phí Dự án CGNB':false,
-    'Đội thu phí TT ĐNQN': false,
+    'Đội thu phí ': false,
+    'Đội vận hành ': false,
+    ' Đội thu phí ':false,
+    ' Đội thu phí   ': false,
 };
 
 var maindata;
@@ -80,11 +79,11 @@ function drawSubChart(name) {
         ]);
     } else if (name === 'Ban Giám đốc TT NBLC') {
         data.addRows([
-            [{ 'v': 'VP Trung tâm NBLC', 'f': 'VP Trung tâm NBLC' }, name, ''],
-            [{ 'v': 'Đội thu phí TT NBLC', 'f': 'Đội thu phí TT NBLC' }, name, ''],
-            [{ 'v': 'Đội vận hành TT NBLC', 'f': 'Đội vận hành TT NBLC' }, name, '']
+            [{ 'v': 'Văn phòng trung tâm ', 'f': 'Văn phòng trung tâm ' }, name, ''],
+            [{ 'v': 'Đội thu phí ', 'f': 'Đội thu phí ' }, name, ''],
+            [{ 'v': 'Đội vận hành ', 'f': 'Đội vận hành ' }, name, '']
         ]);
-    } else if (name == 'Đội thu phí TT NBLC') {
+    } else if (name == 'Đội thu phí ' ) {
         data.addRows([
             [{ 'v': 'Trạm Km6' , 'f':'Trạm Km6'}, name, ''],
             [{ 'v': 'Trạm IC3', 'f':'Trạm IC3'}, name, ''],
@@ -98,24 +97,23 @@ function drawSubChart(name) {
             [{ 'v': 'Trạm IC12' , 'f':'Trạm IC12'}, name, ''],
             [{ 'v': 'Trạm Phố Lu', 'f':'Trạm Phố Lu'}, name, ''],
         ]);
-    } else if (name == 'Đội vận hành TT NBLC'){
+    } else if (name == 'Đội vận hành '){
         data.addRows([
-            [{ 'v': 'Trạm IC3 Đội vận hành' , 'f':'Trạm IC3 Đội vận hành' }, name, ''],
-            [{ 'v': 'Trạm IC9 Đội vận hành' , 'f':'Trạm IC9 Đội vận hành' }, name, ''],
-            [{ 'v': 'Trạm IC12 Đội vận hành'  , 'f':'Trạm IC12 Đội vận hành' }, name, ''],
+            [{ 'v': 'Đội vận hành số 1 ', 'f': 'Đội vận hành số 1 '}, name, ''],
+            [{ 'v': 'Đội vận hành số 2 ', 'f': 'Đội vận hành số 2 '}, name, ''],
         ]);
     } else if (name === 'Trung tâm TN&KT') {
         data.addRows([
-            [{ 'v': 'VP Trung tâm TN&KT', 'f': 'VP Trung tâm TN&KT' }, name, ''],
-            [{ 'v': 'Cầu Giẽ - Ninh Bình ', 'f': 'Cầu Giẽ - Ninh Bình ' }, 'VP Trung tâm TN&KT', ''],
-            [{ 'v': 'Nội Bài - Lào Cai ', 'f': 'Nội Bài - Lào Cai ' }, 'VP Trung tâm TN&KT', '']
+            [{ 'v': 'Văn phòng trung tâm  ', 'f': 'Văn phòng trung tâm  ' }, name, ''],
+            [{ 'v': 'Cầu Giẽ - Ninh Bình ', 'f': 'Cầu Giẽ - Ninh Bình ' }, 'Văn phòng trung tâm  ', ''],
+            [{ 'v': 'Nội Bài - Lào Cai ', 'f': 'Nội Bài - Lào Cai ' }, 'Văn phòng trung tâm  ', '']
         ]);
     } else if (name === 'Trung tâm ĐNQN') {
         data.addRows([
-            [{ 'v': 'VP ' + name, 'f': 'VP ' + name }, name, ''],
-            [{ 'v': 'Đội thu phí TT ĐNQN' ,'f': 'Đội thu phí TT ĐNQN'}, 'VP Trung tâm ĐNQN', ''],
+            [{ 'v': ' Văn phòng trung tâm   ', 'f': ' Văn phòng trung tâm   ' }, name, ''],
+            [{ 'v': ' Đội thu phí   ' ,'f': ' Đội thu phí   '}, ' Văn phòng trung tâm   ', ''],
         ]);
-    }else if (name == 'Đội thu phí TT ĐNQN'){
+    }else if (name == ' Đội thu phí   '){
         data.addRows([
             [{ 'v': 'Đội trưởng ', 'f':'Đội trưởng '}, name, ''],
             [{ 'v': 'Trạm Túy Loan ', 'f':'Trạm Túy Loan '}, name, ''],
@@ -123,41 +121,39 @@ function drawSubChart(name) {
         ]);
     } else if (name === 'Trung tâm BMT') {
         data.addRows([
-            [{ 'v': 'VP ' + name, 'f': 'VP ' + name }, name, ''],
-            [{ 'v': 'Dự án Hải Phòng', 'f': 'Dự án Hải Phòng' }, 'VP ' + name, ''],
-            [{ 'v': 'Dự án QL.45 - Nghi Sơn - Diễn Châu', 'f': 'Dự án QL.45 - Nghi Sơn - Diễn Châu' }, 'VP ' + name, ''],
-            [{ 'v': 'Dự án Diễn Châu - Bãi Vọt', 'f': 'Dự án Diễn Châu - Bãi Vọt' }, 'VP ' + name, ''],
+            [{ 'v': '  Văn phòng trung tâm  ' , 'f': '  Văn phòng trung tâm  '}, name, ''],
+            [{ 'v': 'Dự án Hải Phòng', 'f': 'Dự án Hải Phòng' }, '  Văn phòng trung tâm  ' , ''],
+            [{ 'v': 'Dự án QL.45 - Nghi Sơn - Diễn Châu', 'f': 'Dự án QL.45 - Nghi Sơn - Diễn Châu' }, '  Văn phòng trung tâm  ', ''],
+            [{ 'v': 'Dự án Diễn Châu - Bãi Vọt', 'f': 'Dự án Diễn Châu - Bãi Vọt' }, '  Văn phòng trung tâm  ', ''],
         ]);
     } else if (name === 'Trung tâm CGNB') {
         data.addRows([
-            [{ 'v': 'VP Trung tâm CGNB', 'f': 'VP Trung tâm CGNB' }, name, ''],
-            [{ 'v': 'Dự án CGNB', 'f': 'Dự án CGNB' }, 'VP Trung tâm CGNB', ''],
-            [{ 'v': 'Dự án Mai Sơn - QL.45', 'f': 'Dự án Mai Sơn - QL.45' }, 'VP Trung tâm CGNB', '']
+            [{ 'v': ' Văn phòng trung tâm ', 'f': ' Văn phòng trung tâm ' }, name, ''],
+            [{ 'v': 'Dự án CGNB', 'f': 'Dự án CGNB' }, ' Văn phòng trung tâm ', ''],
+            [{ 'v': 'Dự án Mai Sơn - QL.45', 'f': 'Dự án Mai Sơn - QL.45' }, ' Văn phòng trung tâm ', '']
         ]);
     } else if (name === 'Dự án CGNB') {
         data.addRows([
-            [{ 'v': 'Đội thu phí ' + name, 'f': 'Đội thu phí ' + name }, name, ''],
-            [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, name, '']
+            [{ 'v': ' Đội thu phí ' , 'f': ' Đội thu phí '  }, name, ''],
+            [{ 'v': ' Đội vận hành ' , 'f': ' Đội vận hành '  }, name, '']
         ]);
-    } else if (name === 'Đội thu phí Dự án CGNB') {
+    } else if (name === ' Đội thu phí ') {
         data.addRows([
             [{ 'v': 'Trạm Vực Vòng', 'f': 'Trạm Vực Vòng' }, name, ''],
             [{ 'v': 'Trạm Liêm Tuyền', 'f': 'Trạm Liêm Tuyền'}, name, ''],
             [{ 'v': 'Trạm Cao Bồ', 'f': 'Trạm Cao Bồ' }, name, '']
         ]);
-    } else if (name == 'Dự án Mai Sơn - QL.45') {
-        data.addRows([
-            [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, name, '']
-        ]);
-    } else {
-        // Default case for other nodes
-        data.addRows([
-            [{ 'v': 'Ban Giám đốc ' + name, 'f': 'Ban Giám đốc ' + name }, name, ''],
-            [{ 'v': 'VP ' + name, 'f': 'VP ' + name }, 'Ban Giám đốc ' + name, ''],
-            [{ 'v': 'Đội thu phí ' + name, 'f': 'Đội thu phí ' + name }, 'Ban Giám đốc ' + name, ''],
-            [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, 'Ban Giám đốc ' + name, '']
-        ]);
     }
+
+    // }  else {
+    //     // Default case for other nodes
+    //     data.addRows([
+    //         [{ 'v': 'Ban Giám đốc ' + name, 'f': 'Ban Giám đốc ' + name }, name, ''],
+    //         [{ 'v': 'VP ' + name, 'f': 'VP ' + name }, 'Ban Giám đốc ' + name, ''],
+    //         [{ 'v': 'Đội thu phí ' + name, 'f': 'Đội thu phí ' + name }, 'Ban Giám đốc ' + name, ''],
+    //         [{ 'v': 'Đội vận hành ' + name, 'f': 'Đội vận hành ' + name }, 'Ban Giám đốc ' + name, '']
+    //     ]);
+    // }
 
     var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
     chart.draw(data, { 'allowHtml': true });
@@ -187,13 +183,12 @@ function goBack() {
         'Trung tâm BMT': false,
         'Trung tâm ĐNQN': false,
         'Dự án CGNB': false,
-        'Dự án Mai Sơn - QL.45': false,
         'Dự án NBLC': false,
         'Ban Giám đốc TT NBLC': false,
-        'Đội thu phí TT NBLC': false,
-        'Đội vận hành TT NBLC': false,
-        'Đội thu phí Dự án CGNB':false,
-        'Đội thu phí TT ĐNQN': false,
+        'Đội thu phí ': false,
+        'Đội vận hành ': false,
+        ' Đội thu phí ':false,
+        ' Đội thu phí   ': false,
     };
     drawChart();
     document.getElementById('back_button').style.display = 'none'; // Hide back button
@@ -273,35 +268,31 @@ function displayModal(name) {
                 'Tạ Đức Vượng - Chuyên viên',
                 'Phan Tiến Anh - Chuyên viên',]
         },
-        // 'Ban Giám đốc TT NBLC': {
-        //     'nhân viên': ['Ngô Văn Lợi - Giám Đốc TT',
-        //                 'Nguyễn Văn Khương - Phó Giám đốc TT'
-        //     ]
-        // },
         'Ban điều hành gói thầu': {
             'nhân viên': ['Ngô Văn O - Giám đốc điều hành',
                 'PHạm Văn A - Phó giám đốc điều hành'
             ]
         },
         'Ban Giám đốc Trung tâm BMT': {
-            'nhân viên': ['Dương Văn Luận - Giám đốc TT', 'Mai Văn Mậu - Phó giám đốc TT']
+            'nhân viên': ['Dương Văn Luận - Giám đốc', 'Mai Văn Mậu - Phó giám đốc']
         },
 
-        'VP Trung tâm NBLC': {
-            'nhân viên': ['Ngô Văn Lợi - Giám Đốc TT',
-                'Nguyễn Văn Khương - Phó Giám đốc TT',
+        'Văn phòng trung tâm ': {
+            'nhân viên': ['Ngô Văn Lợi - Giám Đốc',
+                'Nguyễn Văn Khương - Phó Giám đốc',
                 'Lê Công Soát - Phó phòng',
                 'Nguyễn Xuân Huy - Đội phó Đội điện',
-                'Trần Thị Tuyết Nhung - Nhân viên TT',
-                'Nguyễn Thị Đào - Nhân viên TT',
-                'Nguyễn Thị Thanh - Nhân viên TT',
-                'Dương Đức Minh - Nhân viên TT',
+                'Trần Thị Tuyết Nhung - Nhân viên',
+                'Nguyễn Thị Đào - Nhân viên',
+                'Nguyễn Thị Thanh - Nhân viên',
+                'Dương Đức Minh - Nhân viên',
             ]
         },
-        'VP Trung tâm TN&KT': {
+        'Văn phòng trung tâm  ': {
             'nhân viên': ['Mai Đức Thành - Giám đốc TT',
-                'Thái Công Danh - Phó phòng TT',
-                'Nguyễn Thị Lộc - Kế toán'
+                'Thái Công Danh - Phó trưởng VPTT',
+                'Nguyễn Thị Lộc - Kế toán',
+                'Đặng Thu Trang - Chuyên viên',
             ]
         },
         'Cầu Giẽ - Ninh Bình ': {
@@ -314,26 +305,26 @@ function displayModal(name) {
             'chức vụ': 'Đội phó đội XD&BT số 2',
             'tên': 'Uông Việt Anh',
             'sđt': '0985111914',
-            'nơi làm việc': 'Phụ trách cả 2 dự án gói thầu O&M1-NBLC và O&M2-NBLC  tuyến đường cao tốc NBLC (Km0 - Km149+705)',
+            'nơi làm việc': 'Đường cao tốc NBLC',
         },
-        'VP Trung tâm CGNB': {
-            'nhân viên': ['Ngô Huy Thuần - Giám đốc TT',
-                'Trần Hồng Ngọc - Trưởng văn phòng TT',
-                'Đinh Thị Thu Hương - Nhân viên TT',
-                'Đỗ Thị Hương Lan - Nhân viên TT',
-                'Nguyễn Thị Thảo - Nhân viên TT',
-                'Đinh Văn Việt - Nhân viên TT'
+        ' Văn phòng trung tâm ': {
+            'nhân viên': ['Ngô Huy Thuần - Giám đốc',
+                'Trần Hồng Ngọc - Trưởng văn phòng',
+                'Đinh Thị Thu Hương - Nhân viên',
+                'Đỗ Thị Hương Lan - Nhân viên',
+                'Nguyễn Thị Thảo - Nhân viên',
+                'Đinh Văn Việt - Nhân viên'
             ]
         },
-        'VP Trung tâm BMT': {
-            'nhân viên': ['Dương Văn Luận - Giám đốc TT',
-                        'Mai Văn Mậu - Phó Giám đốc TT',
+        '  Văn phòng trung tâm  ': {
+            'nhân viên': ['Dương Văn Luận - Giám đốc',
+                        'Mai Văn Mậu - Phó Giám đốc',
                         'Mai Văn Giang - Phó phòng'
             ]
         },
-        'VP Trung tâm ĐNQN': {
-            'nhân viên': ['Nguyễn Văn Lượng - Phó Giám đốc TT',
-                'Ngô Thị Thanh Nguyên - Phó phòng TT',
+        ' Văn phòng trung tâm   ': {
+            'nhân viên': ['Nguyễn Văn Lượng - Phó Giám đốc',
+                'Ngô Thị Thanh Nguyên - Phó phòng',
                 'Đoàn Thị Ngọc Tuyết - Văn thư'
             ]
         },   
@@ -403,34 +394,27 @@ function displayModal(name) {
             'sđt': '0983022336',
             'nơi làm việc': 'Phụ trách cân Trạm Phố Lu'
         },
-        'Trạm IC3 Đội vận hành':{
-            'nhân viên':['Đinh Xuân Thắng - Đội trưởng Đội VH1',
-                        'Hoàng Cao Khanh - Đội phó Đội VH1'
+        'Đội vận hành số 1 ':{
+            'nhân viên':['Đinh Xuân Thắng - Đội trưởng' ,
+                        'Hoàng Cao Khanh - Đội phó '
+            ]
+        },
+        'Đội vận hành số 2 ':{
+            'nhân viên': ['Lê Đức Bình - Đội trưởng',
+                        'Bùi Văn Nam - Đội phó'
             ]
         },
         'Trạm IC9 Đội vận hành':{
-            'tên': 'Bùi Văn Nam',
-            'chức vụ': 'Đội phó đội VH2',
-            'sđt': '0963995234',
-            'nơi làm việc': 'Trụ sở trạm IC9 (Km48+088-Km98+400)'
+           
         },
         'Trạm IC12 Đội vận hành':{
-            'tên': 'Lê Đức Bình',
-            'chức vụ': 'Đội trưởng đội VH2',
-            'sđt': '0989429429',
-            'nơi làm việc': 'Trụ sở trạm IC12 (Km98+400-Km149+705)'
-        },
-        'Đội thu phí Trung tâm CGNB': {
-            'nhân viên': ['Phạm Lê Hòa - Đội trưởng',
-                        'Nguyễn Hoài Nam - Đội phó',
-                        'Thạch Hải Phong - Đội phó phụ trách bộ phận ĐSHK',
-            ]
+            
         },
         'Trạm Vực Vòng':{
           'nhân viên': ['Phạm Lê Hòa - Đội trưởng',
                         'Nguyễn Hoài Nam - Đội phó',
                         'Thạch Hải Phong - Đội phó phụ trách bộ phận ĐSHK',
-                        'Phạm Quốc Bảo - Đội phó'
+                        'Phạm Quốc Bảo - Đội phó phụ trách trạm'
             ]
         },
         'Trạm Liêm Tuyền':{
@@ -445,15 +429,15 @@ function displayModal(name) {
             'sđt': '0915818286',
             'nơi làm việc': 'Phụ trách Trạm Cao Bồ'
         },
-        'Đội vận hành Dự án CGNB': {
+        ' Đội vận hành ': {
             'nhân viên': ['Nguyễn Quốc Huy - Đội trưởng đội VH1',
                 'Trần Quốc An - Đội phó đội VH1',
             ]
         },
-        'Đội vận hành Dự án Mai Sơn - QL.45':{
-            'nhân viên':['Bùi Đức Thành - Đội trưởng ĐVH số 2',
-                'Đoàn Tiến Bắc - Đội phó']
-        },
+        // 'Dự án Mai Sơn - QL.45':{
+        //     'nhân viên':['Bùi Đức Thành - Đội trưởng ĐVH số 2',
+        //         ]
+        // },
         'Dự án Hải Phòng':{
             'tên': 'Trương Văn Linh',
             'chức vụ': 'Nhân viên',
@@ -516,7 +500,7 @@ function displayModal(name) {
                 <p><strong>Họ và Tên:</strong> ${info[name]['tên']}</p>
                 <p><strong>Chức vụ:</strong> ${info[name]['chức vụ']}</p>
                 <p><strong>SĐT:</strong> <a href="tel:${info[name]['sđt']}">${info[name]['sđt']}</a></p>
-                <p><strong>Nơi làm việc:</strong> ${info[name]['nơi làm việc']}</p>
+                <p><strong>Ghi chú:</strong> ${info[name]['nơi làm việc']}</p>
             `;
         }
         modal.style.display = "flex";
@@ -550,6 +534,7 @@ window.onclick = function (event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+
 };
 
 function displayEmployeeInfo(employee) {
@@ -558,204 +543,207 @@ function displayEmployeeInfo(employee) {
             'tên': 'Mai Đức Quỳnh',
             'chức vụ': 'Chủ tịch Hội Đồng quản trị',
             'sđt': '0948345358',
+            'nơi làm việc':'',
         },
         'Hà Bắc Sơn - Thành viên HĐQT': {
             'tên': 'Hà Bắc Sơn',
             'chức vụ': 'Thành viên HĐQT',
             'sđt': '0913505054',
+            'nơi làm việc':'',
         },
         'Nguyễn Thanh Sơn - Thành viên HĐQT': {
             'tên': 'Nguyễn Thanh Sơn',
             'chức vụ': 'Thành viên HĐQT',
-            'sđt': '0904223056'
+            'sđt': '0904223056',
+            'nơi làm việc':'',
         },
         'Nguyễn Thanh Sơn - Giám đốc Công ty': {
             'tên': 'Nguyễn Thanh Sơn',
             'chức vụ': 'Giám đốc Công ty',
             'sđt': '0904223056',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Trần Ngọc Hải - Phó Giám đốc Công ty': {
             'tên': 'Trần Ngọc Hải',
             'chức vụ': 'Phó Giám đốc Công ty',
             'sđt': '0902356866',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Nguyễn Văn Dương - Phó Giám đốc Công ty': {
             'tên': 'Nguyễn Văn Dương',
             'chức vụ': ' Phó Giám đốc Công ty',
             'sđt': '0983819689',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Đỗ Thị Lan Hương - Kế toán trưởng': {
             'tên': 'Đỗ Thị Lan Hương',
             'chức vụ': 'Kế toán trưởng',
             'sđt': '0904875332',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Phạm Ngọc Hùng - Phụ trách phòng, Phó trưởng phòng': {
             'tên': 'Phạm Ngọc Hùng',
             'chức vụ': 'Phụ trách phòng, Phó trưởng phòng',
             'sđt': '0936448848',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Trần Thị Hòa - Phó trưởng phòng': {
             'tên': 'Trần Thị Hòa',
             'chức vụ': 'Phó trưởng phòng',
             'sđt': '0962258467',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Thái Thị Liệu - Chuyên viên': {
             'tên': 'Thái Thị Liệu',
             'chức vụ': 'Chuyên viên',
             'sđt': '0975706571',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Trần Thanh Tùng - Chuyên viên': {
             'tên': 'Trần Thanh Tùng',
             'chức vụ': 'Chuyên viên',
             'sđt': '0982272935',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Mai Thu Hiền - Chuyên viên': {
             'tên': 'Mai Thu Hiền',
             'chức vụ': 'Chuyên viên',
             'sđt': '0983998955',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Nguyễn Thị Trà Giang - Chuyên viên': {
             'tên': 'Nguyễn Thị Trà Giang',
             'chức vụ': 'Chuyên viên',
             'sđt': '0973768792',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Trần Thị Luyến - Chuyên viên': {
             'tên': 'Trần Thị Luyến',
             'chức vụ': 'Chuyên viên',
             'sđt': '0372935109',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Tạ Đức Vượng - Chuyên viên': {
             'tên': 'Tạ Đức Vượng',
             'chức vụ': 'Chuyên viên',
             'sđt': '0912346879',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Phan Tiến Anh - Chuyên viên': {
             'tên': 'Phan Tiến Anh',
             'chức vụ': 'Chuyên viên',
             'sđt': '0916192363',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Nguyễn Thị Mai Hương - Phó trưởng phòng': {
             'tên': 'Nguyễn Thị Mai Hương',
             'chức vụ': 'Phó trưởng phòng',
             'sđt': '0978729489',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Bùi Thị Thanh Lương - Phó trưởng phòng': {
             'tên': 'Bùi Thị Thanh Lương',
             'chức vụ': 'Phó trưởng phòng',
             'sđt': '0963735511',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Nguyễn Thị Vân - Chuyên viên': {
             'tên': 'Nguyễn Thị Vân',
             'chức vụ': 'Chuyên viên',
             'sđt': '0904420878',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Đoàn Thị Mai Phương - Chuyên viên': {
             'tên': 'Đoàn Thị Mai Phương',
             'chức vụ': 'Chuyên viên',
             'sđt': '0977239578',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Nguyễn Thị Thu Phương - Phó trưởng phòng': {
             'tên': 'Nguyễn Thị Thu Phương',
             'chức vụ': 'Phó trưởng phòng',
             'sđt': '0936684317',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Hoàng Thị Huệ - Phó trưởng phòng': {
             'tên': 'Hoàng Thị Huệ',
             'chức vụ': 'Phó trưởng phòng',
             'sđt': '0989537268',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Nguyễn Thị Bích Thủy - Chuyên viên': {
             'tên': 'Nguyễn Thị Bích Thủy',
             'chức vụ': 'Chuyên viên',
             'sđt': '0972782862',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Phạm Thị Ngọc - Chuyên viên': {
             'tên': 'Phạm Thị Ngọc',
             'chức vụ': 'Chuyên viên',
             'sđt': '0915563333',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Lê Tiến Lâm - Chuyên viên': {
             'tên': 'Lê Tiến Lâm',
             'chức vụ': 'Chuyên viên',
             'sđt': '0983533731',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Nguyễn Thị Hiền - Chuyên viên': {
             'tên': 'Nguyễn Thị Hiền',
             'chức vụ': 'Chuyên viên',
             'sđt': '0988096730',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Nguyễn Duy Hiếu - Phụ trách phòng, Phó trưởng phòng': {
             'tên': 'Nguyễn Duy Hiếu',
             'chức vụ': 'Phó trưởng phòng',
             'sđt': '0966305232',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Lương Hùng Mạnh - Phó trưởng phòng': {
             'tên': 'Lương Hùng Mạnh',
             'chức vụ': 'Phó trưởng phòng',
             'sđt': '0988833886',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': 'Tăng cường trên tuyến NBLC'
         },
         'Đinh Văn Hưng - Phó trưởng phòng': {
             'tên': 'Đinh Văn Hưng',
             'chức vụ': 'Phó trưởng phòng',
             'sđt': '0932329288',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Đậu Khắc Sơn - Chuyên viên': {
             'tên': 'Đậu Khắc Sơn',
             'chức vụ': 'Chuyên viên',
             'sđt': '0868096266',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Trần Văn Đoán - Chuyên viên': {
             'tên': 'Trần Văn Đoán',
             'chức vụ': 'Chuyên viên',
             'sđt': '0986084896',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Lê Xuân Hiệp - Chuyên viên': {
             'tên': 'Lê Xuân Hiệp',
             'chức vụ': 'Chuyên viên',
             'sđt': '0352223505',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
         'Ngô Hồng Phong - Chuyên viên': {
             'tên': 'Ngô Hồng Phong',
             'chức vụ': 'Chuyên viên',
             'sđt': '0967904506',
-            'nơi làm việc': 'Văn phòng Công ty'
+            'nơi làm việc': ''
         },
-        'Ngô Văn Lợi - Giám Đốc TT': {
+        'Ngô Văn Lợi - Giám Đốc': {
             'tên': 'Ngô Văn Lợi',
-            'chức vụ': 'Giám đốc Trung tâm NBLC',
+            'chức vụ': 'Giám đốc Trung tâm kiêm Giám đốc điều hành gói thầu',
             'sđt': '0912881892',
             'nơi làm việc': 'Trung tâm ĐH ĐCT NBLC'
         },
-        'Nguyễn Văn Khương - Phó Giám đốc TT': {
+        'Nguyễn Văn Khương - Phó Giám đốc': {
             'tên': 'Nguyễn Văn Khương',
             'chức vụ': 'Phó giám đốc TT NBLC',
             'sđt': '0914898798',
@@ -773,25 +761,25 @@ function displayEmployeeInfo(employee) {
             'sđt': '0904499666',
             'nơi làm việc': 'Trung tâm ĐH ĐCT NBLC'
         },
-        'Trần Thị Tuyết Nhung - Nhân viên TT': {
+        'Trần Thị Tuyết Nhung - Nhân viên': {
             'tên': 'Trần Thị Tuyết Nhung',
             'chức vụ': 'Nhân viên TT',
             'sđt': '0379903186',
             'nơi làm việc': 'Trung tâm ĐH ĐCT NBLC'
         },
-        'Nguyễn Thị Đào - Nhân viên TT': {
+        'Nguyễn Thị Đào - Nhân viên': {
             'tên': 'Nguyễn Thị Đào',
             'chức vụ': 'Nhân viên TT',
             'sđt': '0966658558',
             'nơi làm việc': 'Trung tâm ĐH ĐCT NBLC'
         },
-        'Nguyễn Thị Thanh - Nhân viên TT': {
+        'Nguyễn Thị Thanh - Nhân viên': {
             'tên': 'Nguyễn Thị Thanh',
             'chức vụ': 'Nhân viên TT',
             'sđt': '0984535646',
             'nơi làm việc': 'Trung tâm ĐH ĐCT NBLC'
         },
-        'Dương Đức Minh - Nhân viên TT': {
+        'Dương Đức Minh - Nhân viên': {
             'tên': 'Dương Đức Minh',
             'chức vụ': 'Nhân viên TT',
             'sđt': '0938363722',
@@ -815,25 +803,25 @@ function displayEmployeeInfo(employee) {
             'sđt': '0911171086',
             'nơi làm việc': 'Phụ trách Trạm Km6'
         },
-        'Đinh Xuân Thắng - Đội trưởng Đội VH1':{
+        'Đinh Xuân Thắng - Đội trưởng':{
             'tên': 'Đinh Xuân Thắng',
             'chức vụ': 'Đội trưởng Đội VH1',
             'sđt': '0916982268',
             'nơi làm việc': 'Trụ sở Trạm IC3 (Km0+000-Km48+088)'
         },
-        'Hoàng Cao Khanh - Đội phó Đội VH1':{
+        'Hoàng Cao Khanh - Đội phó':{
             'tên': 'Hoàng Cao Khanh',
             'chức vụ': 'Đội phó Đội VH1',
             'sđt': '0963304611',
             'nơi làm việc': 'Trụ sở Trạm IC3 (Km98+400-Km149+705)'
         },
-        'Nguyễn Văn Lượng - Phó Giám đốc TT': {
+        'Nguyễn Văn Lượng - Phó Giám đốc': {
             'tên': 'Nguyễn Văn Lượng',
             'chức vụ': 'Phó Giám đốc',
             'sđt': '0977297986',
             'nơi làm việc': 'Văn Phòng Trung tâm'
         },
-        'Ngô Thị Thanh Nguyên - Phó phòng TT': {
+        'Ngô Thị Thanh Nguyên - Phó phòng': {
             'tên': 'Ngô Thị Thanh Nguyên',
             'chức vụ': 'Phó phòng TT',
             'sđt': '0912253562',
@@ -845,37 +833,37 @@ function displayEmployeeInfo(employee) {
             'sđt': '0935383143',
             'nơi làm việc': 'Văn Phòng Trung tâm'
         },
-        'Ngô Huy Thuần - Giám đốc TT': {
+        'Ngô Huy Thuần - Giám đốc': {
             'tên': 'Ngô Huy Thuần',
             'chức vụ': 'Giám đóc TT',
             'sđt': '0916111766',
             'nơi làm việc': 'Trung tâm điều hành ĐCT CGNB'
         },
-        'Trần Hồng Ngọc - Trưởng văn phòng TT': {
+        'Trần Hồng Ngọc - Trưởng văn phòng': {
             'tên': 'Trần Hồng Ngọc',
             'chức vụ': 'Trưởng văn phòng Trung tâm',
             'sđt': '0989131388',
             'nơi làm việc': 'Trung tâm điều hành ĐCT CGNB'
         },
-        'Đinh Thị Thu Hương - Nhân viên TT': {
+        'Đinh Thị Thu Hương - Nhân viên': {
             'tên': 'Đinh Thị Thu Hương',
             'chức vụ': 'Nhân viên Trung tâm',
             'sđt': '0374293212',
             'nơi làm việc': 'Trung tâm điều hành ĐCT CGNB'
         },
-        'Đỗ Thị Hương Lan - Nhân viên TT': {
+        'Đỗ Thị Hương Lan - Nhân viên': {
             'tên': 'Đỗ Thị Hương Lan',
             'chức vụ': 'Nhân viên Trung tâm',
             'sđt': '0917759226',
             'nơi làm việc': 'Trung tâm điều hành ĐCT CGNB'
         },
-        'Nguyễn Thị Thảo - Nhân viên TT': {
+        'Nguyễn Thị Thảo - Nhân viên': {
             'tên': 'Nguyễn Thị Thảo',
             'chức vụ': 'Nhân viên Trung tâm',
             'sđt': '0917909386',
             'nơi làm việc': 'Trung tâm điều hành ĐCT CGNB'
         },
-        'Đinh Văn Việt - Nhân viên TT': {
+        'Đinh Văn Việt - Nhân viên': {
             'tên': 'Đinh Văn Việt',
             'chức vụ': 'Nhân viên Trung tâm',
             'sđt': '0915833269',
@@ -923,7 +911,7 @@ function displayEmployeeInfo(employee) {
             'sđt': '0944909626',
             'nơi làm việc': 'Đội ĐSHK'
         },
-        'Phạm Quốc Bảo - Đội phó': {
+        'Phạm Quốc Bảo - Đội phó phụ trách trạm': {
             'tên': 'Phạm Quốc Bảo',
             'chức vụ': 'Đội phó Đội thu phí',
             'sđt': '0977567911',
@@ -947,7 +935,7 @@ function displayEmployeeInfo(employee) {
             'sđt': '0904888897',
             'nơi làm việc': 'Văn phòng TT TNKT'
         },
-        'Thái Công Danh - Phó phòng TT': {
+        'Thái Công Danh - Phó trưởng VPTT': {
             'tên': 'Thái Công Danh',
             'chức vụ': 'Phó phòng Trung tâm',
             'sđt': '0972545072',
@@ -959,13 +947,19 @@ function displayEmployeeInfo(employee) {
             'sđt': '0978576891',
             'nơi làm việc': 'Văn phòng TT TNKT'
         },
-        'Dương Văn Luận - Giám đốc TT': {
+        'Đặng Thu Trang - Chuyên viên':{
+            'tên':'Đặng Thu Trang',
+            'chức vụ': 'Chuyên viên',
+            'sđt': '',
+            'nơi làm việc': 'Văn phòng TT TNKT'
+        },
+        'Dương Văn Luận - Giám đốc': {
             'tên': 'Dương Văn Luận',
             'chức vụ': 'Giám đốc TT',
             'sđt': '0986010176',
             'nơi làm việc': 'Văn phòng TT BMT'
         },
-        'Mai Văn Mậu - Phó Giám đốc TT': {
+        'Mai Văn Mậu - Phó Giám đốc': {
             'tên': 'Mai Văn Mậu',
             'chức vụ': 'Phó giám đốc TT',
             'sđt': '0919110819',
@@ -978,7 +972,18 @@ function displayEmployeeInfo(employee) {
             'sđt': '0374824300',
             'nơi làm việc': 'Văn phòng TT BMT'
         },
-       
+       'Lê Đức Bình - Đội trưởng':{
+            'tên': 'Lê Đức Bình',
+            'chức vụ': 'Đội trưởng đội VH2',
+            'sđt': '0989429429',
+            'nơi làm việc': 'Trụ sở trạm IC12 (Km98+400-Km149+705)'
+       },
+       'Bùi Văn Nam - Đội phó':{
+        'tên': 'Bùi Văn Nam',
+        'chức vụ': 'Đội phó đội VH2',
+        'sđt': '0963995234',
+        'nơi làm việc': 'Trụ sở trạm IC9 (Km48+088-Km98+400)'
+       },
     };
 
     var modalInfo = document.getElementById("modal-info");
@@ -988,7 +993,7 @@ function displayEmployeeInfo(employee) {
         <p><strong>Họ và Tên:</strong> ${employeeInfo[employee]['tên']}</p>
         <p><strong>Chức vụ:</strong> ${employeeInfo[employee]['chức vụ']}</p>
         <p><strong>SĐT:</strong> <a href="tel:${employeeInfo[employee]['sđt']}">${employeeInfo[employee]['sđt']}</a></p>
-        <p><strong>Nơi làm việc:</strong> ${employeeInfo[employee]['nơi làm việc']}</p>
+        <p><strong>Ghi chú:</strong> ${employeeInfo[employee]['nơi làm việc']}</p>
     `;
 }
 function closeModal() {

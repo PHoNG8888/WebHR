@@ -111,7 +111,7 @@ body {
 #back_button {
     display: none;
     position: fixed;
-    bottom: 20px;
+    top: 75%;
     right: 20px;
     padding: 10px 20px;
     background-color: #007bff;
