@@ -14,6 +14,8 @@ var subChartState = {
     'Đội vận hành ': false,
     ' Đội thu phí ':false,
     ' Đội thu phí   ': false,
+    'Dự án Hải Phòng': false,
+    'Dự án Diễn Châu - Bãi Vọt': false,
 };
 
 var maindata;
@@ -74,8 +76,8 @@ function drawSubChart(name) {
 
     if (name === 'Dự án NBLC') {
         data.addRows([
-            [{ 'v': 'Ban điều hành gói thầu', 'f': 'Ban điều hành gói thầu' }, name, ''],
-            [{ 'v': 'Ban Giám đốc TT NBLC', 'f': 'Ban Giám đốc TT NBLC' }, 'Ban điều hành gói thầu', '']
+            [{ 'v': 'Ban điều hành Gói thầu O&M1', 'f': 'Ban điều hành Gói thầu O&M1' }, name, ''],
+            [{ 'v': 'Ban Giám đốc TT NBLC', 'f': 'Ban Giám đốc TT NBLC' }, 'Ban điều hành Gói thầu O&M1', '']
         ]);
     } else if (name === 'Ban Giám đốc TT NBLC') {
         data.addRows([
@@ -115,16 +117,31 @@ function drawSubChart(name) {
         ]);
     }else if (name == ' Đội thu phí   '){
         data.addRows([
-            [{ 'v': 'Đội trưởng ', 'f':'Đội trưởng '}, name, ''],
+            // [{ 'v': 'Đội trưởng ', 'f':'Đội trưởng '}, name, ''],
             [{ 'v': 'Trạm Túy Loan ', 'f':'Trạm Túy Loan '}, name, ''],
             [{ 'v': 'Trạm Bắc Quảng Ngãi ' , 'f':'Trạm Bắc Quảng Ngãi '}, name, ''],
+            [{ 'v': 'Trạm Phong Thử', 'f': 'Trạm Phong Thử'}, name, ''],
+            [{ 'v': 'Trạm Hà Lam', 'f': 'Trạm Hà Lam'}, name, ''],
+            [{ 'v': 'Trạm Tam Kỳ', 'f': 'Trạm Tam Kỳ'}, name, ''],
+            [{ 'v': 'Trạm Chu Lai', 'f': 'Trạm Chu Lai'}, name, ''],
+            [{ 'v': 'Trạm Quảng Ngãi', 'f': 'Trạm Quảng Ngãi'}, name, '']
         ]);
     } else if (name === 'Trung tâm BMT') {
         data.addRows([
             [{ 'v': '  Văn phòng trung tâm  ' , 'f': '  Văn phòng trung tâm  '}, name, ''],
-            [{ 'v': 'Dự án Hải Phòng', 'f': 'Dự án Hải Phòng' }, '  Văn phòng trung tâm  ' , ''],
-            [{ 'v': 'Dự án QL.45 - Nghi Sơn - Diễn Châu', 'f': 'Dự án QL.45 - Nghi Sơn - Diễn Châu' }, '  Văn phòng trung tâm  ', ''],
-            [{ 'v': 'Dự án Diễn Châu - Bãi Vọt', 'f': 'Dự án Diễn Châu - Bãi Vọt' }, '  Văn phòng trung tâm  ', ''],
+            [{ 'v': 'Dự án Hải Phòng', 'f': 'Dự án Hải Phòng' }, name , ''],
+            [{ 'v': 'Dự án QL.45 - Nghi Sơn - Diễn Châu', 'f': 'Dự án QL.45 - Nghi Sơn - Diễn Châu' }, name , ''],
+            [{ 'v': 'Dự án Diễn Châu - Bãi Vọt', 'f': 'Dự án Diễn Châu - Bãi Vọt' }, name, ''],
+        ]);
+    } else if  (name === 'Dự án Hải Phòng'){
+        data.addRows([
+            [{ 'v': 'Ban điều hành Gói thầu số 2', 'f': 'Ban điều hành Gói thầu số 2'}, name, ''],
+            [{ 'v': '  Đội vận hành  ', 'f': '  Đội vận hành  '}, name, '']
+        ]);
+    } else if  (name === 'Dự án Diễn Châu - Bãi Vọt'){
+        data.addRows([
+            [{ 'v': ' Ban điều hành Gói thầu ', 'f': ' Ban điều hành Gói thầu '}, name, ''],
+            [{ 'v': '   Đội vận hành   ', 'f': '   Đội vận hành   '}, name, '']
         ]);
     } else if (name === 'Trung tâm CGNB') {
         data.addRows([
@@ -189,6 +206,8 @@ function goBack() {
         'Đội vận hành ': false,
         ' Đội thu phí ':false,
         ' Đội thu phí   ': false,
+        'Dự án Hải Phòng': false,
+        'Dự án Diễn Châu - Bãi Vọt': false,
     };
     drawChart();
     document.getElementById('back_button').style.display = 'none'; // Hide back button
@@ -268,9 +287,15 @@ function displayModal(name) {
                 'Tạ Đức Vượng - Chuyên viên',
                 'Phan Tiến Anh - Chuyên viên',]
         },
-        'Ban điều hành gói thầu': {
-            'nhân viên': ['Ngô Văn O - Giám đốc điều hành',
-                'PHạm Văn A - Phó giám đốc điều hành'
+        'Ban điều hành Gói thầu O&M1': {
+            'nhân viên': ['Nguyễn Thanh Sơn - Giám đốc Ban điều hành',
+                        'Nguyễn Văn Dương - Phó Giám đốc Ban điều hành',
+                        'Nguyễn Văn Khương - PGĐ BĐH, Đội trưởng Đội Vận hành',
+                        'Đinh Văn Hưng - Đội trưởng đội BDTX',
+                        'Nguyễn Duy Hiếu - Cán bộ kỹ thuật',
+                        'Thái Công Danh - Cán bộ kỹ thuật',
+                        'Nguyễn Xuân Huy - Cán bộ kỹ thuật',
+                        'Lê Công Soát - Cán bộ kỹ thuật'
             ]
         },
         'Ban Giám đốc Trung tâm BMT': {
@@ -322,10 +347,12 @@ function displayModal(name) {
                         'Mai Văn Giang - Phó phòng'
             ]
         },
+
         ' Văn phòng trung tâm   ': {
             'nhân viên': ['Nguyễn Văn Lượng - Phó Giám đốc',
                 'Ngô Thị Thanh Nguyên - Phó phòng',
-                'Đoàn Thị Ngọc Tuyết - Văn thư'
+                'Đoàn Thị Ngọc Tuyết - Văn thư',
+                'Nguyễn Tấn Long - Đội trưởng Đội HKĐS',
             ]
         },   
         'Trạm Km6':{
@@ -434,15 +461,31 @@ function displayModal(name) {
                 'Trần Quốc An - Đội phó đội VH1',
             ]
         },
-        // 'Dự án Mai Sơn - QL.45':{
-        //     'nhân viên':['Bùi Đức Thành - Đội trưởng ĐVH số 2',
-        //         ]
-        // },
-        'Dự án Hải Phòng':{
+        'Ban điều hành Gói thầu số 2':{
+            'nhân viên': ['Nguyễn Văn Dương - Giám đốc Ban điều hành',
+                        'Dương Văn Luân - Phó Giám đốc Ban điều hành',
+                        'Bùi Đức Thành - PGĐ BĐH, Đội trưởng Đội vận hành',
+                        'Nguyễn Văn Ninh - Đội trưởng Đội bảo trì',
+                        'Đậu Khắc Sơn - Cán bộ kỹ thuật',
+                        'Lê Xuân Hiệp - Cán bộ kỹ thuật',                        
+            ]
+        },
+        '  Đội vận hành  ':{
             'tên': 'Trương Văn Linh',
             'chức vụ': 'Nhân viên',
             'sđt': '0967276262',
-            'nơi làm việc': 'QL1737-HP'
+            'nơi làm việc': 'Làm việc tại hiện trường'
+        },
+        // 'Dự án Hải Phòng':{
+        
+        // },
+        ' Ban điều hành Gói thầu ':{
+            'nhân viên': ['Lương Hùng Mạnh - Giám đốc Ban điều hành',
+                        'Mai Văn Mậu - PGĐ thường trực BĐH',
+                        'Dương Văn Luận - Phó Giám đốc BĐH',
+                        'Nguyễn Duy Hiếu - Phó Giám đốc BĐH',
+                        'Nguyễn Văn Ninh - Phó Giám đốc BĐH phụ trách đội vận hành'
+            ]
         },
         'Dự án QL.45 - Nghi Sơn - Diễn Châu':{
             'tên': 'Ngô Anh Văn',
@@ -450,18 +493,12 @@ function displayModal(name) {
             'sđt': '0979234333',
             'nơi làm việc': 'QL45-NS-DC'
         },
-        'Dự án Diễn Châu - Bãi Vọt':{
-            'tên': 'Đoàn Tiến Bắc',
-            'chức vụ': 'Đội phó Đội vận hành',
-            'sđt': '0985932086',
-            'nơi làm việc': 'Tuyến Mai Sơn - QL46 (Điều chuyển từ TT CGNB)'
+        '   Đội vận hành   ':{
+           'nhân viên':['Bùi Đức Thành - Đội trưởng',
+                       'Đoàn Tiến Bắc - Đội phó' 
+           ]
         },
-        'Đội trưởng ':{
-            'tên': 'Nguyễn Tấn Long',
-            'chức vụ': 'Đội trưởng',
-            'sđt': '0905705995',
-            'nơi làm việc': 'Văn Phòng Trung tâm'
-        },
+        
         'Trạm Túy Loan ':{
             'tên': 'Trần Ngọc Long',
             'chức vụ': 'Đội phó',
@@ -473,6 +510,36 @@ function displayModal(name) {
                 'chức vụ': 'Đội phó',
                 'sđt': '0905639456',
                 'nơi làm việc': 'Trạm Bắc Quảng Ngãi'
+        },
+        'Trạm Phong Thử' :{
+                'tên': 'Phạm Gia',
+                'chức vụ': 'Trưởng trạm',
+                'sđt': '',
+                'nơi làm việc': 'Phụ trách Trạm Phong Thử'
+        },
+        'Trạm Hà Lam': {
+                'tên': 'Nguyễn Văn Thắng',
+                'chức vụ':'Trưởng trạm',
+                'sđt':'',
+                'nơi làm việc':'Phụ trách Trạm Hà Lam'
+        },
+        'Trạm Tam Kỳ': {
+                'tên': 'Trần Thị Ánh',
+                'chức vụ':'Trưởng trạm',
+                'sđt':'',
+                'nơi làm việc': 'Phụ trách Trạm Tam Kỳ'
+        },
+        'Trạm Chu Lai':{
+                'tên': 'Đinh Văn Ngọc',
+                'chức vụ': 'Trưởng Trạm',
+                'sđt': '',
+                'nơi làm việc': 'Phụ trách Trạm Chu Lai'
+        },
+        'Trạm Quảng Ngãi':{
+            'tên':'Trần Thanh Lâm',
+            'chức vụ': 'Phó Trưởng trạm',
+            'sđt': '',
+            'nơi làm việc': 'Phụ trách Trạm Quảng Ngãi'
         }
     };
 
@@ -739,7 +806,7 @@ function displayEmployeeInfo(employee) {
         },
         'Ngô Văn Lợi - Giám Đốc': {
             'tên': 'Ngô Văn Lợi',
-            'chức vụ': 'Giám đốc Trung tâm kiêm Giám đốc điều hành gói thầu',
+            'chức vụ': 'Giám đốc Trung tâm',
             'sđt': '0912881892',
             'nơi làm việc': 'Trung tâm ĐH ĐCT NBLC'
         },
@@ -833,6 +900,12 @@ function displayEmployeeInfo(employee) {
             'sđt': '0935383143',
             'nơi làm việc': 'Văn Phòng Trung tâm'
         },
+        'Nguyễn Tấn Long - Đội trưởng Đội HKĐS':{
+            'tên': 'Nguyễn Tấn Long',
+            'chức vụ': 'Đội trưởng',
+            'sđt': '0905705995',
+            'nơi làm việc': 'Văn Phòng Trung tâm'
+        },
         'Ngô Huy Thuần - Giám đốc': {
             'tên': 'Ngô Huy Thuần',
             'chức vụ': 'Giám đóc TT',
@@ -881,7 +954,7 @@ function displayEmployeeInfo(employee) {
             'sđt': '0932315567',
             'nơi làm việc': 'Tuyến Cầu Giẽ - Ninh Bình'
         },
-        'Bùi Đức Thành - Đội trưởng ĐVH số 2': {
+        'Bùi Đức Thành - Đội trưởng': {
             'tên': 'Bùi Đức Thành',
             'chức vụ': 'Đội trưởng Đội Vận hành số 2',
             'sđt': '0911521222',
