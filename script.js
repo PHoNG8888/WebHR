@@ -295,7 +295,7 @@ function displayModal(name) {
                         'Nguyễn Duy Hiếu - Cán bộ kỹ thuật',
                         'Thái Công Danh - Cán bộ kỹ thuật',
                         'Nguyễn Xuân Huy - Cán bộ kỹ thuật',
-                        'Lê Công Soát - Cán bộ kỹ thuật'
+                        'Lê Công Soát - Cán bộ kỹ thuật',
             ]
         },
         'Ban Giám đốc Trung tâm BMT': {
@@ -477,14 +477,13 @@ function displayModal(name) {
             'nơi làm việc': 'Làm việc tại hiện trường'
         },
         // 'Dự án Hải Phòng':{
-        
         // },
         ' Ban điều hành Gói thầu ':{
             'nhân viên': ['Lương Hùng Mạnh - Giám đốc Ban điều hành',
+                        'Dương Văn Luận - Phó Giám đốc Ban điều hành',
+                        'Nguyễn Duy Hiếu - Phó Giám đốc Ban điều hành',       
                         'Mai Văn Mậu - PGĐ thường trực BĐH',
-                        'Dương Văn Luận - Phó Giám đốc BĐH',
-                        'Nguyễn Duy Hiếu - Phó Giám đốc BĐH',
-                        'Nguyễn Văn Ninh - Phó Giám đốc BĐH phụ trách đội vận hành'
+                        'Nguyễn Văn Ninh - Phó Giám đốc BĐH phụ trách Đội vận hành'
             ]
         },
         'Dự án QL.45 - Nghi Sơn - Diễn Châu':{
@@ -1006,25 +1005,25 @@ function displayEmployeeInfo(employee) {
             'tên': 'Mai Đức Thành',
             'chức vụ': 'Giám đốc Trung tâm',
             'sđt': '0904888897',
-            'nơi làm việc': 'Văn phòng TT TNKT'
+            'nơi làm việc': ''
         },
         'Thái Công Danh - Phó trưởng VPTT': {
             'tên': 'Thái Công Danh',
             'chức vụ': 'Phó phòng Trung tâm',
             'sđt': '0972545072',
-            'nơi làm việc': 'Văn phòng TT TNKT'
+            'nơi làm việc': ''
         },
         'Nguyễn Thị Lộc - Kế toán': {
             'tên': 'Nguyễn Thị Lộc',
             'chức vụ': 'Kế toán',
             'sđt': '0978576891',
-            'nơi làm việc': 'Văn phòng TT TNKT'
+            'nơi làm việc': ''
         },
         'Đặng Thu Trang - Chuyên viên':{
             'tên':'Đặng Thu Trang',
             'chức vụ': 'Chuyên viên',
             'sđt': '',
-            'nơi làm việc': 'Văn phòng TT TNKT'
+            'nơi làm việc': ''
         },
         'Dương Văn Luận - Giám đốc': {
             'tên': 'Dương Văn Luận',
@@ -1057,12 +1056,127 @@ function displayEmployeeInfo(employee) {
         'sđt': '0963995234',
         'nơi làm việc': 'Trụ sở trạm IC9 (Km48+088-Km98+400)'
        },
+       'Nguyễn Thanh Sơn - Giám đốc Ban điều hành':{
+        'tên': 'Nguyễn Thanh Sơn',
+        'chức vụ': 'Giám đốc Công ty',
+        'sđt': '0904223056',
+        'nơi làm việc': ''
+       },
+       'Nguyễn Văn Dương - Phó Giám đốc Ban điều hành':{
+        'tên': 'Nguyễn Văn Dương',
+        'chức vụ': ' Phó Giám đốc Công ty',
+        'sđt': '0983819689',
+        'nơi làm việc': ''
+       },
+       'Nguyễn Văn Khương - PGĐ BĐH, Đội trưởng Đội Vận hành':{
+        'tên': 'Nguyễn Văn Khương',
+        'chức vụ': 'Phó giám đốc TT NBLC',
+        'sđt': '0914898798',
+        'nơi làm việc': 'Trung tâm ĐH ĐCT NBLC'
+       },
+       'Đinh Văn Hưng - Đội trưởng đội BDTX':{
+        'tên': 'Đinh Văn Hưng',
+        'chức vụ': 'Phó trưởng phòng QLKT',
+        'sđt': '0932329288',
+        'nơi làm việc': ''
+       },
+       'Nguyễn Duy Hiếu - Cán bộ kỹ thuật':{
+        'tên': 'Nguyễn Duy Hiếu',
+        'chức vụ': 'Phó trưởng phòng QLKT',
+        'sđt': '0966305232',
+        'nơi làm việc': ''
+       },
+       'Thái Công Danh - Cán bộ kỹ thuật':{
+        'tên': 'Thái Công Danh',
+        'chức vụ': 'Phó phòng Trung tâm TN&KT',
+        'sđt': '0972545072',
+        'nơi làm việc': ''
+       },
+       'Nguyễn Xuân Huy - Cán bộ kỹ thuật':{
+            'tên': 'Nguyễn Xuân Huy',
+            'chức vụ': 'Đội phó Đội điện',
+            'sđt': '0983753028',
+            'nơi làm việc': ''
+       },
+       'Lê Công Soát - Cán bộ kỹ thuật':{
+        'tên': 'Lê Công Soát',
+        'chức vụ': 'Phó phòng VPTT',
+        'sđt': '0904499666',
+        'nơi làm việc': ''
+       },
+       'Nguyễn Văn Dương - Giám đốc Ban điều hành':{
+        'tên': 'Nguyễn Văn Dương',
+        'chức vụ': ' Phó Giám đốc Công ty',
+        'sđt': '0983819689',
+        'nơi làm việc': ''
+       },
+       'Dương Văn Luận - Phó Giám đốc Ban điều hành':{
+            'tên': 'Dương Văn Luận',
+            'chức vụ': 'Giám đốc Trung tâm BMT',
+            'sđt': '0986010176',
+            'nơi làm việc': 'Văn phòng TT BMT'
+       },
+       'Bùi Đức Thành - PGĐ BĐH, Đội trưởng Đội vận hành':{
+        'tên': 'Bùi Đức Thành',
+        'chức vụ': 'Đội trưởng Đội Vận hành số 2',
+        'sđt': '0911521222',
+        'nơi làm việc': 'Tuyến Mai Sơn - QL45 (Điều chuyển từ TT CGNB)'
+       },
+       'Nguyễn Văn Ninh - Đội trưởng Đội bảo trì':{
+        'chức vụ': 'Đội trưởng đội XD&BT số 1',
+        'tên': 'Nguyễn Văn Ninh',
+        'sđt': '0982636129',
+        'nơi làm việc': 'Phụ trách tuyến đường cao tốc CGNB',
+       },
+       'Đậu Khắc Sơn - Cán bộ kỹ thuật':{
+        'tên': 'Đậu Khắc Sơn',
+        'chức vụ': 'Chuyên viên phòng QLKT',
+        'sđt': '0868096266',
+        'nơi làm việc': ''
+       },
+       'Lê Xuân Hiệp - Cán bộ kỹ thuật':{
+        'tên': 'Lê Xuân Hiệp',
+        'chức vụ': 'Chuyên viên phòng QLKT',
+        'sđt': '0352223505',
+        'nơi làm việc': ''
+       },
+       'Lương Hùng Mạnh - Giám đốc Ban điều hành':{
+        'tên': 'Lương Hùng Mạnh',
+        'chức vụ': 'Phó trưởng phòng',
+        'sđt': '0988833886',
+        'nơi làm việc': 'Tăng cường trên tuyến NBLC'
+       },
+       'Mai Văn Mậu - PGĐ thường trực BĐH':{
+        'tên': 'Mai Văn Mậu',
+            'chức vụ': 'Phó giám đốc TT',
+            'sđt': '0919110819',
+            'nơi làm việc': 'Văn Phòng TT BMT'
+       },
+       'Dương Văn Luận - Phó Giám đốc Ban điều hành':{
+        'tên': 'Dương Văn Luận',
+        'chức vụ': 'Giám đốc Trung tâm BMT',
+        'sđt': '0986010176',
+        'nơi làm việc': 'Văn phòng TT BMT'
+       },
+       'Nguyễn Duy Hiếu - Phó Giám đốc Ban điều hành':{
+        'tên': 'Nguyễn Duy Hiếu',
+        'chức vụ': 'Phó trưởng phòng QLKT',
+        'sđt': '0966305232',
+        'nơi làm việc': ''
+       },
+       'Nguyễn Văn Ninh - Phó Giám đốc BĐH phụ trách Đội vận hành':{
+        'chức vụ': 'Đội trưởng đội XD&BT số 1',
+        'tên': 'Nguyễn Văn Ninh',
+        'sđt': '0982636129',
+        'nơi làm việc': 'Phụ trách tuyến đường cao tốc CGNB',
+       }
     };
 
     var modalInfo = document.getElementById("modal-info");
     previousState = modalInfo.innerHTML;
 
     modalInfo.innerHTML = `
+        <h3>Thông tin chi tiết</h3>
         <p><strong>Họ và Tên:</strong> ${employeeInfo[employee]['tên']}</p>
         <p><strong>Chức vụ:</strong> ${employeeInfo[employee]['chức vụ']}</p>
         <p><strong>SĐT:</strong> <a href="tel:${employeeInfo[employee]['sđt']}">${employeeInfo[employee]['sđt']}</a></p>
